@@ -81,14 +81,14 @@ export function Sidebar(props) {
                 <NavItem title="E-Commerce" link="" image={Company_logo} />
   
                 <NavItem title="Home" link={customRoutes.adminHome.path} icon={faTooth} />
-                <NavItem title="Product List" link="/productlisting" icon={faDollarSign} />
-                <NavItem title="Product Detail" link="/productdetail" icon={faDollarSign} />
+                <NavItem title="Product List" link="/productlisting" icon={faShoppingCart} />
+                {/* <NavItem title="Product Detail" link="/productdetail" icon={faDollarSign} />
                 <NavItem title="Cart" link="/cart" icon={faShoppingCart}/>
                 <NavItem title="Shipping Information" link="/shipping" icon={faTruckFast}/>
                 <NavItem title="Personal Information" link={customRoutes.taskList.path} icon={faUser}/>
                 <NavItem title="Payment" link="/payment" icon={faMoneyCheckDollar}/>
                 <NavItem title="Order History" link={customRoutes.invoicePage.path} icon={faBagShopping}/>
-                <NavItem title="Settings" link={customRoutes.settingPage.path} icon={faGear}/>
+                <NavItem title="Settings" link={customRoutes.settingPage.path} icon={faGear}/> */}
                
                 {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} />
                 <NavItem title="Transactions" icon={faHandHoldingUsd} link="" />

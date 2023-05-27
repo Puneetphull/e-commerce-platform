@@ -1,409 +1,426 @@
+import dentalFloss from '../assets/productListImages/Dental Floss.jpeg'
+import dentalmirror from '../assets/productListImages/Dental Mirror.jpeg'
+import dentalinterdental from '../assets/productListImages/Interdental Brushes.jpeg'
+import dentalNight from '../assets/productListImages/Dental Night Guard.jpeg'
+import dentalcleanser from '../assets/productListImages/Denture Cleanser Tablets.jpeg'
+import dentalorthodontic from '../assets/productListImages/Orthodontic Wax.jpeg'
+import dentaltongue from '../assets/productListImages/Tongue Scraper.jpeg'
+import dentaltootpase from '../assets/productListImages/Toothpaste.jpeg'
+import dentalimg1 from '../assets/productListImages/Teeth Whitening Kit.jpeg'
+import dentalimg2 from '../assets/productListImages/goby-jEwi-9on5IE-unsplash (1).jpg'
+import dentalimg3 from '../assets/productListImages/goby-jEwi-9on5IE-unsplash.jpg'
+import dentalimg4 from '../assets/productListImages/th.jpeg'
+import dentalimg5 from '../assets/productListImages/th (1).jpeg'
+
+
+
+
 export const productlist = [
     {
-      id: 7,
-      brand: "66",
-      name: "Electric Toothbrush",
-      sku: "navy blue jacket",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/n/n/nnnn_1.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 99,
-            currency: "USD",
-          },
-          final_price: {
-            value: 99,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 7,
+        brand: "66",
+        name: "Electric Toothbrush",
+        sku: "Electric Toothbrush",
+        short_description: {
+            html: "<p>A high-powered electric toothbrush for superior dental hygiene. It features multiple cleaning modes and comes with replaceable brush heads.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalimg3,
         },
-      },
-      product_review: "3.1",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 99,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 99,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "3.1",
+        type_id: "simple",
     },
     {
-      id: 155,
-      brand: "14",
-      name: "shirts jeans",
-      sku: "shirts jeans",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/7/1/71-qwfgkxfl._uy741_.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 200,
-            currency: "USD",
-          },
-          final_price: {
-            value: 200,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 155,
+        brand: "14",
+        name: "Teeth Whitening Kit",
+        sku: "Teeth Whitening Kit",
+        short_description: {
+            html: "<p>A complete teeth whitening kit with LED light technology. Achieve a brighter smile with ease using the included whitening gel and mouth tray.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalimg1,
         },
-      },
-      product_review: "2.4",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 200,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 200,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "2.4",
+        type_id: "simple",
     },
     {
-      id: 152,
-      brand: "14",
-      name: "T-shirts for men",
-      sku: "shirts for men",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/7/1/71lql5cmtml._ux569_.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 100,
-            currency: "USD",
-          },
-          final_price: {
-            value: 100,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 152,
+        brand: "14",
+        name: "Dental Floss Picks",
+        sku: "Dental Floss Picks",
+        short_description: {
+            html: "<p>A pack of dental floss picks with built-in toothpick ends for convenient oral care. The floss is designed to glide smoothly between teeth for effective cleaning.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalFloss ,
         },
-      },
-      product_review: "3.2",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "3.2",
+        type_id: "simple",
     },
     {
-      id: 12,
-      brand: "14",
-      name: "Assassins jacket",
-      sku: "assassins jacket",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/3/1/31pzdvad3al_1_1.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 30,
-            currency: "USD",
-          },
-          final_price: {
-            value: 30,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 12,
+        brand: "14",
+        name: "Water Flosser",
+        sku: "Water Flosser",
+        short_description: {
+            html: "<p>An advanced water flosser that uses water pressure to remove plaque and debris between teeth and along the gumline. It has adjustable settings for personalized cleaning.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalimg5,
         },
-      },
-      product_review: "2.1",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 30,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 30,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "2.1",
+        type_id: "simple",
     },
     {
-      id: 39,
-      brand: "13",
-      name: "Tommy Jacket",
-      sku: "tommy jacket",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/6/1/61upcfeymdl._ux569_.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 30,
-            currency: "USD",
-          },
-          final_price: {
-            value: 30,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 39,
+        brand: "13",
+        name: "Dental Night Guard",
+        sku: "Dental Night Guard",
+        short_description: {
+            html: "<p>A custom-fit dental night guard to protect teeth from grinding or clenching during sleep. Made of durable and comfortable materials for long-lasting use.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalNight,
         },
-      },
-      product_review: "4.0",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 30,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 30,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "4.0",
+        type_id: "simple",
     },
     {
-      id: 36,
-      brand: "14",
-      name: "Black Jacket",
-      sku: "black jacket-1",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/6/1/617n2ts2pal._ux679__1.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 100,
-            currency: "USD",
-          },
-          final_price: {
-            value: 100,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 36,
+        brand: "14",
+        name: "Toothpaste",
+        sku: "Toothpaste",
+        short_description: {
+            html: "<p>A fluoride toothpaste with a refreshing mint flavor. It helps prevent cavities, strengthen enamel, and maintain fresh breath.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentaltootpase,
         },
-      },
-      product_review: "4.5",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "4.5",
+        type_id: "simple",
     },
     {
-      id: 35,
-      brand: "65",
-      name: "pink jacket",
-      sku: "pink jacket",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/8/1/81kf_tbrbil._ux569_.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 100,
-            currency: "USD",
-          },
-          final_price: {
-            value: 100,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 35,
+        brand: "65",
+        name: "Interdental Brushes",
+        sku: "Interdental Brushes",
+        short_description: {
+            html: "<p>A set of interdental brushes in various sizes for cleaning between teeth and hard-to-reach areas. Ideal for removing plaque and food particles.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalinterdental,
         },
-      },
-      product_review: "4.0",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "4.0",
+        type_id: "simple",
     },
     {
-      id: 34,
-      brand: "14",
-      name: "jacket",
-      sku: "jacket",
-      short_description: {
-        html: '<div class="admin__field-complex-elements" data-bind="foreach: {data: elems, as: \'element\'}"> </div>\r\n<div class="admin__field-complex-content" data-bind="html: $data.content">Drawing inspiration from France\'s unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</div>',
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/p/r/printed-ladies-lower-500x500_1.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 30,
-            currency: "USD",
-          },
-          final_price: {
-            value: 30,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 34,
+        brand: "14",
+        name: "Dental Mirror",
+        sku: "Dental Mirror",
+        short_description: {
+            html: '<div class="admin_field-complex-elements" data-bind="foreach: {data: elems, as: \'element\'}"> </div>\r\n<div class="admin_field-complex-content" data-bind="html: $data.content">A handheld dental mirror with an ergonomic grip for examining the mouth and teeth. It helps visualize hard-to-see areas during oral hygiene routines.</div>',
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalmirror,
         },
-      },
-      product_review: "5.0",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 30,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 30,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "5.0",
+        type_id: "simple",
     },
     {
-      id: 33,
-      brand: "14",
-      name: "Black jacket",
-      sku: "black jacket",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/5/1/51eztyrol-l._ux679__1.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 100,
-            currency: "USD",
-          },
-          final_price: {
-            value: 100,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 33,
+        brand: "14",
+        name: "Tongue Scraper",
+        sku: "Tongue Scraper",
+        short_description: {
+            html: "<p>A tongue scraper for removing bacteria and debris from the surface of the tongue. Helps improve oral hygiene and reduce bad breath.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentaltongue,
         },
-      },
-      product_review: "3.5",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "3.5",
+        type_id: "simple",
     },
     {
-      id: 32,
-      brand: "14",
-      name: "pink Jackets",
-      sku: "pink Jackets",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/8/1/81hwgwp47jl._ux679__1.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 100,
-            currency: "USD",
-          },
-          final_price: {
-            value: 100,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 32,
+        brand: "14",
+        name: "Dental Floss",
+        sku: "Dental Floss",
+        short_description: {
+            html: "<p>A pack of dental floss with a strong yet gentle texture. It slides easily between teeth, removing plaque and promoting healthy gums.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalFloss,
         },
-      },
-      product_review: "3.3",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "3.3",
+        type_id: "simple",
     },
     {
-      id: 23,
-      brand: "84",
-      name: "WINTER JACKET",
-      sku: "winter jacket",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/8/1/81whf0k6bnl_1.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 100,
-            currency: "USD",
-          },
-          final_price: {
-            value: 100,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 23,
+        brand: "84",
+        name: "Denture Cleanser Tablets",
+        sku: "Denture Cleanser Tablets",
+        short_description: {
+            html: "<p>Effervescent denture cleanser tablets for removing stains, bacteria, and odors from dentures. Keeps dentures fresh and clean.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalcleanser,
         },
-      },
-      product_review: "2.7",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 100,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "2.7",
+        type_id: "simple",
     },
     {
-      id: 20,
-      brand: "14",
-      name: "GUCCI WINTER JACKET",
-      sku: "GUCCI WINTER JACKET",
-      short_description: {
-        html: "<p>Drawing inspiration from France's unparalleled antiques and vintage markets, Paris-based jeweler Yvonne Léon pays tribute to the past while looking to the future with rebellious inflection.</p>",
-      },
-      image: {
-        url: "http://cf467543a5.nxcli.net/media/catalog/product/cache/e139c21ff937f8944d7dc8da350ad9c3/f/d/fd8fd468f126d332ff4a7f4971048014_1.jpg",
-      },
-      price_range: {
-        minimum_price: {
-          regular_price: {
-            value: 85,
-            currency: "USD",
-          },
-          final_price: {
-            value: 85,
-            currency: "USD",
-          },
-          fixed_product_taxes: [],
+        id: 20,
+        brand: "14",
+        name: "Orthodontic Wax",
+        sku: "Orthodontic Wax",
+        short_description: {
+            html: "<p>Specialized orthodontic wax for braces wearers. It provides relief from discomfort and irritation caused by braces and orthodontic appliances.</p>",
         },
-        maximum_price: {
-          discount: {
-            amount_off: 0,
-            percent_off: 0,
-          },
-          fixed_product_taxes: [],
+        image: {
+            url: dentalorthodontic,
         },
-      },
-      product_review: "4.0",
-      type_id: "simple",
+        price_range: {
+            minimum_price: {
+                regular_price: {
+                    value: 85,
+                    currency: "USD",
+                },
+                final_price: {
+                    value: 85,
+                    currency: "USD",
+                },
+                fixed_product_taxes: [],
+            },
+            maximum_price: {
+                discount: {
+                    amount_off: 0,
+                    percent_off: 0,
+                },
+                fixed_product_taxes: [],
+            },
+        },
+        product_review: "4.0",
+        type_id: "simple",
     }];
