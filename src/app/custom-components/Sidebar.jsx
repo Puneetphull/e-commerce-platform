@@ -82,9 +82,10 @@ export function Sidebar(props) {
   
                 <NavItem title="Home" link={customRoutes.adminHome.path} icon={faTooth} />
                 <NavItem title="Product List" link="/productlisting" icon={faShoppingCart} />
+                <NavItem title="Shipping Information" link="/shipping" icon={faTruckFast}/>
                 {/* <NavItem title="Product Detail" link="/productdetail" icon={faDollarSign} />
                 <NavItem title="Cart" link="/cart" icon={faShoppingCart}/>
-                <NavItem title="Shipping Information" link="/shipping" icon={faTruckFast}/>
+                
                 <NavItem title="Personal Information" link={customRoutes.taskList.path} icon={faUser}/>
                 <NavItem title="Payment" link="/payment" icon={faMoneyCheckDollar}/>
                 <NavItem title="Order History" link={customRoutes.invoicePage.path} icon={faBagShopping}/>
