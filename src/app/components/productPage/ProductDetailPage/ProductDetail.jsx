@@ -1,4 +1,5 @@
 import React from "react";
+import { productDetails } from "../../../data/productDetails";
 
 export function ProductDetail() {
   return (
@@ -8,7 +9,11 @@ export function ProductDetail() {
           <div class="row">
             <div class="col-md-6">
               <div class="pdp-product-image">
-                <img src="images/tshirtpdp.jpg" alt="" class="img-fluid" />
+                <img
+                  src={productDetails?.media_gallery_entries[0]?.file}
+                  alt=""
+                  class="img-fluid"
+                />
                 <div class="magnifying-glass">
                   <i class="fas fa-times"></i>
                 </div>
@@ -76,7 +81,7 @@ export function ProductDetail() {
                   </div>
                 </div>
                 <hr></hr>
-                <div class="configurable-product-options text-13">
+                {/* <div class="configurable-product-options text-13">
                   <div class="pdp-dropdown-option">
                     <label class="mb-1 font-weight-bold">Material</label>
                     <select class="form-control">
@@ -113,7 +118,7 @@ export function ProductDetail() {
                       <li>XS</li>
                     </ul>
                   </div>
-                </div>
+                </div> */}
                 <hr></hr>
                 <div class="quantity-addtocart-wrap my-4">
                   <div class="quantity-switcher">

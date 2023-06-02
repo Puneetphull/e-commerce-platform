@@ -2,9 +2,10 @@ import React from "react";
 import "../../../css e-commerce/css/style.css";
 import ProductCard from "../../../custom-components/ProductCard";
 import { productlist } from "../../../data/ProductList";
+import { Form } from "@themesberg/react-bootstrap";
 
 export function ProductList() {
-    console.log(productlist)
+  console.log(productlist);
   return (
     <section class="plp-content">
       <div class="container-fluid">
@@ -50,16 +51,32 @@ export function ProductList() {
                     <div class="card-body">
                       <ul>
                         <li>
-                          <a href="#">PUMA</a>
+                          <Form.Check
+                            label="PUMA"
+                            id="checkbox1"
+                            htmlFor="checkbox1"
+                          />
                         </li>
                         <li>
-                          <a href="#">GUCCI</a>
+                          <Form.Check
+                            label="GUCCI"
+                            id="checkbox1"
+                            htmlFor="checkbox1"
+                          />
                         </li>
                         <li>
-                          <a href="#">CHANEL</a>
+                          <Form.Check
+                            label="CHANEL"
+                            id="checkbox1"
+                            htmlFor="checkbox1"
+                          />
                         </li>
                         <li>
-                          <a href="#">TOMY HILFIGER</a>
+                          <Form.Check
+                            label="TOMY HILFIGER"
+                            id="checkbox1"
+                            htmlFor="checkbox1"
+                          />
                         </li>
                       </ul>
                     </div>

@@ -860,6 +860,12 @@ table {
   margin-bottom: 1rem;
 }
 
+.product-listing .product-info:hover {
+  box-shadow: 0 0 10px 0 #d9d9c9;
+}
+
+
+
 .add-wishlist-out {
   position: relative;
   max-width: 250px;
@@ -2396,4 +2402,12 @@ table {
     background: none;
   }
 }
+
+@media (min-width: 992px) {
+  .product-listing .product-info {
+    width: 33.33%;
+  }
+}
+
+
 /*# sourceMappingURL=style.css.map */
