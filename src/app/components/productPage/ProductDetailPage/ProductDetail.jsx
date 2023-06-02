@@ -22,7 +22,7 @@ export function ProductDetail() {
             <div class="col-md-6">
               <div class="pdp-product-description">
                 <div class="page-title-wrapper">
-                  <h1 class="page-title">Tommy Hilfiger</h1>
+                  <h1 class="page-title">Electric Brush</h1>
                   <div class="title-right-icon">
                     <div class="hover-product-wrap">
                       <a href="#" class="icon-link">
@@ -204,7 +204,7 @@ export function ProductDetail() {
                   </tr>
                   <tr>
                     <th>Brands</th>
-                    <td>TOMMY HILFIGER</td>
+                    <td>Electric Brush</td>
                   </tr>
                   <tr>
                     <th>Color</th>
@@ -218,7 +218,7 @@ export function ProductDetail() {
               <hr></hr>
               <div class="tab-review-heading mt-4">
                 <h3>YOU'RE REVIEWING:</h3>
-                <h4>Tommy Hilfiger</h4>
+                <h4>Electric Brush</h4>
               </div>
             </div>
             <div class="tab-rating-wrap my-5">

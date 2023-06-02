@@ -1,3 +1,5 @@
+import pdpimgae from '../../../src/app/assets/productListImages/electricbrush-pdp.jpg'
+
 export const productDetails = {
   id: 23,
   sku: "winter jacket",
@@ -173,7 +175,7 @@ export const productDetails = {
       position: 0,
       disabled: false,
       types: ["image", "small_image", "thumbnail", "swatch_image"],
-      file: "http://cf467543a5.nxcli.net/media/catalog/product/cache/2f63a21b58b188ab980f6070a93670ed/8/1/81whf0k6bnl_1.jpg",
+      file: pdpimgae,
     },
     {
       id: 507,
