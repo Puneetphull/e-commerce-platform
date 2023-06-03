@@ -1,4 +1,5 @@
 import React from 'react'
+import { cartlist } from '../../data/CartList'
 
 export  function PaymentPage() {
   return (
@@ -8,7 +9,7 @@ export  function PaymentPage() {
           <div class="progress-bar-checkout-wrap">
               <ol class="progress-bar-checkout">
                   <li class="step-active">Shipping</li>
-                  <li class="step">Review & Payments</li>
+                  <li class="step-active">Review & Payments</li>
               </ol>    
           </div>
         
@@ -283,7 +284,7 @@ export  function PaymentPage() {
                       </div>
                     </div>
                 </div>
-                <div class="payment-option-common cc-amasty-option">
+                {/* <div class="payment-option-common cc-amasty-option">
                   <div class="payment-radio-btn-wrap">
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="payment-option-radio" id="CreditCard-amasty"/>
@@ -397,7 +398,7 @@ export  function PaymentPage() {
                       <a href="#" class="btn btn-black disabled">Place Order</a>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div class="payment-option-common cash-on-delivery-option">
                   <div class="payment-radio-btn-wrap">
                     <div class="form-check">
@@ -561,12 +562,14 @@ export  function PaymentPage() {
               </div>
               <div class="item-count drop-arrow" data-toggle="collapse" data-target=".checkout-cart-list-wrap">3 Items in Cart</div>
               <div class="checkout-cart-list-wrap show">
+              {cartlist.map((data,index)=>(  
                 <div class="checkout-cart-list-item">
-                  <div class="product-img"><img src="/images/tshirt1.jpg"/></div>
-                  <div class="product-name-qty"><p>Chanel T-Shirt</p><p>Qty: 1</p></div>
-                  <div class="product-price">$25.00</div>
+                  <div class="product-img"><img src={data.extension_attributes.image_url} alt={data.name}/></div>
+                  <div class="product-name-qty"><p>Chanel T-Shirt</p><p>Qty: {data.qty}</p></div>
+                  <div class="product-price">${data.price}</div>
                 </div>
-                <div class="checkout-cart-list-item">
+              ))}
+                {/* <div class="checkout-cart-list-item">
                   <div class="product-img"><img src="/images/tshirt1.jpg"/></div>
                   <div class="product-name-qty"><p>Chanel T-Shirt</p><p>Qty: 7</p></div>
                   <div class="product-price">$250.00</div>
@@ -575,7 +578,7 @@ export  function PaymentPage() {
                   <div class="product-img"><img src="/images/tshirt1.jpg"/></div>
                   <div class="product-name-qty"><p>Chanel T-Shirt</p><p>Qty: 5</p></div>
                   <div class="product-price">$297.00</div>
-                </div>
+                </div> */}
               </div>
               <div class="shipto-block-wrap">
                 <div class="summary-ship-to">

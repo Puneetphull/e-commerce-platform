@@ -29,6 +29,7 @@ import { Cart } from "./app/components/Cart/Cart";
 import { ProductDetail } from "./app/components/productPage/ProductDetailPage/ProductDetail";
 import { ShippingPage } from "./app/components/shippingPage/ShippingPage";
 import { PaymentPage } from "./app/components/PaymentPage/PaymentPage";
+import { HomePage } from "./app/components/home/homePage";
 
 function App() {
   return (
@@ -81,7 +82,7 @@ function App() {
           <Route path="/reviewurl" element={<CustomerHomePage />} />
           <Route
             path={customRoutes.adminHome.path}
-            element={<PrivateRouteSideBar component={<Dashboard />} />}
+            element={<PrivateRouteSideBar component={<HomePage />} />}
           />
           <Route
             path="productListing"

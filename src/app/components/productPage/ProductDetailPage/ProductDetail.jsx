@@ -1,5 +1,7 @@
 import React from "react";
 import { productDetails } from "../../../data/productDetails";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 export function ProductDetail() {
   return (
@@ -69,6 +71,27 @@ export function ProductDetail() {
                   mollit anim id est laborum.
                 </div>
 
+                <div class="more-information-wrap mb-2">
+                  {/* <h4 class="heading-with-border">More Information</h4>
+                  <hr></hr> */}
+                  <table class="more-info-table">
+                    <tbody>
+                      <tr>
+                        <th>Size</th>
+                        <td>XL</td>
+                      </tr>
+                      <tr>
+                        <th>Brands</th>
+                        <td>Electric Brush</td>
+                      </tr>
+                      <tr>
+                        <th>Color</th>
+                        <td>Black</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="pdp-price-availability mb-4">
                   <div class="product-price">$48.00</div>
                   <div class="product-availability">
@@ -81,8 +104,8 @@ export function ProductDetail() {
                   </div>
                 </div>
                 <hr></hr>
-                {/* <div class="configurable-product-options text-13">
-                  <div class="pdp-dropdown-option">
+                <div class="configurable-product-options text-13">
+                  {/* <div class="pdp-dropdown-option">
                     <label class="mb-1 font-weight-bold">Material</label>
                     <select class="form-control">
                       <option value="position" selected="selected">
@@ -117,8 +140,8 @@ export function ProductDetail() {
                       <li>S</li>
                       <li>XS</li>
                     </ul>
-                  </div>
-                </div> */}
+                  </div> */}
+                </div>
                 <hr></hr>
                 <div class="quantity-addtocart-wrap my-4">
                   <div class="quantity-switcher">
@@ -163,21 +186,15 @@ export function ProductDetail() {
                 <div class="pdp-social-icons">
                   <ul class="list-inline">
                     <li class="list-inline-item">
-                      <a href="#">
-                        <img src="images/linkedin.png" />
-                      </a>
+                      <FontAwesomeIcon icon={faLinkedinIn} />
                     </li>
                     <li class="list-inline-item">
-                      <a href="#">
-                        <img src="images/facebook.png" />
-                      </a>
+                    <FontAwesomeIcon icon={faFacebook} />
                     </li>
                     <li class="list-inline-item">
-                      <a href="#">
-                        <img src="images/twitter.png" />
-                      </a>
+                    <FontAwesomeIcon icon={faTwitter} />
                     </li>
-                    <li class="list-inline-item">
+                    {/* <li class="list-inline-item">
                       <a href="#">
                         <img src="images/print-filled.png" />
                       </a>
@@ -186,7 +203,7 @@ export function ProductDetail() {
                       <a href="#">
                         <img src="images/addition.png" />
                       </a>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -198,6 +215,19 @@ export function ProductDetail() {
               <hr></hr>
               <table class="more-info-table">
                 <tbody>
+                  <tr>
+                    <th>Description</th>
+                    <td>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </td>
+                  </tr>
                   <tr>
                     <th>Size</th>
                     <td>XL</td>

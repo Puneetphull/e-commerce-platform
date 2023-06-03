@@ -1,11 +1,14 @@
 import React from "react";
 import "../../../css e-commerce/css/style.css";
 import ProductCard from "../../../custom-components/ProductCard";
-import { productlist } from "../../../data/ProductList";
-import { Form } from "@themesberg/react-bootstrap";
+import { productlist,filterArray } from "../../../data/ProductList";
+import {  Accordion, Form,Nav,Pagination } from "@themesberg/react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft,faChevronRight } from "@fortawesome/free-solid-svg-icons";
+
 
 export function ProductList() {
-  console.log(productlist);
+  
   return (
     <section class="plp-content">
       <div class="container-fluid">
@@ -24,65 +27,47 @@ export function ProductList() {
                 </div>
               </div>
 
-              <div id="accordion">
+              <Accordion  >
                 <div class="filter-title border d-flex justify-content-between p-3 align-items-baseline">
                   <h2 class="text-uppercase">Filters</h2>
                   <a href="#" class="text-uppercase small">
                     Clear All
                   </a>
                 </div>
-                <div class="selected-filter p-3 border-left border-right">
+                {/* <div class="selected-filter p-3 border-left border-right">
                   <div class="selected-creteria">selected</div>
                   <div class="selected-creteria">item</div>
                   <div class="selected-creteria">selected item</div>
                   <div class="selected-creteria">selected item</div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
+                </div> */}
+              {filterArray && filterArray.map((data,index)=>(  
+               <Accordion.Item class="card" eventKey={index}>
+                <Accordion.Header class="card-header" eventKey={index}>      
                     <h5
                       class="mb-0"
                       data-toggle="collapse"
                       data-target="#Brands"
                     >
-                      Brands
+                     {data.label}
                     </h5>
-                  </div>
-                  <div id="Brands" class="collapse show">
-                    <div class="card-body">
+                  </Accordion.Header>
+                  <Accordion.Body class="card-body" >   
                       <ul>
+                     {data.options.map((children,index)=>(   
                         <li>
-                          <Form.Check
-                            label="PUMA"
-                            id="checkbox1"
+                     <Form.Check
+                            label={children.label +  " " +  `(${children.count})`}
+                            id={`${children.label + index }`}
                             htmlFor="checkbox1"
-                          />
+                          />  
                         </li>
-                        <li>
-                          <Form.Check
-                            label="GUCCI"
-                            id="checkbox1"
-                            htmlFor="checkbox1"
-                          />
-                        </li>
-                        <li>
-                          <Form.Check
-                            label="CHANEL"
-                            id="checkbox1"
-                            htmlFor="checkbox1"
-                          />
-                        </li>
-                        <li>
-                          <Form.Check
-                            label="TOMY HILFIGER"
-                            id="checkbox1"
-                            htmlFor="checkbox1"
-                          />
-                        </li>
+                     ))}
                       </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
+                  </Accordion.Body>
+             
+                </Accordion.Item>
+              ))}
+                {/* <div class="card">
                   <div class="card-header">
                     <h5
                       class="mb-0"
@@ -178,8 +163,8 @@ export function ProductList() {
                       </ul>
                     </div>
                   </div>
-                </div>
-              </div>
+                </div> */}
+              </Accordion>
             </div>
           </div>
           <div class="col-md-9">
@@ -229,35 +214,21 @@ export function ProductList() {
             </select>
           </div>
           <div>
-            <nav class="pagination-nav">
-              <ul class="pagination pagination-sm">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span>&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">
-                    1
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    2
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    3
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+          <Nav>
+            <Pagination className="mb-2 mb-lg-0">
+              <Pagination.Prev>
+              <FontAwesomeIcon icon={faChevronLeft} />
+              </Pagination.Prev>
+              <Pagination.Item active>1</Pagination.Item>
+              <Pagination.Item>2</Pagination.Item>
+              <Pagination.Item>3</Pagination.Item>
+              <Pagination.Item>4</Pagination.Item>
+              <Pagination.Item>5</Pagination.Item>
+              <Pagination.Next>
+               <FontAwesomeIcon icon={faChevronRight} />
+              </Pagination.Next>
+            </Pagination>
+          </Nav>
           </div>
         </div>
       </div>

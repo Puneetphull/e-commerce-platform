@@ -1,38 +1,44 @@
+import dentalimg3 from "../assets/productListImages/goby-jEwi-9on5IE-unsplash.jpg";
+import dentalmirror from "../assets/productListImages/Dental Mirror.jpeg";
+import dentalinterdental from "../assets/productListImages/Interdental Brushes.jpeg";
+import dentalNight from "../assets/productListImages/Dental Night Guard.jpeg";
+import dentalcleanser from "../assets/productListImages/Denture Cleanser Tablets.jpeg";
+
 export const cartlist = [
     {
         "item_id": 7859,
-        "sku": "navy blue jacket",
+        "sku": "Electric Toothbrush",
         "qty": 1,
-        "name": "navy blue jacket",
+        "name": "Electric Toothbrush",
         "price": 99,
         "product_type": "simple",
         "quote_id": "Y6B7T8YA07o5usKKTQZqbXIz8fUo6npX",
         "extension_attributes": {
-            "image_url": "http://cf467543a5.nxcli.net/media/catalog/product/cache/2f63a21b58b188ab980f6070a93670ed/n/n/nnnn_1.jpg"
+            "image_url": dentalimg3
         }
     },
     {
         "item_id": 7860,
-        "sku": "winter jacket",
+        "sku": "Interdental Brushes",
         "qty": 1,
-        "name": "WINTER JACKET",
+        "name": "Interdental Brushes",
         "price": 100,
         "product_type": "simple",
         "quote_id": "Y6B7T8YA07o5usKKTQZqbXIz8fUo6npX",
         "extension_attributes": {
-            "image_url": "http://cf467543a5.nxcli.net/media/catalog/product/cache/2f63a21b58b188ab980f6070a93670ed/8/1/81whf0k6bnl_1.jpg"
+            "image_url":dentalcleanser
         }
     },
     {
         "item_id": 7861,
-        "sku": "guuci jacket",
+        "sku": "Denture Cleanser Tablets",
         "qty": 1,
-        "name": "GUCCI jacket",
+        "name": "Denture Cleanser Tablets",
         "price": 48,
         "product_type": "simple",
         "quote_id": "Y6B7T8YA07o5usKKTQZqbXIz8fUo6npX",
         "extension_attributes": {
-            "image_url": "http://cf467543a5.nxcli.net/media/catalog/product/cache/2f63a21b58b188ab980f6070a93670ed/5/1/51uthqfbmpl._ul1024__1_1.jpg"
+            "image_url": dentalinterdental
         }
     }
 ]
