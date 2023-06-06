@@ -80,12 +80,12 @@ export function Sidebar(props) {
               <Nav className="flex-column pt-3 pt-md-0">
                 <NavItem title="E-Commerce" link="" image={Company_logo} />
   
-                {/* <NavItem title="Home" link={customRoutes.adminHome.path} icon={faTooth} /> */}
+                <NavItem title="Home" link={customRoutes.adminHome.path} icon={faShoppingCart} />
                 <NavItem title="Product List" link="/productlisting" icon={faShoppingCart} />
                 <NavItem title="Product Detail" link="/productdetail" icon={faShoppingBag} />
                 <NavItem title="Cart" link="/cart" icon={faShoppingCart}/>
-                {/* <NavItem title="Shipping Information" link="/shipping" icon={faTruckFast}/>
-                <NavItem title="Payment" link="/payment" icon={faMoneyCheckDollar}/> */}
+                <NavItem title="Shipping Information" link="/shipping" icon={faTruckFast}/>
+                <NavItem title="Payment" link="/payment" icon={faMoneyCheckDollar}/>
                 {/* <NavItem title="Product Detail" link="/productdetail" icon={faDollarSign} />
                 <NavItem title="Cart" link="/cart" icon={faShoppingCart}/>
                 

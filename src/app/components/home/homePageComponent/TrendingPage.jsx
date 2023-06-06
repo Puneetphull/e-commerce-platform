@@ -155,6 +155,7 @@ export function BannerPage(){
 }
 
 export function NewArrival(){
+  console.log(newArrival1)
     const settingSlider = {
         dots: true,
         slidesToShow: 3,
@@ -209,11 +210,11 @@ export function NewArrival(){
                 <div className="row justify-content-lg-between justify-content-center" >
                   <div className="col-lg-12">
                     <Slider  {...settingSlider}>
-                      {newArrival1.map((item, index) => {
-                        return (
-                          <ProductCard key={index} index={index} item={item}  />
-                        )
-                      })}
+                      {newArrival1.map((item, index) => (
+                       
+                          <ProductCard key={index} index={index} props={item}  />
+                        
+                      ))}
                     </Slider>
                   </div>
                 </div>
@@ -236,7 +237,7 @@ export function NewArrival(){
                     <Slider   {...settingSlider} >
                       {newArrival2.map((item, index) => {
                         return (
-                          <ProductCard key={index} index={index} item={item}/>
+                          <ProductCard key={index} index={index} props={item}/>
                         )
                       })}
                     </Slider>
