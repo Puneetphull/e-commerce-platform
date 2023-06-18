@@ -78,8 +78,7 @@ export function Sidebar(props) {
                 </Nav.Link>
               </div>
               <Nav className="flex-column pt-3 pt-md-0">
-                <NavItem title="E-Commerce" link="" image={Company_logo} />
-  
+                <NavItem title="E-Commerce" link="" image={Company_logo} />  
                 <NavItem title="Home" link={customRoutes.adminHome.path} icon={faShoppingCart} />
                 <NavItem title="Product List" link="/productlisting" icon={faShoppingCart} />
                 <NavItem title="Product Detail" link="/productdetail" icon={faShoppingBag} />

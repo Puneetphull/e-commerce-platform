@@ -1,9 +1,9 @@
 import React from "react";
 import { Form, InputGroup, FormCheck } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Datetime from 'react-datetime';
+// import Datetime from 'react-datetime';
 import  moment from 'moment-timezone';
-import "react-datetime/css/react-datetime.css";
+// import "react-datetime/css/react-datetime.css";
 
 
 
@@ -91,7 +91,7 @@ export function DateTimePicker(props){
         {props.validation ? <span className="text-danger">*</span> : <></>}{" "}
         {props.error ? <span className="text-danger" >{props.error}</span> : <></>}{" "}
       </Form.Label>
-        <Datetime
+        {/* <Datetime
           timeFormat={props.timeFormat ? props.timeFormat : false}
           closeOnSelect={props.closeOnSelect}
           onChange={props.setDate}
@@ -107,7 +107,7 @@ export function DateTimePicker(props){
                 onFocus={openCalendar}
                 onChange={() => { }}/>
             </InputGroup>
-          )} />
+          )} /> */}
       </Form.Group>
     
   )

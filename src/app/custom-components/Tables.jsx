@@ -6,8 +6,8 @@ import { Col, Row, Nav, Card, Image, Button, Table, Dropdown, ProgressBar, Pagin
 //import {  } from 'react-router-dom';
 //import { DateRangePicker } from 'react-date-range';
 // import  DateRangePicker  from 'rsuite/DateRangePicker';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'
+// import 'react-date-range/dist/styles.css'; // main style file
+// import 'react-date-range/dist/theme/default.css'
 
 // import { Routes } from "../routes";
 import { pageTraffic, pageRanking } from "../data/tables";
