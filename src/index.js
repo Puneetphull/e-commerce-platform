@@ -4,16 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "../src/app/scss/volt.scss";
-// import { store } from "./store";
+import { store } from "./store";
 import { Provider } from "react-redux";
 // import "rsuite/dist/rsuite.min.css";
 import '../src/app/css e-commerce/css/style.css';
 import '../src/app/css e-commerce/css/bootstrap.min.css';
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider> */}
+    <Provider store={store}>
       <App />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

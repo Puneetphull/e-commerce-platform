@@ -1,6 +1,6 @@
 import { userConstants } from "../../constants";
 
-export const accountActions = {
+export const usersActions = {
   FORGETPASSWORDREQUEST,
   FORGETPASSWORDSUCCESS,
   FORGETPASSWORDFAILURE,
@@ -79,7 +79,7 @@ export const accountActions = {
   LOGIN_FAILURE
 };
 
-function LOGIN_REQUEST({ loginDetails }) {
+function LOGIN_REQUEST(loginDetails) {
   return {
     type: userConstants.LOGIN_REQUEST,
     payload: loginDetails,

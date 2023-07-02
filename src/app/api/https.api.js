@@ -19,7 +19,7 @@ function  request(name, postData, method, queryString, authusertoken) {
     let authtoken = '';
     const BaseUrl = process.env.NODE_ENV === "development" ? process.env.REACT_APP_API_BASE_URL_DEVELOPMENT : process.env.REACT_APP_API_BASE_URL;
     const token = authusertoken;
-    authtoken = `${token}`;
+    authtoken = `Bearer ${token}`;
     return new Promise(function (resolve, reject) {
       var url = BaseUrl+name;
       if (method === undefined) {

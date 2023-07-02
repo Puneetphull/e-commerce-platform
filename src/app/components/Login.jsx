@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { usersActions } from "../services/actions/index";
 
 import {
   Col,
@@ -16,7 +18,6 @@ import {
   hasValidationError,
 } from "../custom-components/validation";
 
-// import { Routes } from "../../routes";
 import BgImage from "../assets/img/signin.svg";
 import CompanyLogo from "../assets/Logo/Company_Logo.png";
 import { CheckBoxField, InputField } from "../custom-components/Fields";
@@ -24,12 +25,13 @@ import { customRoutes } from "../routes/routes";
 import { Loader } from "../custom-components/Loader";
 
 export function Login() {
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state.authentication);
   const location = useLocation();
-  const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [user, setuser] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const handleOnChange = (event) => {
@@ -38,13 +40,14 @@ export function Login() {
   };
 
   const validate = () => {
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailRegex =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const newError = {};
     let positionFocus = "";
-    if (!user.email || !user.email.trim()) {
+    if (!user.username || !user.username.trim()) {
       newError["email"] = " is Required";
       positionFocus = positionFocus || "email";
-    } else if (!emailRegex.test(user.email)) {
+    } else if (!emailRegex.test(user.username)) {
       newError["email"] = "Please enter a valid email";
       positionFocus = positionFocus || "email";
     }
@@ -62,24 +65,11 @@ export function Login() {
 
   const submit = () => {
     if (validate()) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        if (location.pathname === customRoutes.adminLogin.path) {
-          navigate(customRoutes.adminHome.path);
-        }
-        if (location.pathname === customRoutes.staffLogin.path) {
-          navigate(customRoutes.StaffHome.path);
-        }
-        if (location.pathname === customRoutes.userLogin.path) {
-          navigate(customRoutes.UserHome.path);
-        }
-        // if (location.pathname === customRoutes.guest.path) {
-        //   navigate(customRoutes.guestHome.path);
-        // }
-      }, 3000);
+      dispatch(usersActions.LOGIN_REQUEST(user));
+      console.log(selector);
+      console.log(process.env);
     }
-  }
+  };
 
   return (
     <div>
@@ -121,7 +111,7 @@ export function Login() {
                       type="email"
                       placeholder="email@gmail.com"
                       label="Your Email"
-                      name="email"
+                      name="username"
                       error={
                         hasValidationError(errors, "email")
                           ? validationError(errors, "email")
@@ -155,11 +145,19 @@ export function Login() {
                         label="Remember Me"
                       />
 
-                      <Card.Link className="small text-end" as={Link} to="/forgetPassword" >
+                      <Card.Link
+                        className="small text-end"
+                        as={Link}
+                        to="/forgetPassword"
+                      >
                         Lost password?
                       </Card.Link>
                     </div>
-                    <Button variant="primary" onClick={submit} className="w-100">
+                    <Button
+                      variant="primary"
+                      onClick={submit}
+                      className="w-100"
+                    >
                       Sign in
                     </Button>
                   </Form>
@@ -197,10 +195,10 @@ export function Login() {
                           location.pathname === customRoutes.adminLogin.path
                             ? customRoutes.adminSignup.path
                             : location.pathname === customRoutes.userLogin.path
-                              ? customRoutes.userSignUp.path
-                              : location.pathname === customRoutes.staffLogin.path
-                                ? customRoutes.staffSignup.path
-                                : ""
+                            ? customRoutes.userSignUp.path
+                            : location.pathname === customRoutes.staffLogin.path
+                            ? customRoutes.staffSignup.path
+                            : ""
                         }
                       >
                         {` Create account `}
