@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../css e-commerce/css/style.css";
 import ProductCard from "../../../custom-components/ProductCard";
-import { productlist,filterArray } from "../../../data/ProductList";
-import {  Accordion, Form,Nav,Pagination } from "@themesberg/react-bootstrap";
+import { productlist, filterArray } from "../../../data/ProductList";
+import { Accordion, Form, Nav, Pagination } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft,faChevronRight } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { productService } from "../../../api/product.service";
 
 export function ProductList() {
-  
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  function getProducts() {
+    productService.getAllProductList().then((response) => {
+      console.log(response);
+    });
+  }
+
   return (
     <section class="plp-content">
       <div class="container-fluid">
@@ -27,7 +39,7 @@ export function ProductList() {
                 </div>
               </div>
 
-              <Accordion  >
+              <Accordion>
                 <div class="filter-title border d-flex justify-content-between p-3 align-items-baseline">
                   <h2 class="text-uppercase">Filters</h2>
                   <a href="#" class="text-uppercase small">
@@ -40,33 +52,35 @@ export function ProductList() {
                   <div class="selected-creteria">selected item</div>
                   <div class="selected-creteria">selected item</div>
                 </div> */}
-              {filterArray && filterArray.map((data,index)=>(  
-               <Accordion.Item class="card" eventKey={index}>
-                <Accordion.Header class="card-header" eventKey={index}>      
-                    <h5
-                      class="mb-0"
-                      data-toggle="collapse"
-                      data-target="#Brands"
-                    >
-                     {data.label}
-                    </h5>
-                  </Accordion.Header>
-                  <Accordion.Body class="card-body" >   
-                      <ul>
-                     {data.options.map((children,index)=>(   
-                        <li>
-                     <Form.Check
-                            label={children.label +  " " +  `(${children.count})`}
-                            id={`${children.label + index }`}
-                            htmlFor="checkbox1"
-                          />  
-                        </li>
-                     ))}
-                      </ul>
-                  </Accordion.Body>
-             
-                </Accordion.Item>
-              ))}
+                {filterArray &&
+                  filterArray.map((data, index) => (
+                    <Accordion.Item class="card" eventKey={index}>
+                      <Accordion.Header class="card-header" eventKey={index}>
+                        <h5
+                          class="mb-0"
+                          data-toggle="collapse"
+                          data-target="#Brands"
+                        >
+                          {data.label}
+                        </h5>
+                      </Accordion.Header>
+                      <Accordion.Body class="card-body">
+                        <ul>
+                          {data.options.map((children, index) => (
+                            <li>
+                              <Form.Check
+                                label={
+                                  children.label + " " + `(${children.count})`
+                                }
+                                id={`${children.label + index}`}
+                                htmlFor="checkbox1"
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ))}
                 {/* <div class="card">
                   <div class="card-header">
                     <h5
@@ -214,21 +228,21 @@ export function ProductList() {
             </select>
           </div>
           <div>
-          <Nav>
-            <Pagination className="mb-2 mb-lg-0">
-              <Pagination.Prev>
-              <FontAwesomeIcon icon={faChevronLeft} />
-              </Pagination.Prev>
-              <Pagination.Item active>1</Pagination.Item>
-              <Pagination.Item>2</Pagination.Item>
-              <Pagination.Item>3</Pagination.Item>
-              <Pagination.Item>4</Pagination.Item>
-              <Pagination.Item>5</Pagination.Item>
-              <Pagination.Next>
-               <FontAwesomeIcon icon={faChevronRight} />
-              </Pagination.Next>
-            </Pagination>
-          </Nav>
+            <Nav>
+              <Pagination className="mb-2 mb-lg-0">
+                <Pagination.Prev>
+                  <FontAwesomeIcon icon={faChevronLeft} />
+                </Pagination.Prev>
+                <Pagination.Item active>1</Pagination.Item>
+                <Pagination.Item>2</Pagination.Item>
+                <Pagination.Item>3</Pagination.Item>
+                <Pagination.Item>4</Pagination.Item>
+                <Pagination.Item>5</Pagination.Item>
+                <Pagination.Next>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </Pagination.Next>
+              </Pagination>
+            </Nav>
           </div>
         </div>
       </div>

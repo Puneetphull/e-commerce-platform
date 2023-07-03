@@ -5,11 +5,13 @@ const token = process.env.REACT_APP_ADMIN_TOKEN;
 export const productService = {
   getProductDetail,
   getProductList,
-  getCategories
+  getCategories,
+  getCategoyId,
+  getAllProductList
 };
 
-function getCategories(){
-    return request('/rest/V1/categories','','get','',token);
+function getCategories() {
+  return request("/rest/V1/categories", "", "get", "", token);
 }
 
 function getProductDetail(sku_name) {
@@ -69,4 +71,18 @@ function getProductList(
     "",
     token
   );
+}
+
+function getCategoyId(category_name) {
+  return request(
+    `/rest/V1/categories/list?searchCriteria[filterGroups][0][filters][0][field]=url_path&searchCriteria[filterGroups][0][filters][0][value]=${category_name}&searchCriteria[filterGroups][0][filters][0][conditionType]=eq&fields=items[name,id]`,
+    "",
+    "get",
+    "",
+    token
+  );
+}
+
+function getAllProductList(){
+  return request("rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=website_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filter_groups][0][filters][0][condition_type]=eq","","get","",token);
 }
