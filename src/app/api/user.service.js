@@ -13,7 +13,7 @@ export const userService = {
 
 function login(username, password) {
   return request(
-  `rest/V1/integration/customer/token`,
+    `index.php/rest/V1/integration/customer/token`,
     JSON.stringify({ username, password }),
     "post",
     "",

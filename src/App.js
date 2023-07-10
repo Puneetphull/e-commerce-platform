@@ -4,7 +4,6 @@ import { Login } from "./app/components/Login";
 import { NotFound } from "./app/components/NotFound";
 import { ServerError } from "./app/components/ServerError";
 import { SignUp } from "./app/components/SignUp";
-import { StaffUserRegister } from "./app/components/staffUser/staffUserRegister";
 import { SuperAdminRegister } from "./app/components/superAdmin/SuperAdminRegister";
 import { VerifyEmail } from "./app/components/verfiyEmail";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
@@ -13,17 +12,6 @@ import { GuestHomePage } from "./app/components/guestUser/guestHomePage";
 import { Dashboard } from "./app/components/dashboard/Dashboard";
 import { CustomerHomePage } from "./app/components/customerUser/customerHomePage";
 import { PrivateRouteSideBar } from "./app/components/PrivateRouteSideBar";
-// import { Appointment } from "./app/components/AppointmentPage";
-// import { PatientList } from "./app/components/PatientList";
-// import { PrivateRouteSideBar } from "./app/components/PrivateRouteSideBar";
-// import DoctorList from "./app/components/DoctorList";
-// import { AppointmentList } from "./app/components/AppointmentList";
-// import ProfileSettings from "./app/components/ProfileSettings";
-// import { InvoicePage } from "./app/components/InvoicePage";
-// import AppointmentCalendar from "./app/components/AppointmentCalendar";
-// import { ProfileReset } from "./app/components/ProfileReset";
-// import {TaskList} from "./app/components/TaskList";
-// import { Kanban } from "./app/custom-components/Kanban";
 import { ProductList } from "./app/components/productPage/ProductListPage/ProductList";
 import { Cart } from "./app/components/Cart/Cart";
 import { ProductDetail } from "./app/components/productPage/ProductDetailPage/ProductDetail";
@@ -62,18 +50,6 @@ function App() {
             element={<GuestHomePage />}
           />
           <Route path="/verifyEmail" element={<VerifyEmail />} />
-          <Route
-            path={customRoutes.staffDetail.path}
-            element={<StaffUserRegister />}
-          />
-          <Route
-            path={customRoutes.userDetail.path}
-            element={<StaffUserRegister />}
-          />
-          <Route
-            path={customRoutes.guestDetail.path}
-            element={<StaffUserRegister />}
-          />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route
             path={customRoutes.serverError.path}
