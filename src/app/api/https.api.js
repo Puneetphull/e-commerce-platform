@@ -30,7 +30,7 @@ function  request(name, postData, method, queryString, authusertoken) {
           method: method,
           url: url,
           data: postData,
-          headers: { "Content-Type": "application/json", 'authorization': authtoken}
+          headers: { "Content-Type": "application/json", 'authorization': authtoken},
         })
         .then(async response => {
           if (processResponse) {

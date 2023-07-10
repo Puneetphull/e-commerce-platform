@@ -3,17 +3,11 @@ import { useLocation } from 'react-router-dom';
 import  SimpleBar from 'simplebar-react';
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faSignOutAlt, faTimes,  faMoneyCheckDollar,faTooth, faDollarSign, faGear, faShoppingCart ,faBagShopping, faTruckFast, faUser, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import {faSignOutAlt, faTimes,  faMoneyCheckDollar, faShoppingCart , faTruckFast, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Navbar } from '@themesberg/react-bootstrap';
 import Company_logo from '../assets/Logo/favicon-16x16.png';
 import { Link } from 'react-router-dom';
 import { customRoutes } from '../routes/routes';
-
-
-// import { Routes } from "../routes";
-// import ThemesbergLogo from "../assets/img/themesberg.svg";
-// import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
-// import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 export function Sidebar(props) {
     const location = useLocation();
     const { pathname } = location;
@@ -22,8 +16,6 @@ export function Sidebar(props) {
    
     const onCollapse = () => setShow(!show);
  
-  
-  
     const NavItem = (props) => {
       const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
       const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";

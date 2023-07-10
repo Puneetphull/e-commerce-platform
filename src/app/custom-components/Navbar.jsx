@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield,faBarsStaggered,faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield,faBarsStaggered,faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, InputGroup,Button } from '@themesberg/react-bootstrap';
 

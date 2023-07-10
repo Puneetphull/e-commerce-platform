@@ -3,13 +3,6 @@ import React  from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp,  faEdit, faEllipsisH, faExternalLinkAlt, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Nav, Card, Image, Button, Table, Dropdown, ProgressBar, Pagination, ButtonGroup } from '@themesberg/react-bootstrap';
-//import {  } from 'react-router-dom';
-//import { DateRangePicker } from 'react-date-range';
-// import  DateRangePicker  from 'rsuite/DateRangePicker';
-// import 'react-date-range/dist/styles.css'; // main style file
-// import 'react-date-range/dist/theme/default.css'
-
-// import { Routes } from "../routes";
 import { pageTraffic, pageRanking } from "../data/tables";
 import {Transactions} from "../data/transactions";
 import {commands} from "../data/commands";
@@ -30,9 +23,6 @@ const ValueChange = ({ value, suffix }) => {
 
 export const PageVisitsTable = (props) => {
   const TableRow = (props) => {
-    // const bounceIcon = bounceRate < 0 ? faArrowDown : faArrowUp;
-    // const bounceTxtColor = bounceRate < 0 ? "text-danger" : "text-success";
-
     return (
       <tr>
         <th scope="row">{props.name}</th>
