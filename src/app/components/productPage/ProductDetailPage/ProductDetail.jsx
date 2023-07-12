@@ -1,66 +1,110 @@
-import React from "react";
-import { productDetails } from "../../../data/productDetails";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebook,
+  faLinkedinIn,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { useParams, Link } from "react-router-dom";
+import { Button } from "@themesberg/react-bootstrap";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { productService } from "../../../api/product.service";
+import { productlist } from "../../../data/ProductList";
+
+import { useDispatch } from "react-redux";
+import { helperService } from "../../../helper/helperFunction";
 
 export function ProductDetail() {
+  const dispatch = useDispatch();
+  const params = useParams();
+  const [productdetail, setproductdetail] = useState();
+  const [quanity, setquantity] = useState(1);
+
+  useEffect(() => {
+    if (params && params.productName) {
+      getProductDetails(params.productName);
+    }
+  }, []);
+
+  const changeQtyHandler = (type) => {
+    if (quanity >= 1 && type === "inc") {
+      setquantity((prev) => prev + 1);
+    }
+    if (quanity >= 1 && type === "dec") {
+      setquantity((prev) => prev - 1);
+    }
+  };
+
+  function addToCart() {
+    // dispatch(helperService.addProductForServer(productdetail.sku, 1));
+  }
+
+  function getProductDetails(skuName) {
+    productService.getProductDetail(skuName).then((response) => {
+      let product = productlist.find((list) => {
+        return list.sku === skuName;
+      });
+      console.log(product);
+      setproductdetail(product);
+    });
+  }
   return (
     <div>
-      <section class="pdp-content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="pdp-product-image">
+      <section className="pdp-content">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="pdp-product-image">
                 <img
-                  src={productDetails?.media_gallery_entries[0]?.file}
+                  src={productdetail?.image?.url}
                   alt=""
-                  class="img-fluid"
+                  className="img-fluid"
                 />
-                <div class="magnifying-glass">
-                  <i class="fas fa-times"></i>
+                <div className="magnifying-glass">
+                  <i className="fas fa-times"></i>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="pdp-product-description">
-                <div class="page-title-wrapper">
-                  <h1 class="page-title">Electric Brush</h1>
-                  <div class="title-right-icon">
-                    <div class="hover-product-wrap">
-                      <a href="#" class="icon-link">
-                        <i class="fa fa-chevron-left"></i>
-                      </a>
-                      <div class="hover-product">
-                        <img src="images/tshirt1.jpg" />
+            <div className="col-md-6">
+              <div className="pdp-product-description">
+                <div className="page-title-wrapper">
+                  <h1 className="page-title">{productdetail?.name}</h1>
+                  <div className="title-right-icon">
+                    <div className="hover-product-wrap">
+                      <Link to="#" className="icon-link">
+                        <i className="fa fa-chevron-left"></i>
+                      </Link>
+                      <div className="hover-product">
+                        <img src="images/tshirt1.jpg" alt="t-shirt" />
                         <p>Left Image</p>
                       </div>
                     </div>
-                    <div class="hover-product-wrap">
-                      <a href="#" class="icon-link">
-                        <i class="fa fa-chevron-right"></i>
-                      </a>
-                      <div class="hover-product">
-                        <img src="images/tshirt1.jpg" />
+                    <div className="hover-product-wrap">
+                      <Link to="#" className="icon-link">
+                        <i className="fa fa-chevron-right"></i>
+                      </Link>
+                      <div className="hover-product">
+                        <img alt="t-shirt" src="images/tshirt1.jpg" />
                         <p>Right Image</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="pdp-star-review mb-4">
-                  <div class="star-rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <a href="#" class="review-txt">
+                <div className="pdp-star-review mb-4">
+                  <div className="star-rating">
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star"></span>
+                    <span className="fa fa-star"></span>
+                    <a href="#" className="review-txt">
                       Be the first to review this product
                     </a>
                   </div>
                 </div>
 
-                <div class="pdp-description-txt mb-5">
+                <div className="pdp-description-txt mb-5">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -71,10 +115,10 @@ export function ProductDetail() {
                   mollit anim id est laborum.
                 </div>
 
-                <div class="more-information-wrap mb-2">
-                  {/* <h4 class="heading-with-border">More Information</h4>
+                <div className="more-information-wrap mb-2">
+                  {/* <h4 className="heading-with-border">More Information</h4>
                   <hr></hr> */}
-                  <table class="more-info-table">
+                  <table className="more-info-table">
                     <tbody>
                       <tr>
                         <th>Size</th>
@@ -82,7 +126,7 @@ export function ProductDetail() {
                       </tr>
                       <tr>
                         <th>Brands</th>
-                        <td>Electric Brush</td>
+                        <td>{productdetail?.name}</td>
                       </tr>
                       <tr>
                         <th>Color</th>
@@ -92,22 +136,28 @@ export function ProductDetail() {
                   </table>
                 </div>
 
-                <div class="pdp-price-availability mb-4">
-                  <div class="product-price">$48.00</div>
-                  <div class="product-availability">
+                <div className="pdp-price-availability mb-4">
+                  <div className="product-price">
+                    $
+                    {
+                      productdetail?.price_range.minimum_price?.final_price
+                        .value
+                    }
+                  </div>
+                  <div className="product-availability">
                     <p>
                       Availability : <span>In stock</span>
                     </p>
                     <p>
-                      SKU : <span>TShirt</span>
+                      SKU : <span>{productdetail?.sku}</span>
                     </p>
                   </div>
                 </div>
                 <hr></hr>
-                <div class="configurable-product-options text-13">
-                  {/* <div class="pdp-dropdown-option">
-                    <label class="mb-1 font-weight-bold">Material</label>
-                    <select class="form-control">
+                <div className="configurable-product-options text-13">
+                  {/* <div className="pdp-dropdown-option">
+                    <label className="mb-1 font-weight-bold">Material</label>
+                    <select className="form-control">
                       <option value="position" selected="selected">
                         Material
                       </option>
@@ -115,27 +165,27 @@ export function ProductDetail() {
                       <option value="leather">Leather</option>
                     </select>
                   </div>
-                  <div class="pdp-radio-option mt-3">
-                    <div class="mb-2 font-weight-bold">Color</div>
+                  <div className="pdp-radio-option mt-3">
+                    <div className="mb-2 font-weight-bold">Color</div>
                     <ul>
                       <li>
-                        <span class="circle selected"></span>
-                        <span class="title">Red</span>
+                        <span className="circle selected"></span>
+                        <span className="title">Red</span>
                       </li>
                       <li>
-                        <span class="circle"></span>
-                        <span class="title">Red</span>
+                        <span className="circle"></span>
+                        <span className="title">Red</span>
                       </li>
                       <li>
-                        <span class="circle"></span>
-                        <span class="title">Red</span>
+                        <span className="circle"></span>
+                        <span className="title">Red</span>
                       </li>
                     </ul>
                   </div>
-                  <div class="pdp-box-options mt-3">
-                    <div class="mb-2 font-weight-bold">Size</div>
+                  <div className="pdp-box-options mt-3">
+                    <div className="mb-2 font-weight-bold">Size</div>
                     <ul>
-                      <li class="selected">L</li>
+                      <li className="selected">L</li>
                       <li>M</li>
                       <li>S</li>
                       <li>XS</li>
@@ -143,63 +193,65 @@ export function ProductDetail() {
                   </div> */}
                 </div>
                 <hr></hr>
-                <div class="quantity-addtocart-wrap my-4">
-                  <div class="quantity-switcher">
+                <div className="quantity-addtocart-wrap my-4">
+                  <div className="quantity-switcher">
                     <input
                       id="product-qty"
-                      class="quantity-input"
-                      value="1"
+                      className="quantity-input"
+                      value={quanity}
                       type="number"
                       min="1"
                       max="10"
                     />
-                    <div class="increment-decrement-wrap">
-                      <a
-                        href="javascript:;"
-                        onclick="increment()"
-                        class="increment-btn"
-                      >
-                        <i class="fas fa-caret-up"></i>
-                      </a>
-                      <a
-                        href="javascript:;"
-                        onclick="decrement()"
-                        class="decrement-btn"
-                      >
-                        <i class="fas fa-caret-down"></i>
-                      </a>
+                    <div className="increment-decrement-wrap">
+                      <FontAwesomeIcon
+                        icon={faCaretUp}
+                        className="increment-btn"
+                        role="button"
+                        onClick={()=>{changeQtyHandler('inc')}}
+                      />
+                      <FontAwesomeIcon
+                        icon={faCaretDown}
+                        className="decrement-btn"
+                        role="button"
+                        onClick={()=>{changeQtyHandler('dec')}}
+                      />
                     </div>
-                    <div class="addtocart-wrap">
-                      <a href="#" class="btn btn-primary btn-black">
+                    <div className="addtocart-wrap">
+                      <Button
+                        onClick={addToCart}
+                        className="btn btn-primary btn-black"
+                      >
                         Add to cart
-                      </a>
+                      </Button>
                     </div>
-                    <div class="pdp-wishlist-compare-outer d-inline">
-                      <a href="#" class="icon wishlist-btn">
-                        <i class="fa fa-solid fa-heart"></i>
+                    <div className="pdp-wishlist-compare-outer d-inline">
+                      {/* //<FontAwesomeIcon icon={faHeart} className="icon wishlist-btn" /> */}
+                      <a href="#" className="icon wishlist-btn">
+                        <i className="fa fa-solid fa-heart"></i>
                       </a>
                     </div>
                   </div>
                 </div>
                 <hr></hr>
 
-                <div class="pdp-social-icons">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
+                <div className="pdp-social-icons">
+                  <ul className="list-inline">
+                    <li className="list-inline-item">
                       <FontAwesomeIcon icon={faLinkedinIn} />
                     </li>
-                    <li class="list-inline-item">
-                    <FontAwesomeIcon icon={faFacebook} />
+                    <li className="list-inline-item">
+                      <FontAwesomeIcon icon={faFacebook} />
                     </li>
-                    <li class="list-inline-item">
-                    <FontAwesomeIcon icon={faTwitter} />
+                    <li className="list-inline-item">
+                      <FontAwesomeIcon icon={faTwitter} />
                     </li>
-                    {/* <li class="list-inline-item">
+                    {/* <li className="list-inline-item">
                       <a href="#">
                         <img src="images/print-filled.png" />
                       </a>
                     </li>
-                    <li class="list-inline-item">
+                    <li className="list-inline-item">
                       <a href="#">
                         <img src="images/addition.png" />
                       </a>
@@ -209,11 +261,11 @@ export function ProductDetail() {
               </div>
             </div>
           </div>
-          <div class="pdp-review-pane-bottom my-5">
-            <div class="more-information-wrap mb-5">
-              <h4 class="heading-with-border">More Information</h4>
+          <div className="pdp-review-pane-bottom my-5">
+            <div className="more-information-wrap mb-5">
+              <h4 className="heading-with-border">More Information</h4>
               <hr></hr>
-              <table class="more-info-table">
+              <table className="more-info-table">
                 <tbody>
                   <tr>
                     <th>Description</th>
@@ -243,59 +295,70 @@ export function ProductDetail() {
                 </tbody>
               </table>
             </div>
-            <div class="review-information-wrap">
-              <h4 class="heading-with-border">Reviews</h4>
+            <div className="review-information-wrap">
+              <h4 className="heading-with-border">Reviews</h4>
               <hr></hr>
-              <div class="tab-review-heading mt-4">
+              <div className="tab-review-heading mt-4">
                 <h3>YOU'RE REVIEWING:</h3>
                 <h4>Electric Brush</h4>
               </div>
             </div>
-            <div class="tab-rating-wrap my-5">
-              <div class="your-rating-txt">
-                Your Rating<span class="red"> *</span>
+            <div className="tab-rating-wrap my-5">
+              <div className="your-rating-txt">
+                Your Rating<span className="red"> *</span>
               </div>
-              <div class="rating-wrap">
+              <div className="rating-wrap">
                 <h4>Value</h4>
-                <div class="star-rating">
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="far fa-star"></span>
-                  <span class="far fa-star"></span>
+                <div className="star-rating">
+                  <span className="fa fa-star checked"></span>
+                  <span className="fa fa-star checked"></span>
+                  <span className="fa fa-star checked"></span>
+                  <span className="far fa-star"></span>
+                  <span className="far fa-star"></span>
                 </div>
               </div>
             </div>
-            <div class="review-form-wrap">
-              <div class="row">
-                <div class="col-lg-5">
+            <div className="review-form-wrap">
+              <div className="row">
+                <div className="col-lg-5">
                   <form>
-                    <div class="form-group">
-                      <label class="label-txt" for="nickname">
+                    <div className="form-group">
+                      <label className="label-txt" for="nickname">
                         Nickname
                       </label>
-                      <input type="email" class="form-control" placeholder="" />
-                      <span class="validation-txt">
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder=""
+                      />
+                      <span className="validation-txt">
                         This is a required field.
                       </span>
                     </div>
-                    <div class="form-group">
-                      <label class="label-txt" for="summary">
+                    <div className="form-group">
+                      <label className="label-txt" for="summary">
                         Summary
                       </label>
-                      <input type="email" class="form-control" placeholder="" />
-                      <span class="validation-txt">
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder=""
+                      />
+                      <span className="validation-txt">
                         This is a required field.
                       </span>
                     </div>
-                    <div class="form-group">
-                      <label class="label-txt" for="review">
+                    <div className="form-group">
+                      <label className="label-txt" for="review">
                         Review
                       </label>
-                      <textarea class="form-control" rows="3"></textarea>
+                      <textarea className="form-control" rows="3"></textarea>
                     </div>
-                    <div class="submit-btn-wrap mt-5">
-                      <button type="submit" class="btn btn-primary btn-black">
+                    <div className="submit-btn-wrap mt-5">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-black"
+                      >
                         Submit Review
                       </button>
                     </div>

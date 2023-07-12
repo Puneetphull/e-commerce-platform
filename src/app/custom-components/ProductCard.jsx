@@ -7,8 +7,8 @@ export default function ProductCard({props}) {
   return (
     <div className="product-info">
       <div className="product-image">
-        <Link to={`/product_details/${props?.sku}`}>
-          <img src={props?.image?.url} alt="image" className="img-fluid"/>
+        <Link to={`/productdetail/${props?.sku}`}>
+          <img src={props?.image?.url} alt={props?.name} className="img-fluid"/>
         </Link>
       </div>
       <div className="star-rating-bg">
@@ -23,7 +23,7 @@ export default function ProductCard({props}) {
         </div>
       </div>
       <div className="product-title">
-        <Link to={`/product_details/${props?.sku}`}>{props?.name}</Link>
+        <Link to={`/productdetail/${props?.sku}`}>{props?.name}</Link>
       </div>
       <div className="product-title">
        <div dangerouslySetInnerHTML={{__html:props?.short_description?.html}} />

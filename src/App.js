@@ -42,7 +42,6 @@ function App() {
           <Route path={customRoutes.userSignUp.path} element={<SignUp />} />
           <Route path={customRoutes.staffSignup.path} element={<SignUp />} />
           <Route path={customRoutes.guestSignup.path} element={<SignUp />} />
-
           <Route path={customRoutes.StaffHome.path} element={<Dashboard />} />
           <Route path={customRoutes.UserHome.path} element={<Dashboard />} />
           <Route
@@ -76,7 +75,7 @@ function App() {
             path="/payment"
             element={<PrivateRouteSideBar component={<PaymentPage />} />}
           />
-          <Route path="/productdetail"   element={<PrivateRouteSideBar component={<ProductDetail />} />}/>
+          <Route path="/productdetail/:productName"   element={<PrivateRouteSideBar component={<ProductDetail />} />}/>
         </Routes>
       </BrowserRouter>
     </>
