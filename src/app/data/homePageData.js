@@ -4,6 +4,8 @@ import dentalimg1 from "../assets/productListImages/Teeth Whitening Kit.jpeg";
 import dentalimg3 from "../assets/productListImages/goby-jEwi-9on5IE-unsplash.jpg";
 import dentalimg5 from "../assets/productListImages/th (1).jpeg";
 import dentaltootpase from "../assets/productListImages/Toothpaste.jpeg";
+import Banner1 from '../assets/Banner/Banner1.jpg';
+import Banner2 from '../assets/Banner/Banner2.jpg';
 
 
 
@@ -15,7 +17,7 @@ export const banner = [
     resource_map_id: 3,
     resource_type: "local_image",
     resource_path:
-      "http://cf467543a5.nxcli.net/media/codilar/banner/images/banner1.1_1_.png",
+      Banner1,
     is_enabled: 1,
     created_at: "2022-02-17 07:12:05",
     updated_at: "2022-08-02 07:44:49",
@@ -36,7 +38,7 @@ export const banner = [
     resource_map_id: 3,
     resource_type: "local_image",
     resource_path:
-      "http://cf467543a5.nxcli.net/media/codilar/banner/images/mybannerrrrrrrrrrrr_1_.png",
+      Banner2,
     is_enabled: 1,
     created_at: "2022-02-17 07:13:54",
     updated_at: "2022-07-28 11:17:10",

@@ -13,6 +13,7 @@ import { productlist } from "../../../data/ProductList";
 
 import { useDispatch } from "react-redux";
 import { helperService } from "../../../helper/helperFunction";
+import { cartActions } from "../../../services/actions/product.action";
 
 export function ProductDetail() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ export function ProductDetail() {
   };
 
   function addToCart() {
-    // dispatch(helperService.addProductForServer(productdetail.sku, 1));
+    dispatch(cartActions.ADDCARTREQUEST(helperService.addProductForServer(productdetail.sku, 1)));
   }
 
   function getProductDetails(skuName) {

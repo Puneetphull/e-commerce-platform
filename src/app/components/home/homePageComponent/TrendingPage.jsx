@@ -9,13 +9,18 @@ import pic7 from '../../../assets/e-commerceImg/portfolio.png';
 import pic8 from '../../../assets/e-commerceImg/sneakers.png';
 import pic9 from '../../../assets/e-commerceImg/toys.png';
 import pic10 from '../../../assets/e-commerceImg/watch.png';
-import banner1 from '../../../assets/e-commerceImg/1608b80571524e822b386e9da05f02f2.jpg';
-import banner2 from '../../../assets/e-commerceImg/ww8.jpg';
 import Slider from 'react-slick';
 import { banner, newArrival1, newArrival2 } from '../../../data/homePageData';
 import '../../../scss/slick-carousel/slick/slick.css';
 import '../../../scss/slick-carousel/slick/slick-theme.css' ;
 import ProductCard from '../../../custom-components/ProductCard'; 
+import Logo from '../../../assets/Logo/Company_Logo.png';
+import sideBanner from '../../../assets/Banner/michael-dam-mEZ3PoFGs_k-unsplash.jpg';
+import sideBanner2 from '../../../assets/Banner/raghavendra-v-konkathi-S9qLhVCfqKc-unsplash.jpg';
+import blog1 from '../../../assets/Banner/caroline-lm-QA9fRIi6sFw-unsplash.jpg';
+import blog2 from '../../../assets/Banner/s-b-vonlanthen-FaiZNiofP-U-unsplash.jpg';
+import blog3 from '../../../assets/Banner/olga-guryanova-s10jzFKGOLs-unsplash.jpg';
+import Sale from '../../../assets/Banner/goby-zHMpGLOD8nI-unsplash.jpg';
 export function TrendingPage() {
   return (
     <section class="trending-categories">
@@ -60,7 +65,7 @@ export function TrendingPage() {
           </div>            
         </div>
       </div>
-      <div class="row justify-content-between-lg justify-content-center mt-5">
+      {/* <div class="row justify-content-between-lg justify-content-center mt-5">
         <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
           <div class="category-block text-center">
             <img src={pic6} alt="" />
@@ -91,7 +96,7 @@ export function TrendingPage() {
             <p><a href="#" class="category-link">Watches</a></p>
           </div>            
         </div>
-      </div>
+      </div> */}
     </div>
   </section>
 
@@ -201,7 +206,7 @@ export function NewArrival(){
                 New Arrival
               </h3>
               <h4 className="sub-heading-text">
-                "Fashion Fade. Style is eternal."
+                "Your best life begins with a smile"
               </h4>
             </div>
 
@@ -221,14 +226,14 @@ export function NewArrival(){
               </div>
               <div className="col-lg-3 col-md-3">
                 <div className="long-img">
-                  <a href="/products/New arrival" alt="img" >   <img src={banner1} alt='banner' loading='lazy' className="img-fluid" /></a>
+                  <a href="/products/New arrival" alt="img" >   <img src={sideBanner} alt='banner' loading='lazy' className="img-fluid" /></a>
                 </div>
               </div>
             </div>
             <div className="row align-items-lg-center">
               <div className="col-lg-3 col-md-3">
                 <div className="long-img">
-                  <a href="products/WOMENS/CLOTHES/Winter Wear" alt="img"><img src={banner2}  alt="" className="img-fluid" /></a>
+                  <a href="products/WOMENS/CLOTHES/Winter Wear" alt="img"><img src={sideBanner2}  alt="" className="img-fluid" /></a>
                 </div>
               </div>
               <div className="col-lg-9 col-md-9">
@@ -248,4 +253,154 @@ export function NewArrival(){
           </div>
       </section>
     )
+}
+
+
+export function BlogPage(){
+  return (
+    <section class="blogs-info">
+      <div class="container">
+        <h3 class="text-center my-4 heading-text">
+          Blogs 
+        </h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="blogs-card">
+              <div class="blog-image"><img src={blog1} class="w-100" alt="" title="" /></div>
+              <h2 class="blog-heading">A dream smile is a reality</h2>
+              <p class="blog-descripton">Some Description text
+              </p>
+              <ul class="blog-date-time my-3">
+                <li><i class="fa fa-solid fa-calendar"></i> December 6, 2023</li>
+                <li><i class="fa fa-solid fa-user"></i> <a href="#">Admin</a></li>
+                <li><i class="fa fa-solid fa-eye"></i>3</li>
+              </ul>
+              {/* <p class="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="blogs-card">
+              <div class="blog-image"><img src={blog2} class="w-100" alt="" title="" /></div>
+              <h2 class="blog-heading">Beautiful smiles that last a lifetime</h2>
+              <p class="blog-descripton">Some Description text
+              </p>
+              <ul class="blog-date-time my-3">
+                <li><i class="fa fa-solid fa-calendar"></i> December 6, 2021</li>
+                <li><i class="fa fa-solid fa-user"></i> <a href="#">Admin</a></li>
+                <li><i class="fa fa-solid fa-eye"></i>3</li>
+              </ul>
+              {/* <p class="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="blogs-card">
+              <div class="blog-image"><img src={blog3} class="w-100" alt="" title="" /></div>
+              <h2 class="blog-heading">Because dental expertise makes a difference</h2>
+              <p class="blog-descripton">Some Description text
+              </p>
+              <ul class="blog-date-time my-3">
+                <li><i class="fa fa-solid fa-calendar"></i> December 6, 2021</li>
+                <li><i class="fa fa-solid fa-user"></i> <a href="#">Admin</a></li>
+                <li><i class="fa fa-solid fa-eye"></i>3</li>
+              </ul>
+              {/* <p class="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+
+export function SaleSection(){
+  return (
+    <section class="sale-section">
+      <div class="sale-banner-out mt-5">
+          <img src={Sale} class="w-100" alt=""/>
+          <div class="caption">
+              <p>Big Sale Up To 70% Off<br/>
+                Exclussive Offers For Limited Time</p>
+                <a href="#" class="btn btn-black btn-lg my-2">Click Here</a>
+          </div>
+      </div>
+    </section>
+  )
+}
+
+
+export function FooterPage(){
+  return (
+    <footer>
+      <section class="footer-upper">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="footer-logo">
+                <img src={Logo} alt='logo' />
+              </div>
+              <ul class="footer-connect my-4">
+                <li>
+                  <div class="footer-contact">CALL US NOW:</div>
+                  <div class="footer-contact-bold">+123 5678 890</div>
+                </li>
+                <li>
+                  <div class="footer-contact">E-MAIL ADDRESS:</div>
+                  <div class="footer-contact-bold">sales@RcubeCommerce.com</div>
+                </li>
+                <li>
+                  <div class="footer-contact">follow us:</div>
+                  <div class="social-network">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            {/* <div class="col-md-3 col-sm-6">
+              <div class="foooter-links">
+                <h3>Collections</h3>
+                <ul>
+                  <li><a href="#">Women</a></li>
+                  <li><a href="#">Men</a></li>
+                  <li><a href="#">Kids</a></li>
+                  <li><a href="#">New arrival</a></li>
+                  <li><a href="#">Best collection</a></li>
+                </ul>
+              </div>
+            </div> */}
+            <div class="col-md-3 col-sm-6">
+              <div class="foooter-links">
+                <h3>About</h3>
+                <ul>
+                  <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">All Collections</a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="foooter-below">
+        <div class="container">
+          <div class="footer-block">
+            <div class="payments-options">
+              <span><img src="images/payment-icon_1.png" /></span>
+              <span><img src="images/payment-icon_2.png" /></span>
+              <span><img src="images/payment-icon_3.png" /></span>
+              <span><img src="images/payment-icon_4.png" /></span>
+            </div>
+            <div>
+              <p>© Rcube eCommerce. 2021. All Rights Reserved</p>
+            </div>
+          </div>
+      </div>
+      </section>
+    </footer>
+  )
 }

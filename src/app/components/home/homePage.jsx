@@ -1,8 +1,8 @@
 import React from 'react'
-import { BannerPage, NewArrival, TrendingPage } from './homePageComponent/TrendingPage'
+import { BannerPage, BlogPage, FooterPage, NewArrival, SaleSection, TrendingPage } from './homePageComponent/TrendingPage'
 
 export  function HomePage() {
   return (
-    <div> <BannerPage/><NewArrival/> <TrendingPage/> </div>
+    <div> <BannerPage/><NewArrival/> <SaleSection/> <TrendingPage/> <BlogPage/> <FooterPage/></div>
   )
 }
