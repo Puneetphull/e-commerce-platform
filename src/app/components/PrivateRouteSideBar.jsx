@@ -8,10 +8,8 @@ export function PrivateRouteSideBar(props) {
   return (
     <>
       <Sidebar show={show} />
-
       <main className="content">
         <Navbars collapse={onCollapse} />
-
         {props.component}
       </main>
     </>

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import "../../../css e-commerce/css/style.css";
 import ProductCard from "../../../custom-components/ProductCard";
-import { productlist, filterArray } from "../../../data/ProductList";
+import { filterArray } from "../../../data/ProductList";
 import { Accordion, Form, Nav, Pagination } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,13 +11,17 @@ import {
 import { productService } from "../../../api/product.service";
 
 export function ProductList() {
+  const [product,setpouduct] = useState([]);
+
+
+
   useEffect(() => {
     getProducts();
   }, []);
 
   function getProducts() {
     productService.getAllProductList().then((response) => {
-      console.log(response);
+      setpouduct(response.data.items)
     });
   }
 
@@ -210,7 +214,7 @@ export function ProductList() {
             </div>
 
             <div class="product-listing">
-              {productlist.map((data) => (
+              {product && product.map((data) => (
                 <ProductCard props={data} />
               ))}
             </div>

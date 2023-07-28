@@ -8,7 +8,7 @@ export default function ProductCard({props}) {
     <div className="product-info">
       <div className="product-image">
         <Link to={`/productdetail/${props?.sku}`}>
-          <img src={props?.image?.url} alt={props?.name} className="img-fluid"/>
+          <img src={props?.custom_attributes?.find(cutom=>cutom?.attribute_code === "image").value} alt={props?.name} className="img-fluid"/>
         </Link>
       </div>
       <div className="star-rating-bg">
@@ -68,7 +68,7 @@ export default function ProductCard({props}) {
         ) :
           (
          
-          "$" + props?.price_range?.minimum_price?.regular_price?.value)}
+          "$" + props?.price)}
       </div>
     </div>
   );

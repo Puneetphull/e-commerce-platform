@@ -5,7 +5,14 @@ import {
   validationError,
   hasValidationError,
 } from "../custom-components/validation";
-import {Col,Row,Form,Button,Container,Card} from "@themesberg/react-bootstrap";
+import {
+  Col,
+  Row,
+  Form,
+  Button,
+  Container,
+  Card,
+} from "@themesberg/react-bootstrap";
 import BgImage from "../assets/img/signin.svg";
 import { CheckBoxField, InputField } from "../custom-components/Fields";
 import { Link, useLocation } from "react-router-dom";
@@ -14,31 +21,35 @@ import { Title } from "../custom-components/title";
 import { VerifyEmail } from "./verfiyEmail";
 import { customRoutes } from "../routes/routes";
 import { Loader } from "../custom-components/Loader";
+import { useDispatch } from "react-redux";
+import { usersActions } from "../services/actions";
 
 export const SignUp = (props) => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [showVerifyEmail, setVerfiyEmail] = useState(false);
   const [loading, setLoading] = useState(false);
   const [signUpDetail, setSingnUpDetail] = useState({
     email: "",
     confirmPassword: "",
+    firstName: "",
+    lastName: "",
     password: "",
     terms: false,
   });
   const handleOnChange = (event) => {
-
     const { name, value, type } = event.target;
-    if (type === 'checkbox') {
-      setSingnUpDetail({ ...signUpDetail, [name]: event.target.checked })
-    }
-    else {
+    if (type === "checkbox") {
+      setSingnUpDetail({ ...signUpDetail, [name]: event.target.checked });
+    } else {
       setSingnUpDetail({ ...signUpDetail, [name]: value });
     }
   };
 
   const validate = () => {
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailRegex =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const newError = {};
     let positionFocus = "";
     if (!signUpDetail.email || !signUpDetail.email.trim()) {
@@ -47,6 +58,14 @@ export const SignUp = (props) => {
     } else if (!emailRegex.test(signUpDetail.email)) {
       newError["email"] = "Please enter a valid email";
       positionFocus = positionFocus || "email";
+    }
+    if (!signUpDetail.firstName || !signUpDetail.firstName.trim()) {
+      newError["firstName"] = "is Required";
+      positionFocus = positionFocus || "firstName";
+    }
+    if (!signUpDetail.lastName || !signUpDetail.lastName.trim()) {
+      newError["lastName"] = "is Required";
+      positionFocus = positionFocus || "lastName";
     }
     if (!signUpDetail.password || !signUpDetail.password.trim()) {
       newError["password"] = "is Required";
@@ -59,7 +78,8 @@ export const SignUp = (props) => {
       newError["confirmPassword"] =
         "Password and Confirm password do not match";
       positionFocus = positionFocus || "confirmPassword";
-    } if (!signUpDetail.terms) {
+    }
+    if (!signUpDetail.terms) {
       newError["terms"] = "  is Required";
       positionFocus = positionFocus || "terms";
     }
@@ -74,12 +94,15 @@ export const SignUp = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setVerfiyEmail(true);
-      }, 3000);
-
+      const customer = {
+        customer: {
+          email: signUpDetail.email,
+          firstname: signUpDetail.firstName,
+          lastname: signUpDetail.lastName,
+        },
+        password: signUpDetail.password,
+      };
+      dispatch(usersActions.REGITSER_REQUEST(customer));
     }
   };
 
@@ -103,7 +126,6 @@ export const SignUp = (props) => {
                   xs={12}
                   className="d-flex align-items-center justify-content-center"
                 >
-
                   <div className="mb-4 mb-lg-0 bg-white shadow-soft border rounded border-light p-5 pt-2 w-100 fmxw-500">
                     <div className="col-12 text-center">
                       <img
@@ -132,6 +154,38 @@ export const SignUp = (props) => {
                         }
                         onChange={handleOnChange}
                         autoFocus={true}
+                      />
+                      <InputField
+                        id={"firstName"}
+                        showIcon={true}
+                        iconName={faEnvelope}
+                        validation={true}
+                        placeholder="First Name"
+                        label="First Name"
+                        type={"text"}
+                        name="firstName"
+                        error={
+                          hasValidationError(errors, "firstName")
+                            ? validationError(errors, "firstName")
+                            : null
+                        }
+                        onChange={handleOnChange}
+                      />
+                      <InputField
+                        id={"lastName"}
+                        showIcon={true}
+                        iconName={faEnvelope}
+                        validation={true}
+                        placeholder="Last Name"
+                        label="Last Name"
+                        type={"text"}
+                        name="lastName"
+                        error={
+                          hasValidationError(errors, "lastName")
+                            ? validationError(errors, "lastName")
+                            : null
+                        }
+                        onChange={handleOnChange}
                       />
                       <InputField
                         id="password"
@@ -194,13 +248,17 @@ export const SignUp = (props) => {
                         Already have an account?
                         <Card.Link
                           as={Link}
-                          to={location.pathname === customRoutes.adminSignup.path
-                            ? customRoutes.adminLogin.path
-                            : location.pathname === customRoutes.userSignUp.path
+                          to={
+                            location.pathname === customRoutes.adminSignup.path
+                              ? customRoutes.adminLogin.path
+                              : location.pathname ===
+                                customRoutes.userSignUp.path
                               ? customRoutes.userLogin.path
-                              : location.pathname === customRoutes.staffSignup.path
-                                ? customRoutes.staffLogin.path
-                                : ""}
+                              : location.pathname ===
+                                customRoutes.staffSignup.path
+                              ? customRoutes.staffLogin.path
+                              : ""
+                          }
                           className="fw-bold"
                         >
                           {` Login here `}

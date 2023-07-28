@@ -42,11 +42,8 @@ export function ProductDetail() {
 
   function getProductDetails(skuName) {
     productService.getProductDetail(skuName).then((response) => {
-      let product = productlist.find((list) => {
-        return list.sku === skuName;
-      });
-      console.log(product);
-      setproductdetail(product);
+      console.log(response.data);
+      setproductdetail(response.data);
     });
   }
   return (
@@ -57,7 +54,7 @@ export function ProductDetail() {
             <div className="col-md-6">
               <div className="pdp-product-image">
                 <img
-                  src={productdetail?.image?.url}
+                  src={productdetail?.custom_attributes?.find(cutom=>cutom?.attribute_code === "image").value}
                   alt=""
                   className="img-fluid"
                 />
@@ -106,14 +103,7 @@ export function ProductDetail() {
                 </div>
 
                 <div className="pdp-description-txt mb-5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
+                <div dangerouslySetInnerHTML={{__html:productdetail?.custom_attributes?.find(data=>data.attribute_code === "short_description")?.value}}/>
                 </div>
 
                 <div className="more-information-wrap mb-2">
@@ -141,8 +131,7 @@ export function ProductDetail() {
                   <div className="product-price">
                     $
                     {
-                      productdetail?.price_range.minimum_price?.final_price
-                        .value
+                      productdetail?.price
                     }
                   </div>
                   <div className="product-availability">
@@ -271,14 +260,7 @@ export function ProductDetail() {
                   <tr>
                     <th>Description</th>
                     <td>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
+                    <div dangerouslySetInnerHTML={{__html:productdetail?.custom_attributes?.find(data=>data.attribute_code === "short_description")?.value}}/>
                     </td>
                   </tr>
                   <tr>
@@ -287,7 +269,7 @@ export function ProductDetail() {
                   </tr>
                   <tr>
                     <th>Brands</th>
-                    <td>Electric Brush</td>
+                    <td>{productdetail?.name}</td>
                   </tr>
                   <tr>
                     <th>Color</th>

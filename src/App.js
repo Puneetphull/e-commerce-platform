@@ -18,12 +18,14 @@ import { ProductDetail } from "./app/components/productPage/ProductDetailPage/Pr
 import { ShippingPage } from "./app/components/shippingPage/ShippingPage";
 import { PaymentPage } from "./app/components/PaymentPage/PaymentPage";
 import { HomePage } from "./app/components/home/homePage";
+import { history } from "./app/helper";
+import { ThankYouPage } from "./app/components/SuccessPage/SuccessPage";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
+      <BrowserRouter history={history} >
+        <Routes  >
           <Route path="*" element={<NotFound />} />
           <Route
             path="/"
@@ -75,6 +77,11 @@ function App() {
             path="/payment"
             element={<PrivateRouteSideBar component={<PaymentPage />} />}
           />
+                     <Route
+            path="/success"
+            element={<PrivateRouteSideBar component={<ThankYouPage/>} />}
+          />
+
           <Route path="/productdetail/:productName"   element={<PrivateRouteSideBar component={<ProductDetail />} />}/>
         </Routes>
       </BrowserRouter>

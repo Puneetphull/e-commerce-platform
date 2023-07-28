@@ -1,6 +1,9 @@
 import { userConstants } from "../../constants";
 
 export const usersActions = {
+  REGITSER_REQUEST,
+  REGISTER_FAILURE,
+  REGISTER_SUCCESS,
   FORGETPASSWORDREQUEST,
   FORGETPASSWORDSUCCESS,
   FORGETPASSWORDFAILURE,
@@ -99,6 +102,28 @@ function LOGIN_FAILURE({ error }) {
     payload: error,
   };
 }
+
+function REGITSER_REQUEST(userDetails) {
+  return {
+    type: userConstants.REGISTER_REQUEST,
+    payload: userDetails,
+  };
+}
+
+function REGISTER_SUCCESS({ success }) {
+  return {
+    type: userConstants.REGISTER_SUCCESS,
+    payload: success,
+  };
+}
+
+function REGISTER_FAILURE({ error }) {
+  return {
+    type: userConstants.REGISTER_FAILURE,
+    payload: error,
+  };
+}
+
 
 function GET_MY_ORDERS_REQUEST(data) {
   return {
@@ -658,6 +683,9 @@ function REORDERFAILURE(failure) {
     payload: failure,
   };
 }
+
+
+
 
 // function GIFTCREDITREQUEST(request){
 //   return {

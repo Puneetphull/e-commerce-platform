@@ -1,13 +1,19 @@
 import request from "./https.api";
+import {helperService} from '../helper/helperFunction';
+const token = '5b4d2tg1fnxbg7xcrlsmmkoxkd0gthp1';
 
-const token = process.env.REACT_APP_ADMIN_TOKEN;
 
 export const productService = {
   getProductDetail,
   getProductList,
   getCategories,
   getCategoyId,
-  getAllProductList
+  getAllProductList,
+  subTotalApi,
+  getPaymentMethods,
+  placeorder,
+  userCartTotal,
+  updateCartMultipleItem
 };
 
 function getCategories() {
@@ -15,7 +21,7 @@ function getCategories() {
 }
 
 function getProductDetail(sku_name) {
-  return request(`$rest/V1/products/${sku_name}`, "", "get", "", token);
+  return request(`rest/V1/products/${sku_name}`, "", "get", "", token);
 }
 
 function getProductList(
@@ -86,3 +92,54 @@ function getCategoyId(category_name) {
 function getAllProductList(){
   return request("rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=website_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filter_groups][0][filters][0][condition_type]=eq","","get","",token);
 }
+
+
+function subTotalApi() {
+  return request(
+    `/rest/V1/carts/${helperService.getCustomerQuote_Id()}/totals`,
+    "",
+    "get",
+    "",
+    token
+  );
+}
+
+function getPaymentMethods(){
+  return request(
+    `rest/V1/carts/${helperService.getCustomerQuote_Id()}/payment-methods`,
+    "",
+    "get",
+    "",
+    token
+  )
+}
+
+
+
+function placeorder(method) {
+  return request(
+    `rest/V1/carts/${helperService.getCustomerQuote_Id()}/order`,
+    method,
+    "put",
+    "",
+    token
+  );
+}
+
+function userCartTotal() {
+  return request(
+    `/rest/V1/carts/${helperService.getCustomerQuote_Id()}`,
+    "",
+    "get",
+    "",
+    token
+  );
+}
+
+function updateCartMultipleItem(updateDetails){
+ return request('rest/all/V1/netsmartz/multipleupdate',updateDetails,'Post','','token'); 
+}
+
+
+
+

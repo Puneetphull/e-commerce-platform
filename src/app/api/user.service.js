@@ -1,43 +1,77 @@
 import request from "./https.api";
 import { helperService } from "../helper";
 
-const token = process.env.REACT_APP_ADMIN_TOKEN;
-
+const token = '5b4d2tg1fnxbg7xcrlsmmkoxkd0gthp1';
 
 export const userService = {
+  regitserCustomer,
   login,
   getCustomerQuoteId,
-  addProductCustomerCart
-
+  addProductCustomerCart,
+  deleteItemFromCart,
+  _updateItemInCart,
+  getCartList,
+  addShippingAddress
 };
 
-function login(username, password) {
+function regitserCustomer(users) {
+  return request("rest/V1/customers", users, "POST", token);
+}
+
+async function login(username, password) {
   return request(
-    `index.php/rest/V1/integration/customer/token`,
-    JSON.stringify({ username, password }),
+    `rest/V1/integration/customer/token`,
+    username,
     "post",
     "",
     token
   );
 }
 
-
-function getCustomerQuoteId(){
-    return request(
-        `rest/V1/carts/mine`,
-        '',
-        'post',
-        '',
-        helperService.getCustomerJwt(),
-    )
+function getCustomerQuoteId() {
+  return request(
+    `rest/V1/carts/mine`,
+    "",
+    "post",
+    "",
+    helperService.getCustomerJwt()
+  );
 }
 
-function addProductCustomerCart(productDetails){
+function addProductCustomerCart(productDetails) {
   return request(
     `rest/V1/carts/${productDetails.quote_id}/items`,
     productDetails,
-    'post',
+    "post",
+    "",
+    token
+  );
+}
+
+function getCartList(){
+  return request(
+    `rest/V1/carts/${helperService.getCustomerQuote_Id()}/items`,
     '',
-    token,
+    'get',
+    '',
+    token
   )
+}
+
+function deleteItemFromCart(cartProductId){
+  return request(`rest/V1/carts/${helperService.getCustomerQuote_Id()}/items/${cartProductId}`,'','DELETE','',token);
+}
+
+function _updateItemInCart(productDetails){
+  return request(`rest/V1/carts/${helperService.getCustomerQuote_Id()}/items/${productDetails}`,'','PUT','',token);
+}
+
+function addShippingAddress( payload) {
+  return request(
+    `rest/V1/carts/${helperService.getCustomerQuote_Id()}/shipping-information`,
+    payload,
+    "POST",
+    "",
+    token
+  );
 }

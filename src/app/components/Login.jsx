@@ -31,8 +31,8 @@ export function Login() {
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [user, setuser] = useState({
-    username: "",
-    password: "",
+    "username": "",
+    "password": "",
   });
   const handleOnChange = (event) => {
     const { name, value } = event.target;
