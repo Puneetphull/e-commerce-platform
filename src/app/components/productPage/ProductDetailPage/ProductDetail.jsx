@@ -54,7 +54,7 @@ export function ProductDetail() {
             <div className="col-md-6">
               <div className="pdp-product-image">
                 <img
-                  src={productdetail?.custom_attributes?.find(cutom=>cutom?.attribute_code === "image").value}
+                  src={productdetail?.media_gallery_entries[0]?.file}
                   alt=""
                   className="img-fluid"
                 />
