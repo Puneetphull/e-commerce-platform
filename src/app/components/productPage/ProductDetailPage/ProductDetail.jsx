@@ -31,13 +31,13 @@ export function ProductDetail() {
     if (quanity >= 1 && type === "inc") {
       setquantity((prev) => prev + 1);
     }
-    if (quanity >= 1 && type === "dec") {
+    if (quanity > 1 && type === "dec") {
       setquantity((prev) => prev - 1);
     }
   };
 
   function addToCart() {
-    dispatch(cartActions.ADDCARTREQUEST(helperService.addProductForServer(productdetail.sku, 1)));
+    dispatch(cartActions.ADDCARTREQUEST(helperService.addProductForServer(productdetail.sku, quanity)));
   }
 
   function getProductDetails(skuName) {

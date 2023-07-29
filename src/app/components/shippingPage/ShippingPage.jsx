@@ -1,13 +1,22 @@
-import React, { useState } from "react";
-import { productlist } from "../../data/ProductList";
+import React, { useEffect, useState } from "react";
 import { countries, states } from "../../helper/countries";
 import { Button } from "@themesberg/react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../services/actions";
+import { productService } from "../../api/product.service";
 export function ShippingPage() {
   const dispatch = useDispatch();
   const { productInCart } = useSelector((state) => state.cartReducer);
   const [formdata, setformData] = useState();
+  const [shippingMethods, setShippingMethods] = useState([]);
+
+  const [selectedShipping,setShipping] = useState();
+
+  
+
+  useEffect(() => {
+    getShippingMethods();
+  }, []);
 
   function onChangeHandler(event) {
     let { name, value } = event.target;
@@ -15,15 +24,33 @@ export function ShippingPage() {
     setformData({ ...formdata, [name]: value });
   }
 
+  async function getShippingMethods() {
+    let response = await productService.getShippingMethod();
+    console.log(response);
+    if (response.status === 200) {
+      console.log(response);
+      setShippingMethods(response.data);
+    }
+  }
+
+
+
   function onChangeCountry(e) {
-   setformData({...formdata,country_id:e.target.value})
+    setformData({ ...formdata, country_id: e.target.value });
   }
 
   function onSateChange(e) {
-    console.log(e.target.value)
-    let state = states.find(state=>state.code === e.target.value)
-    console.log(state)
-    setformData({...formdata,region_id:state.id,region_code:state.code})
+    console.log(e.target.value);
+    let state = states.find((state) => state.code === e.target.value);
+    console.log(state);
+    setformData({ ...formdata, region_id: state.id, region_code: state.code });
+  }
+
+  function onSelectShpping(e){
+    let {name,value} = e.target;
+    setShipping(name);
+
+    setformData({ ...formdata, shipping_carrier_code:value, shipping_method_code:value});
   }
 
   const submitFormData = (e) => {
@@ -289,21 +316,24 @@ export function ShippingPage() {
             <div className="checkout-form-head mt-5 mb-4">
               <h2>Shipping Method</h2>
               <hr></hr>
-              <div className="form-group my-4 flat-rate">
+              {shippingMethods.map((methods)=>(    
+              <div className="form-group my-4 flat-rate">             
                 <div className="form-check">
                   <input
                     className="form-check-input"
                     type="radio"
-                    name="gridRadios"
-                    id="Flat-Rate"
-                    value="option1"
-                    checked=""
+                    name={methods.carrier_code}
+                    id={methods.carrier_code}
+                    value={methods.carrier_code}
+                    onChange={onSelectShpping}
+                    checked={selectedShipping === methods.carrier_code ? true : false}
                   />
                   <label className="form-check-label" htmlFor="Flat-Rate">
-                    <strong>$15.00</strong> Fixed Flat Rate
+                    <strong>${methods.amount} {methods.method_title} </strong> {methods.carrier_title}
                   </label>
                 </div>
               </div>
+               ))}
             </div>
             <div className="action-btns-wrap text-right">
               <Button onClick={submitFormData} className="btn btn-black">
@@ -328,15 +358,16 @@ export function ShippingPage() {
                 {productInCart.map((data) => (
                   <div className="checkout-cart-list-item">
                     <div className="product-img">
-                      <img src={data.extension_attributes.image_url} alt="productImage" />
+                      <img
+                        src={data.extension_attributes.image_url}
+                        alt="productImage"
+                      />
                     </div>
                     <div className="product-name-qty">
                       <p>{data.name}</p>
                       <p>Qty: {data.qty}</p>
                     </div>
-                    <div className="product-price">
-                      ${data.price}
-                    </div>
+                    <div className="product-price">${data.price}</div>
                   </div>
                 ))}
                 {/* <div className="checkout-cart-list-item">

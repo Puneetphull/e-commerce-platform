@@ -10,6 +10,7 @@ export const productService = {
   getCategoyId,
   getAllProductList,
   subTotalApi,
+  getShippingMethod,
   getPaymentMethods,
   placeorder,
   userCartTotal,
@@ -104,6 +105,10 @@ function subTotalApi() {
   );
 }
 
+function getShippingMethod(){
+  return request(`rest/V1/carts/${helperService.getCustomerQuote_Id()}/shipping-methods`,'','GET','',token);
+}
+
 function getPaymentMethods(){
   return request(
     `rest/V1/carts/${helperService.getCustomerQuote_Id()}/payment-methods`,
@@ -113,7 +118,6 @@ function getPaymentMethods(){
     token
   )
 }
-
 
 
 function placeorder(method) {
