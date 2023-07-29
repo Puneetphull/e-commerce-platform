@@ -2409,5 +2409,9 @@ table {
   }
 }
 
-
+span.cart-number {
+  padding-bottom: 26px;
+  font-weight: 600;
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

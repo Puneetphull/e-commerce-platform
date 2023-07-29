@@ -70,7 +70,7 @@ export  function Navbars(props) {
             <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
               <Dropdown.Toggle as={Nav.Link} className="text-dark icon-notifications me-lg-3">
                 <span className="icon icon-sm">
-                  <FontAwesomeIcon icon={faShoppingCart} className="bell-shake" />
+                  <FontAwesomeIcon icon={faShoppingCart} className="bell-shake" /><span className="cart-number">0</span>
                   {areNotificationsRead ? null : <span className="icon-badge rounded-circle unread-notifications" />}
                 </span>
               </Dropdown.Toggle>
