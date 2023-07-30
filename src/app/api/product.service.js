@@ -14,8 +14,17 @@ export const productService = {
   getPaymentMethods,
   placeorder,
   userCartTotal,
-  updateCartMultipleItem
+  updateCartMultipleItem,
+  getBanner
 };
+
+
+function getBanner(){
+  return request('rest/all/V1/codilar/bannerslider/slider/loadById/1','','GET','',token);
+}
+
+
+
 
 function getCategories() {
   return request("/rest/V1/categories", "", "get", "", token);
@@ -90,8 +99,8 @@ function getCategoyId(category_name) {
   );
 }
 
-function getAllProductList(){
-  return request("rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=website_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filter_groups][0][filters][0][condition_type]=eq","","get","",token);
+function getAllProductList(pageSize,currentPage,sortOrder){
+  return request(`rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=website_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filter_groups][0][filters][0][condition_type]=eq&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[currentPage]=${currentPage}&searchCriteria[sortOrders][0][direction]=${sortOrder}&store_id=1&searchCriteria[pageSize]=${pageSize}`,"","get","",token);
 }
 
 

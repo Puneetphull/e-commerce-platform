@@ -2,26 +2,39 @@ import React, { useEffect,useState } from "react";
 import "../../../css e-commerce/css/style.css";
 import ProductCard from "../../../custom-components/ProductCard";
 import { filterArray } from "../../../data/ProductList";
-import { Accordion, Form, Nav, Pagination } from "@themesberg/react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { Accordion, Form} from "@themesberg/react-bootstrap";
 import { productService } from "../../../api/product.service";
+import CustomPagination from "../../../custom-components/pagination/pagination";
 
 export function ProductList() {
   const [product,setpouduct] = useState([]);
+  const[sortOrder,setOrder]=useState("ASC");
+  const [totalCount,setTotalCount] =useState(0);
+  const [pageSize,setpageSize]=useState(3);
+  const [pageNumber,setPageNumber] = useState(1);
 
 
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [pageSize,pageNumber,sortOrder]);
+
+
+  const onPageNumberChange = (page)=>{
+    setPageNumber(page)
+  }
+
+
+  const onPageSizeChange = (e)=>{
+    setpageSize(e.target.value);
+  }
 
   function getProducts() {
-    productService.getAllProductList().then((response) => {
+    // console.log(pagination)
+    
+    productService.getAllProductList(pageSize,pageNumber,sortOrder).then((response) => {
       setpouduct(response.data.items)
+      setTotalCount(response.data.total_count)
     });
   }
 
@@ -203,13 +216,13 @@ export function ProductList() {
               </div>
               <div class="sortby-out">
                 Show
-                <select class="sorter-options">
-                  <option value="12" selected="selected">
-                    12
-                  </option>
-                  <option value="24">24</option>
-                  <option value="36">36</option>
-                </select>
+                <select class="sorter-options" value={pageSize} onChange={onPageSizeChange} >
+              <option value={3}  >
+                3
+              </option>
+              <option value={6}>6</option>
+              <option value={9}>9</option>
+            </select>
               </div>
             </div>
 
@@ -223,30 +236,16 @@ export function ProductList() {
         <div class="bottom-pagination-wrapper mb-5">
           <div class="sortby-out mx-2">
             Show
-            <select class="sorter-options">
-              <option value="12" selected="selected">
-                12
+            <select class="sorter-options"  value={pageSize} onChange={onPageSizeChange} >
+              <option value={3} >
+                3
               </option>
-              <option value="24">24</option>
-              <option value="36">36</option>
+              <option value={6}>6</option>
+              <option value={9}>9</option>
             </select>
           </div>
           <div>
-            <Nav>
-              <Pagination className="mb-2 mb-lg-0">
-                <Pagination.Prev>
-                  <FontAwesomeIcon icon={faChevronLeft} />
-                </Pagination.Prev>
-                <Pagination.Item active>1</Pagination.Item>
-                <Pagination.Item>2</Pagination.Item>
-                <Pagination.Item>3</Pagination.Item>
-                <Pagination.Item>4</Pagination.Item>
-                <Pagination.Item>5</Pagination.Item>
-                <Pagination.Next>
-                  <FontAwesomeIcon icon={faChevronRight} />
-                </Pagination.Next>
-              </Pagination>
-            </Nav>
+          <CustomPagination currentPage={pageNumber} totalCount={totalCount} pageSize={pageSize} onPageChange={page => onPageNumberChange(page)} />
           </div>
         </div>
       </div>
