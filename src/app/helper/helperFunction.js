@@ -1,3 +1,4 @@
+import { userService } from "../api";
 import { productService } from "../api/product.service";
 
 import { createBrowserHistory } from "history";
@@ -20,8 +21,14 @@ function getCustomerJwt() {
 
 function getCustomerQuote_Id() {
   if (localStorage.getItem("jwtToken") && localStorage.getItem("quote_Id")) {
-    console.log(localStorage.getItem("quote_Id"));
     return JSON.parse(localStorage.getItem("quote_Id"));
+  } else {
+    return userService.getCustomerQuoteId().then((response) => {
+      if (response.status === 200) {
+        localStorage.setItem("quote_Id", response.data);
+        return response.data;
+      }
+    });
   }
 }
 
@@ -35,9 +42,7 @@ function addProductForServer(sku_name, qunatity) {
   };
 }
 
-function updateProductInCart(){
-  
-}
+function updateProductInCart() {}
 
 function getCategoiresProductByName(
   category_name,
@@ -98,8 +103,12 @@ function createShippingDataForServer(payload) {
         save_in_address_book: 1,
         same_as_billing: 1,
       },
-      shipping_carrier_code: payload.shipping_carrier_code ? payload.shipping_carrier_code  : 'flatrate' ,
-      shipping_method_code: payload.shipping_method_code ? payload.shipping_method_code : 'flatrate',
+      shipping_carrier_code: payload.shipping_carrier_code
+        ? payload.shipping_carrier_code
+        : "flatrate",
+      shipping_method_code: payload.shipping_method_code
+        ? payload.shipping_method_code
+        : "flatrate",
     },
   };
   return details;

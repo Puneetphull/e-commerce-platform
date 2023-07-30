@@ -4,12 +4,9 @@ import { Login } from "./app/components/Login";
 import { NotFound } from "./app/components/NotFound";
 import { ServerError } from "./app/components/ServerError";
 import { SignUp } from "./app/components/SignUp";
-import { SuperAdminRegister } from "./app/components/superAdmin/SuperAdminRegister";
 import { VerifyEmail } from "./app/components/verfiyEmail";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { customRoutes } from "./app/routes/routes";
-import { GuestHomePage } from "./app/components/guestUser/guestHomePage";
-import { Dashboard } from "./app/components/dashboard/Dashboard";
 import { CustomerHomePage } from "./app/components/customerUser/customerHomePage";
 import { PrivateRouteSideBar } from "./app/components/PrivateRouteSideBar";
 import { ProductList } from "./app/components/productPage/ProductListPage/ProductList";
@@ -20,24 +17,70 @@ import { PaymentPage } from "./app/components/PaymentPage/PaymentPage";
 import { HomePage } from "./app/components/home/homePage";
 import { history } from "./app/helper";
 import { ThankYouPage } from "./app/components/SuccessPage/SuccessPage";
+import { PrivateRoute } from "./app/helper/privateRoute";
+import { MyOrder } from "./app/components/MyOrders/MyOrders";
 
 function App() {
   return (
     <>
-      <BrowserRouter history={history} >
-        <Routes  >
+      <BrowserRouter history={history}>
+        <Routes>
           <Route path="*" element={<NotFound />} />
+          <Route element={<PrivateRoute />}>
+            <Route
+              path="/"
+              element={
+                <Navigate to={customRoutes.adminHome.path} replace={true} />
+              }
+            />
+            <Route
+              path={customRoutes.adminHome.path}
+              element={<PrivateRouteSideBar component={<HomePage />} />}
+            />
+
+            <Route
+              path="productListing"
+              element={<PrivateRouteSideBar component={<ProductList />} />}
+            />
+            <Route
+              path="/cart"
+              element={<PrivateRouteSideBar component={<Cart />} />}
+            />
+            <Route
+              path="/shipping"
+              element={<PrivateRouteSideBar component={<ShippingPage />} />}
+            />
+            <Route
+              path="/payment"
+              element={<PrivateRouteSideBar component={<PaymentPage />} />}
+            />
+            <Route
+              path="/success"
+              element={<PrivateRouteSideBar component={<ThankYouPage />} />}
+            />
+
+            <Route
+              path="/productdetail/:productName"
+              element={<PrivateRouteSideBar component={<ProductDetail />} />}
+            />
+            <Route
+              path="/MyOrder"
+              element={<PrivateRouteSideBar component={<MyOrder />} />}
+            />
+          </Route>
+          <Route path={customRoutes.adminLogin.path} element={<Login />} />
+          <Route path={customRoutes.adminSignup.path} element={<SignUp />} />
+          <Route path="/verifyEmail" element={<VerifyEmail />} />
+          <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route
-            path="/"
-            element={
-              <Navigate to={customRoutes.adminLogin.path} replace={true} />
-            }
+            path={customRoutes.serverError.path}
+            element={<ServerError />}
           />
-          <Route
+          {/* <Route
             path={customRoutes.adminDetail.path}
             element={<SuperAdminRegister />}
           />
-          <Route path={customRoutes.adminLogin.path} element={<Login />} />
+          // <Route path={customRoutes.adminLogin.path} element={<Login />} />
           <Route path={customRoutes.staffLogin.path} element={<Login />} />
           <Route path={customRoutes.userLogin.path} element={<Login />} />
           <Route path={customRoutes.adminSignup.path} element={<SignUp />} />
@@ -55,34 +98,8 @@ function App() {
           <Route
             path={customRoutes.serverError.path}
             element={<ServerError />}
-          />
+          /> */}
           <Route path="/reviewurl" element={<CustomerHomePage />} />
-          <Route
-            path={customRoutes.adminHome.path}
-            element={<PrivateRouteSideBar component={<HomePage />} />}
-          />
-          <Route
-            path="productListing"
-            element={<PrivateRouteSideBar component={<ProductList />} />}
-          />
-          <Route
-            path="/cart"
-            element={<PrivateRouteSideBar component={<Cart />} />}
-          />
-           <Route
-            path="/shipping"
-            element={<PrivateRouteSideBar component={<ShippingPage />} />}
-          />
-           <Route
-            path="/payment"
-            element={<PrivateRouteSideBar component={<PaymentPage />} />}
-          />
-                     <Route
-            path="/success"
-            element={<PrivateRouteSideBar component={<ThankYouPage/>} />}
-          />
-
-          <Route path="/productdetail/:productName"   element={<PrivateRouteSideBar component={<ProductDetail />} />}/>
         </Routes>
       </BrowserRouter>
     </>

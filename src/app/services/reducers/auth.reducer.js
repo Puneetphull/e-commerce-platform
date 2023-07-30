@@ -25,8 +25,8 @@ export function authentication(state = initialState, action) {
         isLoading:false,
       };
     case userConstants.LOGOUT:
-      return {};
+      return {...state};
     default:
-      return false;
+      return {...state};
   }
 }

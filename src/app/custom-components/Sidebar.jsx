@@ -85,6 +85,7 @@ export function Sidebar(props) {
                 <NavItem title="Cart" link="/cart" icon={faShoppingCart}/>
                 <NavItem title="Shipping Information" link="/shipping" icon={faTruckFast}/>
                 <NavItem title="Payment" link="/payment" icon={faMoneyCheckDollar}/>
+                <NavItem title="My Orders" link="/MyOrder" icon={faMoneyCheckDollar}/>
                 {/* <NavItem title="Product Detail" link="/productdetail" icon={faDollarSign} />
                 <NavItem title="Cart" link="/cart" icon={faShoppingCart}/>
                 
