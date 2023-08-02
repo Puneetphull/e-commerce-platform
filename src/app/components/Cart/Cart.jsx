@@ -1,21 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../services/actions";
 import { Button } from "@themesberg/react-bootstrap";
 import { Loader } from "../../custom-components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretDown,
+  faCaretUp,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { Tooltip } from "antd";
+import { helperService } from "../../helper";
 
 export function Cart() {
   const dispatch = useDispatch();
   const { productInCart, subTotal } = useSelector((state) => state.cartReducer);
   const { isLoading } = useSelector((state) => state.loaderReducer);
 
+  const [updatedisable,setUpdatedisable] = useState(true);
+
   useEffect(() => {
     dispatch(cartActions.GETITEMSREQUEST());
   }, []);
+
+  const updateProductQty = (type, item) => {
+    setUpdatedisable(false);
+    if (type === "inc") {
+      dispatch(cartActions.INCREMENTSINGLEPRODUCTQTY(item));
+    } else {
+      dispatch(cartActions.DECREMENTSINGLEPRODUCTQTY(item));
+    }
+  };
+
+  const upDateCart =()=>{
+   dispatch(cartActions.UPDATE_PRODUCT_CART_REQUEST(helperService.updateProductInCart(productInCart)))
+  }
 
   return (
     <>
@@ -76,10 +96,22 @@ export function Cart() {
                                       />
                                       <div className="increment-decrement-wrap">
                                         <button className="increment-btn">
-                                          <i className="fas fa-caret-up"></i>
+                                          <FontAwesomeIcon
+                                            role="button"
+                                            icon={faCaretUp}
+                                            onClick={() =>
+                                              updateProductQty("inc", item)
+                                            }
+                                          />
                                         </button>
                                         <button className="decrement-btn">
-                                          <i className="fas fa-caret-down"></i>
+                                          <FontAwesomeIcon
+                                            role="button"
+                                            icon={faCaretDown}
+                                            onClick={() =>
+                                              updateProductQty("dsec", item)
+                                            }
+                                          />
                                         </button>
                                       </div>
                                     </div>
@@ -116,7 +148,7 @@ export function Cart() {
                       </table>
                     </div>
                     <div className="update-cart-btn-wrap mb-5">
-                      <Button disabled={true} className="btn btn-white">
+                      <Button disabled={updatedisable} onClick={upDateCart} className="btn btn-white">
                         Update Cart
                       </Button>
                     </div>

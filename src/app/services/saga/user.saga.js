@@ -4,16 +4,20 @@ import { productService, userService } from "../../api";
 import { cartActions, loaderAction, usersActions } from "../actions";
 import { customRoutes } from "../../routes/routes";
 import { Notification } from "../../helper/toaster.service";
-import { history } from "../../helper";
+import { helperService, history } from "../../helper";
 
 function* login(users) {
   try {
+    yield put(loaderAction.isLoadingTrue());
     const response = yield call(() => userService.login(users.payload));
     if (response.status === 200) {
       localStorage.setItem("jwtToken", JSON.stringify(response.data));
       const cart_Id = yield call(() => userService.getCustomerQuoteId());
       localStorage.setItem("quote_Id", JSON.stringify(cart_Id.data));
+      const userdetails = yield call(() => userService.getCustomerDetails());
+      helperService.setlocaleStorage("id", userdetails.data);
       yield put(usersActions.LOGIN_SUCCESS(response.data));
+      yield put(loaderAction.isLoadingFalse());
       Notification("success", "Logged in Successfully");
       history.push(customRoutes.adminHome.path);
     }
@@ -90,13 +94,16 @@ function* deleteItemFromCart(ItemId) {
 }
 
 function* Addshippingaddress(payload) {
+  yield put(loaderAction.isLoadingTrue());
   const result = yield call(() => {
     return userService.addShippingAddress(payload.payload);
   });
   if (result.status === 200) {
     Notification("success", "Address is Added Successflully");
-    history.push('/payment');
+    yield put(loaderAction.isLoadingFalse());
+    history.push("/payment");
   } else {
+    yield put(loaderAction.isLoadingFalse());
     yield put(usersActions.ADDSHIPPINGADDRESSFAILURE(result.data));
     Notification("warning", "there is some problem");
   }
@@ -111,11 +118,24 @@ function* placeOrder(paymentMethod) {
     if (res.status === 200) {
       localStorage.setItem("quote_Id", JSON.stringify(res.data));
       Notification("success", "Order is Placed");
-      history.push('/success');
+      history.push("/success");
     }
     yield put(usersActions.PLACEORDERSUCCESS(response.data));
   } else {
     yield put(usersActions.PLACEORDERFAILURE(response.data));
+  }
+}
+
+function* UpdateProductCart(product) {
+  let response = yield call(() => {
+    productService.updateCartMultipleItem(product.payload);
+  });
+  if (response.status === 200) {
+    yield put(cartActions.UPDATE_PRODUCT_CART_SUCCESS(response.data));
+    Notification("success", "Product is updated successfully");
+  } else {
+    yield put(cartActions.UPDATE_PRODUCT_CART_SUCCESS(response.data));
+    Notification("warning", "There is some problem");
   }
 }
 export function* fetchUser() {
@@ -129,4 +149,5 @@ export function* fetchUser() {
     Addshippingaddress
   );
   yield takeEvery(userConstants.USERS_PLACEORDER_REQUEST, placeOrder);
+  yield takeEvery(CartConstant.UPDATE_PRODUCT_CART_REQUEST, UpdateProductCart);
 }

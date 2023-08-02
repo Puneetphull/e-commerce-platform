@@ -101,6 +101,43 @@ function ADDSHIPPINGSADDRESSREQUEST(address){
     }
   }
 
+  const INCREMENTSINGLEPRODUCTQTY = (item)=>{
+    return {
+        type:CartConstant.INCREMENT_QTY_SINGLE_PRODUCT,
+        payload:item
+    }
+}
+
+const DECREMENTSINGLEPRODUCTQTY = (item)=>{
+    return {
+        type:CartConstant.DECREMENT_QTY_SINGLE_PRODUCT,
+        payload:item
+    }
+}
+
+
+const UPDATE_PRODUCT_CART_REQUEST = (payload)=>{
+  return {
+      type:CartConstant.UPDATE_PRODUCT_CART_REQUEST,
+      payload:payload
+  }
+}
+const UPDATE_PRODUCT_CART_SUCCESS = (success)=>{
+  return {
+      type:CartConstant.UPDATE_PRODUCT_CART_SUCCESS,
+      payload:success
+  }
+}
+const UPDATE_PRODUCT_CART_FAILURE = (failure)=>{
+  return {
+      type:CartConstant.UPDATE_PRODUCT_CART_FAILURE,
+      payload:failure
+  }
+}
+
+
+
+
 
 
 
@@ -120,5 +157,10 @@ function ADDSHIPPINGSADDRESSREQUEST(address){
     GETSUBTOTALFAILURE,
     ADDSHIPPINGSADDRESSREQUEST,
     ADDSHIPPINGADDRESSSUCCESS,
-    ADDSHIPPINGADDRESSFAILURE
+    ADDSHIPPINGADDRESSFAILURE,
+    INCREMENTSINGLEPRODUCTQTY,
+    DECREMENTSINGLEPRODUCTQTY,
+    UPDATE_PRODUCT_CART_REQUEST,
+    UPDATE_PRODUCT_CART_SUCCESS,
+    UPDATE_PRODUCT_CART_FAILURE
 }

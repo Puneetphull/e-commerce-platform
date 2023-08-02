@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import pic1 from "../../../assets/e-commerceImg/baby-clothes.png";
 import pic2 from "../../../assets/e-commerceImg/dress.png";
 import pic3 from "../../../assets/e-commerceImg/high-heels.png";
@@ -21,6 +21,7 @@ import blog1 from "../../../assets/Banner/caroline-lm-QA9fRIi6sFw-unsplash.jpg";
 import blog2 from "../../../assets/Banner/s-b-vonlanthen-FaiZNiofP-U-unsplash.jpg";
 import blog3 from "../../../assets/Banner/olga-guryanova-s10jzFKGOLs-unsplash.jpg";
 import Sale from "../../../assets/Banner/goby-zHMpGLOD8nI-unsplash.jpg";
+import { productService } from "../../../api";
 
 export function TrendingPage() {
   return (
@@ -370,22 +371,17 @@ export function BlogPage() {
 }
 
 export function SaleSection() {
+ 
+  const [value,setvalue] = useState();
+  useEffect(()=>{
+   BigSale();
+  },[])
+  async function BigSale(){
+    const result = await productService.CMSPageContent(1,"sale_page");
+   setvalue(result.data.items[0].content);
+  }
   return (
-    <section class="sale-section">
-      <div class="sale-banner-out mt-5">
-        <img src={Sale} class="w-100" alt="" />
-        <div class="caption">
-          <p>
-            Big Sale Up To 70% Off
-            <br />
-            Exclussive Offers For Limited Time
-          </p>
-          <a href="#" class="btn btn-black btn-lg my-2">
-            Click Here
-          </a>
-        </div>
-      </div>
-    </section>
+    <div dangerouslySetInnerHTML={{ __html:value ? value : "" }} />
   );
 }
 

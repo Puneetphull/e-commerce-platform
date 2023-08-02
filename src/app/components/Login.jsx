@@ -11,7 +11,7 @@ import {
   Button,
   Container,
 } from "@themesberg/react-bootstrap";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   focusOnFeild,
   validationError,
@@ -29,7 +29,7 @@ export function Login() {
   const selector = useSelector((state) => state.authentication);
   const location = useLocation();
   const [errors, setErrors] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const {isLoading} =  useSelector(state=>state.loaderReducer)
   const [user, setuser] = useState({
     "username": "",
     "password": "",
@@ -72,6 +72,7 @@ export function Login() {
   };
 
   return (
+   
     <div>
       <main>
         <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
@@ -211,7 +212,7 @@ export function Login() {
           </Container>
         </section>
       </main>
-      <Loader loading={loading} />
+      <Loader loading={isLoading} />
     </div>
   );
 }

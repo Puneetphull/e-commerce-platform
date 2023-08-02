@@ -9,6 +9,9 @@ export const helperService = {
   addProductForServer,
   getCategoiresProductByName,
   createShippingDataForServer,
+  setlocaleStorage,
+  getCustomerDetails,
+  updateProductInCart
 };
 
 function getCustomerJwt() {
@@ -32,6 +35,12 @@ function getCustomerQuote_Id() {
   }
 }
 
+function  getCustomerDetails(){
+  if(localStorage.getItem('id')){
+    return JSON.parse(localStorage.getItem('id'))
+  }
+}
+
 function addProductForServer(sku_name, qunatity) {
   return {
     cart_item: {
@@ -42,7 +51,17 @@ function addProductForServer(sku_name, qunatity) {
   };
 }
 
-function updateProductInCart() {}
+
+function setlocaleStorage(key,value){
+  localStorage.setItem(key,JSON.stringify(value));
+}
+
+function updateProductInCart(products) {
+  return {
+    cartId: getCustomerQuote_Id(),
+    cartItem:products
+  }
+}
 
 function getCategoiresProductByName(
   category_name,

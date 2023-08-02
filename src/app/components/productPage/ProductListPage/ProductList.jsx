@@ -1,45 +1,63 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../css e-commerce/css/style.css";
 import ProductCard from "../../../custom-components/ProductCard";
 import { filterArray } from "../../../data/ProductList";
-import { Accordion, Form} from "@themesberg/react-bootstrap";
+import { Accordion, Form } from "@themesberg/react-bootstrap";
 import { productService } from "../../../api/product.service";
 import CustomPagination from "../../../custom-components/pagination/pagination";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { Loader } from "../../../custom-components/Loader";
+
 
 export function ProductList() {
-  const [product,setpouduct] = useState([]);
-  const[sortOrder,setOrder]=useState("ASC");
-  const [totalCount,setTotalCount] =useState(0);
-  const [pageSize,setpageSize]=useState(3);
-  const [pageNumber,setPageNumber] = useState(1);
+  const [product, setpouduct] = useState([]);
+  const [sortOrder, setOrder] = useState("ASC");
+  const [totalCount, setTotalCount] = useState(0);
+  const [pageSize, setpageSize] = useState(3);
+  const [pageNumber, setPageNumber] = useState(1);
 
-
+  const [isloading,setloading] = useState(false);
 
   useEffect(() => {
     getProducts();
-  }, [pageSize,pageNumber,sortOrder]);
+  }, [pageSize, pageNumber, sortOrder]);
 
+  const onPageNumberChange = (page) => {
+    setPageNumber(page);
+  };
 
-  const onPageNumberChange = (page)=>{
-    setPageNumber(page)
-  }
-
-
-  const onPageSizeChange = (e)=>{
+  const onPageSizeChange = (e) => {
     setpageSize(e.target.value);
+  };
+
+
+  const OnchangeSortOrder=()=>{
+    if(sortOrder === "ASC"){
+      setOrder("DESC");
+    }
+    else{
+      setOrder("ASC")
+    }
   }
 
   function getProducts() {
     // console.log(pagination)
-    
-    productService.getAllProductList(pageSize,pageNumber,sortOrder).then((response) => {
-      setpouduct(response.data.items)
-      setTotalCount(response.data.total_count)
-    });
+   setloading(true);
+    productService
+      .getAllProductList(pageSize, pageNumber, sortOrder)
+      .then((response) => {
+        setpouduct(response.data.items);
+        setTotalCount(response.data.total_count);
+        setloading(false);
+      });
   }
 
   return (
+    <>
+  
     <section class="plp-content">
+    {isloading ? <Loader/> : ''}
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
@@ -210,45 +228,65 @@ export function ProductList() {
                   <option value="price">Price</option>
                   <option value="brand">Brand</option>
                 </select>
-                <a href="#">
-                  <i class="fa fas fa-arrow-up"></i>
-                </a>
+                {sortOrder === "ASC" ? (
+                  <FontAwesomeIcon
+                    className="ml-2"
+                    role="button"
+                    icon={faArrowUp}
+                    onClick={OnchangeSortOrder}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    className="ml-2"
+                    role="button"
+                    onClick={OnchangeSortOrder}
+                    icon={faArrowDown}
+                  />
+                )}
               </div>
               <div class="sortby-out">
                 Show
-                <select class="sorter-options" value={pageSize} onChange={onPageSizeChange} >
-              <option value={3}  >
-                3
-              </option>
-              <option value={6}>6</option>
-              <option value={9}>9</option>
-            </select>
+                <select
+                  class="sorter-options"
+                  value={pageSize}
+                  onChange={onPageSizeChange}
+                >
+                  <option value={3}>3</option>
+                  <option value={6}>6</option>
+                  <option value={9}>9</option>
+                </select>
               </div>
             </div>
 
             <div class="product-listing">
-              {product && product.map((data) => (
-                <ProductCard props={data} />
-              ))}
+              {product && product.map((data) => <ProductCard props={data} />)}
             </div>
           </div>
         </div>
         <div class="bottom-pagination-wrapper mb-5">
           <div class="sortby-out mx-2">
             Show
-            <select class="sorter-options"  value={pageSize} onChange={onPageSizeChange} >
-              <option value={3} >
-                3
-              </option>
+            <select
+              class="sorter-options"
+              value={pageSize}
+              onChange={onPageSizeChange}
+            >
+              <option value={3}>3</option>
               <option value={6}>6</option>
               <option value={9}>9</option>
             </select>
           </div>
           <div>
-          <CustomPagination currentPage={pageNumber} totalCount={totalCount} pageSize={pageSize} onPageChange={page => onPageNumberChange(page)} />
+            <CustomPagination
+              currentPage={pageNumber}
+              totalCount={totalCount}
+              pageSize={pageSize}
+              onPageChange={(page) => onPageNumberChange(page)}
+            />
           </div>
         </div>
       </div>
     </section>
+    </>
   );
 }

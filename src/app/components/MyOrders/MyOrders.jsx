@@ -1,40 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { RcTable } from "../../custom-components/Table";
-import { Card, Col, Row,Button } from "@themesberg/react-bootstrap";
+import { Card, Col, Row, Button } from "@themesberg/react-bootstrap";
 import { userService } from "../../api";
+import moment from "moment";
+import { useSelector } from "react-redux";
 
 export const MyOrder = () => {
+  const { id } = useSelector((state) => state.authentication.user);
+ 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
+  const [sortOrder, setSortOrder] = useState("ASC");
+  const [orderList, setOrders] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
 
-    const [currentPage,setCurrentPage] = useState(1);
-    const [pageSize,setPageSize] = useState(5);
-    const [sortOrder,setSortOrder] = useState("ASC");
-    const [orderList,setOrders] = useState([]);
-    const [totalCount,setTotalCount] = useState(0);
+  useEffect(() => {
+    MyOrderList();
+  }, [pageSize, currentPage, sortOrder]);
 
-    useEffect(()=>{
-     MyOrderList();
-    },[pageSize,currentPage,sortOrder])
-
-    async function  MyOrderList(){
-       let response =  await userService.customerOrdersList(6,pageSize,currentPage,sortOrder);
-       if(response.status === 200){
-        setOrders(response.data.items);
-        setTotalCount(response.data.total_count)
-       }
+  async function MyOrderList() {
+    let response = await userService.customerOrdersList(
+      id,
+      pageSize,
+      currentPage,
+      sortOrder
+    );
+    if (response.status === 200) {
+      setOrders(response.data.items);
+      setTotalCount(response.data.total_count);
     }
+  }
   const columns = [
     { Header: "Order Number", accessor: "increment_id" },
-    { Header: "Order Date", accessor: "created_at" },
+    {
+      Header: "Order Date",
+      accessor: "created_at",
+      Cell: (props) => {
+        return (
+          <>
+            <span>{moment(props.value).format("MM/DD/YY hh:mm A")}</span>
+          </>
+        );
+      },
+    },
     { Header: "Order Total", accessor: "grand_total" },
     { Header: "Order Status", accessor: "state" },
-    { Header: "Actions", accessor: "status", Cell: (props) => {
+    {
+      Header: "Actions",
+      accessor: "status",
+      Cell: (props) => {
         return (
           <>
             <Button
-              variant={ props.value === "completed"
-                  ? "success"
-                  : "danger"
-              }
+              variant={props.value === "completed" ? "success" : "danger"}
               size="sm"
               className="m-2"
             >
@@ -43,7 +61,7 @@ export const MyOrder = () => {
           </>
         );
       },
-    }
+    },
   ];
 
   return (
@@ -126,7 +144,14 @@ export const MyOrder = () => {
         <Col xs={12}>
           <Card className="shadow mb-4 card border-0">
             <Card.Body>
-              <RcTable columns={columns} data={orderList} totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} enablePagination={true} />
+              <RcTable
+                columns={columns}
+                data={orderList}
+                totalCount={totalCount}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                enablePagination={true}
+              />
             </Card.Body>
           </Card>
         </Col>

@@ -15,7 +15,8 @@ export const productService = {
   placeorder,
   userCartTotal,
   updateCartMultipleItem,
-  getBanner
+  getBanner,
+  CMSPageContent
 };
 
 
@@ -128,6 +129,17 @@ function getPaymentMethods(){
   )
 }
 
+function CMSPageContent(store_id =1 ,identifier_Name){
+  return  request(
+    `rest/V1/cmsBlock/search?searchCriteria[filterGroups][0][filters][0][field]=store_id&searchCriteria[filterGroups][0][filters][0][value]=${store_id}&searchCriteria[filterGroups][0][filters][0][condition_type]==&searchCriteria[filterGroups][1][filters][0][field]=identifier&searchCriteria[filterGroups][1][filters][0][value]=${identifier_Name}&searchCriteria[filterGroups][1][filters][0][condition_type]==`,
+    "",
+    "get",
+    "",
+    token
+  );
+
+}
+
 
 function placeorder(method) {
   return request(
@@ -150,7 +162,7 @@ function userCartTotal() {
 }
 
 function updateCartMultipleItem(updateDetails){
- return request('rest/all/V1/netsmartz/multipleupdate',updateDetails,'Post','','token'); 
+ return request('rest/all/V1/netsmartz/multipleupdate',updateDetails,'put','',token); 
 }
 
 

@@ -4,6 +4,7 @@ import { helperService } from "../helper";
 const token = "5b4d2tg1fnxbg7xcrlsmmkoxkd0gthp1";
 
 export const userService = {
+  getCustomerDetails,
   regitserCustomer,
   login,
   getCustomerQuoteId,
@@ -97,4 +98,8 @@ function customerOrdersList(customer_id, PageSize, currentPage, sort) {
     "",
     token
   );
+}
+
+function getCustomerDetails(){
+  return request(`rest/V1/customers/me`,'','GET','',helperService.getCustomerJwt());
 }
