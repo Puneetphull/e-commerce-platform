@@ -7,12 +7,11 @@ import { productService } from "../../api/product.service";
 export function ShippingPage() {
   const dispatch = useDispatch();
   const { productInCart } = useSelector((state) => state.cartReducer);
+  const { addresses } = useSelector((state) => state.authentication.user);
   const [formdata, setformData] = useState();
   const [shippingMethods, setShippingMethods] = useState([]);
 
-  const [selectedShipping,setShipping] = useState();
-
-  
+  const [selectedShipping, setShipping] = useState();
 
   useEffect(() => {
     getShippingMethods();
@@ -33,8 +32,6 @@ export function ShippingPage() {
     }
   }
 
-
-
   function onChangeCountry(e) {
     setformData({ ...formdata, country_id: e.target.value });
   }
@@ -46,11 +43,15 @@ export function ShippingPage() {
     setformData({ ...formdata, region_id: state.id, region_code: state.code });
   }
 
-  function onSelectShpping(e){
-    let {name,value} = e.target;
+  function onSelectShpping(e) {
+    let { name, value } = e.target;
     setShipping(name);
 
-    setformData({ ...formdata, shipping_carrier_code:value, shipping_method_code:value});
+    setformData({
+      ...formdata,
+      shipping_carrier_code: value,
+      shipping_method_code: value,
+    });
   }
 
   const submitFormData = (e) => {
@@ -129,6 +130,30 @@ export function ShippingPage() {
               <h2>Shipping Address</h2>
               <hr></hr>
             </div>
+
+            <div className="row">
+              {addresses?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 mb-4">
+                    <div className={"saved-address selected card text-13 "}>
+                      <div className="card-body">
+                        <p>
+                          {item.firstname} {item.lastname}
+                        </p>
+                        <p>{item.company}</p>
+                        <p>{item.street}</p>
+                        <p>
+                          {item.region.region}, {item.postcode}
+                        </p>
+                        <p>{item.country_id}</p>
+                        <p> T: {item.telephone}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
             <div className="row">
               <div className="col-lg-9">
                 <div className="shipping-address-block">
@@ -316,24 +341,29 @@ export function ShippingPage() {
             <div className="checkout-form-head mt-5 mb-4">
               <h2>Shipping Method</h2>
               <hr></hr>
-              {shippingMethods.map((methods)=>(    
-              <div className="form-group my-4 flat-rate">             
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name={methods.carrier_code}
-                    id={methods.carrier_code}
-                    value={methods.carrier_code}
-                    onChange={onSelectShpping}
-                    checked={selectedShipping === methods.carrier_code ? true : false}
-                  />
-                  <label className="form-check-label" htmlFor="Flat-Rate">
-                    <strong>${methods.amount} {methods.method_title} </strong> {methods.carrier_title}
-                  </label>
+              {shippingMethods.map((methods) => (
+                <div className="form-group my-4 flat-rate">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name={methods.carrier_code}
+                      id={methods.carrier_code}
+                      value={methods.carrier_code}
+                      onChange={onSelectShpping}
+                      checked={
+                        selectedShipping === methods.carrier_code ? true : false
+                      }
+                    />
+                    <label className="form-check-label" htmlFor="Flat-Rate">
+                      <strong>
+                        ${methods.amount} {methods.method_title}{" "}
+                      </strong>{" "}
+                      {methods.carrier_title}
+                    </label>
+                  </div>
                 </div>
-              </div>
-               ))}
+              ))}
             </div>
             <div className="action-btns-wrap text-right">
               <Button onClick={submitFormData} className="btn btn-black">
