@@ -8,6 +8,9 @@ import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, Inp
  import Profile3 from "../assets/doctor/profile-picture-3.jpg";
 import { cartActions } from "../services/actions";
 import { Link } from "react-router-dom";
+import { helperService } from "../helper";
+
+
 
 export  function Navbars(props) {
   const dispatch = useDispatch();
@@ -16,7 +19,8 @@ export  function Navbars(props) {
     dispatch(cartActions.GETITEMSREQUEST());
   }, []);
 
-  console.log(productInCart);
+
+  
   
   const [notifications, setNotifications] = useState([]);
     const areNotificationsRead = notifications.reduce((acc, notif) => acc && notif.read, true);
@@ -124,8 +128,8 @@ export  function Navbars(props) {
 
                 <Dropdown.Divider />
 
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faSignOutAlt} className="text-danger me-2" /> Logout
+                <Dropdown.Item className="fw-bold" onClick={helperService.logOut} >
+                  <FontAwesomeIcon icon={faSignOutAlt}  className="text-danger me-2" /> Logout
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

@@ -2,6 +2,7 @@ import { userService } from "../api";
 import { productService } from "../api/product.service";
 
 import { createBrowserHistory } from "history";
+import { customRoutes } from "../routes/routes";
 
 export const helperService = {
   getCustomerJwt,
@@ -11,8 +12,11 @@ export const helperService = {
   createShippingDataForServer,
   setlocaleStorage,
   getCustomerDetails,
-  updateProductInCart
+  updateProductInCart,
+  logOut
 };
+
+export const history = createBrowserHistory({ forceRefresh: true });
 
 function getCustomerJwt() {
   if (localStorage.getItem("jwtToken")) {
@@ -89,6 +93,17 @@ function getCategoiresProductByName(
   });
 }
 
+function logOut(){
+  if(localStorage.getItem("jwtToken") || localStorage.getItem("quote_Id") || localStorage.getItem('id')){
+    localStorage.clear();
+    history.push(customRoutes.adminLogin.path);
+    return true;
+  }
+  else{
+    return false
+  }
+}
+
 function createShippingDataForServer(payload) {
   const details = {
     addressInformation: {
@@ -133,4 +148,4 @@ function createShippingDataForServer(payload) {
   return details;
 }
 
-export const history = createBrowserHistory({ forceRefresh: true });
+
