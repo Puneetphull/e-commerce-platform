@@ -1,16 +1,11 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import pic1 from "../../../assets/e-commerceImg/baby-clothes.png";
 import pic2 from "../../../assets/e-commerceImg/dress.png";
 import pic3 from "../../../assets/e-commerceImg/high-heels.png";
 import pic4 from "../../../assets/e-commerceImg/jacket.png";
 import pic5 from "../../../assets/e-commerceImg/necklace.png";
-import pic6 from "../../../assets/e-commerceImg/hair-straightner.png";
-import pic7 from "../../../assets/e-commerceImg/portfolio.png";
-import pic8 from "../../../assets/e-commerceImg/sneakers.png";
-import pic9 from "../../../assets/e-commerceImg/toys.png";
-import pic10 from "../../../assets/e-commerceImg/watch.png";
+
 import Slider from "react-slick";
-import { newArrival1, newArrival2 } from "../../../data/homePageData";
 import "../../../scss/slick-carousel/slick/slick.css";
 import "../../../scss/slick-carousel/slick/slick-theme.css";
 import ProductCard from "../../../custom-components/ProductCard";
@@ -20,7 +15,6 @@ import sideBanner2 from "../../../assets/Banner/raghavendra-v-konkathi-S9qLhVCfq
 import blog1 from "../../../assets/Banner/caroline-lm-QA9fRIi6sFw-unsplash.jpg";
 import blog2 from "../../../assets/Banner/s-b-vonlanthen-FaiZNiofP-U-unsplash.jpg";
 import blog3 from "../../../assets/Banner/olga-guryanova-s10jzFKGOLs-unsplash.jpg";
-import Sale from "../../../assets/Banner/goby-zHMpGLOD8nI-unsplash.jpg";
 import { productService } from "../../../api";
 
 export function TrendingPage() {
@@ -120,9 +114,7 @@ export function TrendingPage() {
   );
 }
 
-export function BannerPage({banner= []}) {
- 
-
+export function BannerPage({ banner = [] }) {
   const settingSlider = {
     dots: true,
     slidesToShow: 1,
@@ -191,7 +183,22 @@ export function BannerPage({banner= []}) {
 }
 
 export function NewArrival() {
-  console.log(newArrival1);
+  const [slider1, setslider] = useState([]);
+  const [slider2, setslider2] = useState([]);
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  async function getProducts() {
+    let response = await productService.productWithCategoryId(11);
+    let response2 = await productService.productWithCategoryId(10);
+    if (response.status === 200) {
+      setslider(response.data.items);
+    }
+    if(response2.status === 200){
+      setslider2(response.data.items)
+    }
+  }
   const settingSlider = {
     dots: true,
     slidesToShow: 3,
@@ -243,7 +250,7 @@ export function NewArrival() {
             <div className="row justify-content-lg-between justify-content-center">
               <div className="col-lg-12">
                 <Slider {...settingSlider}>
-                  {newArrival1.map((item, index) => (
+                  {slider1.map((item, index) => (
                     <ProductCard key={index} index={index} props={item} />
                   ))}
                 </Slider>
@@ -276,7 +283,7 @@ export function NewArrival() {
             <div className="row justify-content-lg-between justify-content-center">
               <div className="col-lg-12">
                 <Slider {...settingSlider}>
-                  {newArrival2.map((item, index) => {
+                  {slider2.map((item, index) => {
                     return (
                       <ProductCard key={index} index={index} props={item} />
                     );
@@ -371,18 +378,15 @@ export function BlogPage() {
 }
 
 export function SaleSection() {
- 
-  const [value,setvalue] = useState();
-  useEffect(()=>{
-   BigSale();
-  },[])
-  async function BigSale(){
-    const result = await productService.CMSPageContent(1,"sale_page");
-   setvalue(result.data.items[0].content);
+  const [value, setvalue] = useState();
+  useEffect(() => {
+    BigSale();
+  }, []);
+  async function BigSale() {
+    const result = await productService.CMSPageContent(1, "sale_page");
+    setvalue(result.data.items[0].content);
   }
-  return (
-    <div dangerouslySetInnerHTML={{ __html:value ? value : "" }} />
-  );
+  return <div dangerouslySetInnerHTML={{ __html: value ? value : "" }} />;
 }
 
 export function FooterPage() {

@@ -10,6 +10,7 @@ export function RcTable({
   totalCount = 8,
   currentPage = 1,
   pageSize = 5,
+  pageChange:pageChangeHandler
 }) {
   const columns = useMemo(() => Columns, [Columns]);
   return (
@@ -20,6 +21,7 @@ export function RcTable({
       totalCount={totalCount}
       currentPage={currentPage}
       pageSize={pageSize}
+      onPageChange={pageChangeHandler}
     />
   );
 }
@@ -30,6 +32,7 @@ function Tables({
   totalCount,
   currentPage,
   pageSize,
+  onPageChange
 }) {
   const { getTableBodyProps, getTableProps, rows, prepareRow, headerGroups } =
     useTable({ columns, data });
@@ -76,9 +79,9 @@ function Tables({
       {pagination ? (
         <div className="px-3 border-0 d-lg-flex align-items-center justify-content-between mt-3">
           <small className="fw-bold">
-            Showing <b>5</b> out of <b>25</b> entries
+            Showing <b>{pageSize}</b> out of <b>{totalCount}</b> entries
           </small>
-          <CustomPagination currentPage={currentPage} totalCount={totalCount} pageSize={pageSize} />
+          <CustomPagination currentPage={currentPage} totalCount={totalCount} pageSize={pageSize} onPageChange={(page) => onPageChange(page)}  />
         </div>
       ) : (
         <></>

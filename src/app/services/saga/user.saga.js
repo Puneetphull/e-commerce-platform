@@ -48,6 +48,10 @@ function* addproduct(productDetail) {
       userService.addProductCustomerCart(productDetail.payload)
     );
     if (response.status === 200) {
+      let cartList = yield call(()=>userService.getCartList())
+      if(cartList.status === 200){
+        yield put(cartActions.GETITEMSSUCCESS(cartList.data));
+      }
       Notification("success", "Product is Add to cart");
     }
   } catch (err) {
@@ -127,17 +131,33 @@ function* placeOrder(paymentMethod) {
 }
 
 function* UpdateProductCart(product) {
-  let response = yield call(() => {
-    productService.updateCartMultipleItem(product.payload);
-  });
+  let response = yield call(() =>
+    productService.updateCartMultipleItem(product.payload)
+  );
   if (response.status === 200) {
-    yield put(cartActions.UPDATE_PRODUCT_CART_SUCCESS(response.data));
-    Notification("success", "Product is updated successfully");
+    const res = yield call(() => productService.subTotalApi());
+    if (res.status === 200) {
+      yield put(cartActions.GETSUBTOTALSUCCESS(res.data));
+      yield put(cartActions.UPDATE_PRODUCT_CART_SUCCESS(response.data));
+      Notification("success", "Product is updated successfully");
+    }
   } else {
     yield put(cartActions.UPDATE_PRODUCT_CART_SUCCESS(response.data));
     Notification("warning", "There is some problem");
   }
 }
+
+function* cancelOrder(payload) {
+  let response = yield call(() => productService.cancelOrder(payload.payload));
+  if (response.status === 200) {
+    yield put(usersActions.CANCALORDERSUCCESS(response.data));
+    Notification("success", "Order is Canceled Successfully");
+  } else {
+    yield put(usersActions.CANCALORDERFAILURE(response.data));
+    Notification("warning", "There is some technical Problem");
+  }
+}
+
 export function* fetchUser() {
   yield takeEvery(userConstants.LOGIN_REQUEST, login);
   yield takeEvery(userConstants.REGISTER_REQUEST, register);
@@ -150,4 +170,5 @@ export function* fetchUser() {
   );
   yield takeEvery(userConstants.USERS_PLACEORDER_REQUEST, placeOrder);
   yield takeEvery(CartConstant.UPDATE_PRODUCT_CART_REQUEST, UpdateProductCart);
+  yield takeEvery(userConstants.CANCELORDERREQUEST, cancelOrder);
 }

@@ -3,22 +3,30 @@ import { RcTable } from "../../custom-components/Table";
 import { Card, Col, Row, Button } from "@themesberg/react-bootstrap";
 import { userService } from "../../api";
 import moment from "moment";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {Loader} from '../../custom-components/Loader';
+import { usersActions } from "../../services/actions";
+
 
 export const MyOrder = () => {
   const { id } = useSelector((state) => state.authentication.user);
- 
+  const dispatch = useDispatch();
+
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const [sortOrder, setSortOrder] = useState("ASC");
   const [orderList, setOrders] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+
 
   useEffect(() => {
     MyOrderList();
   }, [pageSize, currentPage, sortOrder]);
 
   async function MyOrderList() {
+    setLoading(true);
     let response = await userService.customerOrdersList(
       id,
       pageSize,
@@ -28,7 +36,14 @@ export const MyOrder = () => {
     if (response.status === 200) {
       setOrders(response.data.items);
       setTotalCount(response.data.total_count);
+      setLoading(false);
     }
+  }
+
+  
+
+  const pageChange = (page)=>{
+    setCurrentPage(page);
   }
   const columns = [
     { Header: "Order Number", accessor: "increment_id" },
@@ -44,19 +59,21 @@ export const MyOrder = () => {
       },
     },
     { Header: "Order Total", accessor: "grand_total" },
-    { Header: "Order Status", accessor: "state" },
+    { Header: "Order Status", accessor: "status" },
     {
       Header: "Actions",
-      accessor: "status",
+      accessor: "state",
       Cell: (props) => {
         return (
           <>
             <Button
-              variant={props.value === "completed" ? "success" : "danger"}
+              variant={props.cell.row.values.status === "canceled" ? "success" : "danger"}
               size="sm"
               className="m-2"
+              disabled={props.cell.row.values.status === "canceled" ? true : false}
+              onClick={()=>dispatch(usersActions.CANCALORDERREQUEST(props.cell.row.values.increment_id))}
             >
-              {props.value === "completed" ? "Return " : "Cancel Order"}
+              {props.value === "canceled" ? "Return " : "Cancel Order"}
             </Button>
           </>
         );
@@ -65,6 +82,8 @@ export const MyOrder = () => {
   ];
 
   return (
+    <>
+    {<Loader loading={loading} />}
     <main>
       <div class="d-block mb-4 mb-md-0">
         <h4>My Orders</h4>
@@ -151,11 +170,13 @@ export const MyOrder = () => {
                 pageSize={pageSize}
                 currentPage={currentPage}
                 enablePagination={true}
+                pageChange={pageChange}
               />
             </Card.Body>
           </Card>
         </Col>
       </Row>
     </main>
+    </>
   );
 };

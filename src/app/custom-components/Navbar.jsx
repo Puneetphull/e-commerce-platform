@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { faBell, faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield,faBarsStaggered,faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, InputGroup,Button } from '@themesberg/react-bootstrap';
-
 // import NOTIFICATIONS_DATA from "../data/notifications";
  import Profile3 from "../assets/doctor/profile-picture-3.jpg";
 import { cartActions } from "../services/actions";
+import { Link } from "react-router-dom";
 
 export  function Navbars(props) {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export  function Navbars(props) {
     dispatch(cartActions.GETITEMSREQUEST());
   }, []);
 
+  console.log(productInCart);
   
   const [notifications, setNotifications] = useState([]);
     const areNotificationsRead = notifications.reduce((acc, notif) => acc && notif.read, true);
@@ -108,7 +109,8 @@ export  function Navbars(props) {
               </Dropdown.Toggle>
               <Dropdown.Menu className="user-dropdown dropdown-menu-right mt-2">
                 <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faUserCircle} className="me-2" /> My Profile
+                  <FontAwesomeIcon icon={faUserCircle} className="me-2" /> 
+                  <Link to='/Myaccount' >My Profile</Link>
                 </Dropdown.Item>
                 <Dropdown.Item className="fw-bold">
                   <FontAwesomeIcon icon={faCog} className="me-2" /> Settings

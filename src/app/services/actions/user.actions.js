@@ -79,7 +79,10 @@ export const usersActions = {
   //   REMOVESTORECREDITFAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  CANCALORDERREQUEST,
+  CANCALORDERSUCCESS,
+  CANCALORDERFAILURE
 };
 
 function LOGIN_REQUEST(loginDetails) {
@@ -123,7 +126,6 @@ function REGISTER_FAILURE({ error }) {
     payload: error,
   };
 }
-
 
 function GET_MY_ORDERS_REQUEST(data) {
   return {
@@ -684,8 +686,26 @@ function REORDERFAILURE(failure) {
   };
 }
 
+function CANCALORDERREQUEST(orderId) {
+  return {
+    type: userConstants.CANCELORDERREQUEST,
+    payload: orderId,
+  };
+}
 
+function CANCALORDERSUCCESS(success) {
+  return {
+    type: userConstants.CANCELORDERSUCCESS,
+    payload: success,
+  };
+}
 
+function CANCALORDERFAILURE(error) {
+  return {
+    type: userConstants.CANCELORDERFAILURE,
+    payload: error,
+  };
+}
 
 // function GIFTCREDITREQUEST(request){
 //   return {

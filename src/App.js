@@ -19,6 +19,7 @@ import { history } from "./app/helper";
 import { ThankYouPage } from "./app/components/SuccessPage/SuccessPage";
 import { PrivateRoute } from "./app/helper/privateRoute";
 import { MyOrder } from "./app/components/MyOrders/MyOrders";
+import { ProfileSettings } from "./app/components/ProfileSettings";
 
 function App() {
   return (
@@ -66,6 +67,10 @@ function App() {
             <Route
               path="/MyOrder"
               element={<PrivateRouteSideBar component={<MyOrder />} />}
+            />
+             <Route
+              path="/Myaccount"
+              element={<PrivateRouteSideBar component={<ProfileSettings />} />}
             />
           </Route>
           <Route path={customRoutes.adminLogin.path} element={<Login />} />

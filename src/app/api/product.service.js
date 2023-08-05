@@ -1,7 +1,6 @@
 import request from "./https.api";
-import {helperService} from '../helper/helperFunction';
-const token = '5b4d2tg1fnxbg7xcrlsmmkoxkd0gthp1';
-
+import { helperService } from "../helper/helperFunction";
+const token = "5b4d2tg1fnxbg7xcrlsmmkoxkd0gthp1";
 
 export const productService = {
   getProductDetail,
@@ -16,16 +15,20 @@ export const productService = {
   userCartTotal,
   updateCartMultipleItem,
   getBanner,
-  CMSPageContent
+  CMSPageContent,
+  productWithCategoryId,
+  cancelOrder
 };
 
-
-function getBanner(){
-  return request('rest/all/V1/codilar/bannerslider/slider/loadById/1','','GET','',token);
+function getBanner() {
+  return request(
+    "rest/all/V1/codilar/bannerslider/slider/loadById/1",
+    "",
+    "GET",
+    "",
+    token
+  );
 }
-
-
-
 
 function getCategories() {
   return request("/rest/V1/categories", "", "get", "", token);
@@ -100,10 +103,15 @@ function getCategoyId(category_name) {
   );
 }
 
-function getAllProductList(pageSize,currentPage,sortOrder){
-  return request(`rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=website_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filter_groups][0][filters][0][condition_type]=eq&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[currentPage]=${currentPage}&searchCriteria[sortOrders][0][direction]=${sortOrder}&store_id=1&searchCriteria[pageSize]=${pageSize}`,"","get","",token);
+function getAllProductList(pageSize, currentPage, sortOrder) {
+  return request(
+    `rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=website_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filter_groups][0][filters][0][condition_type]=eq&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[currentPage]=${currentPage}&searchCriteria[sortOrders][0][direction]=${sortOrder}&store_id=1&searchCriteria[pageSize]=${pageSize}`,
+    "",
+    "get",
+    "",
+    token
+  );
 }
-
 
 function subTotalApi() {
   return request(
@@ -115,31 +123,35 @@ function subTotalApi() {
   );
 }
 
-function getShippingMethod(){
-  return request(`rest/V1/carts/${helperService.getCustomerQuote_Id()}/shipping-methods`,'','GET','',token);
+function getShippingMethod() {
+  return request(
+    `rest/V1/carts/${helperService.getCustomerQuote_Id()}/shipping-methods`,
+    "",
+    "GET",
+    "",
+    token
+  );
 }
 
-function getPaymentMethods(){
+function getPaymentMethods() {
   return request(
     `rest/V1/carts/${helperService.getCustomerQuote_Id()}/payment-methods`,
     "",
     "get",
     "",
     token
-  )
+  );
 }
 
-function CMSPageContent(store_id =1 ,identifier_Name){
-  return  request(
+function CMSPageContent(store_id = 1, identifier_Name) {
+  return request(
     `rest/V1/cmsBlock/search?searchCriteria[filterGroups][0][filters][0][field]=store_id&searchCriteria[filterGroups][0][filters][0][value]=${store_id}&searchCriteria[filterGroups][0][filters][0][condition_type]==&searchCriteria[filterGroups][1][filters][0][field]=identifier&searchCriteria[filterGroups][1][filters][0][value]=${identifier_Name}&searchCriteria[filterGroups][1][filters][0][condition_type]==`,
     "",
     "get",
     "",
     token
   );
-
 }
-
 
 function placeorder(method) {
   return request(
@@ -161,10 +173,26 @@ function userCartTotal() {
   );
 }
 
-function updateCartMultipleItem(updateDetails){
- return request('rest/all/V1/netsmartz/multipleupdate',updateDetails,'put','',token); 
+function updateCartMultipleItem(updateDetails) {
+  return request(
+    "rest/all/V1/netsmartz/multipleupdate",
+    updateDetails,
+    "put",
+    "",
+    token
+  );
 }
 
+function productWithCategoryId(categoryId) {
+  return request(
+    `rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=${categoryId}&searchCriteria[filter_groups][0][filters][0][condition_type]=eq&fields=items[sku,name,id,price,custom_attributes]&searchCriteria[pageSize]=20&searchCriteria[sortOrders][0][field]=created_at`,
+    "",
+    "GET",
+    "",
+    token
+  );
+}
 
-
-
+function cancelOrder(orderId){
+  return  request(`/rest/V1/orders/${orderId}/cancel`,'','post','',token)
+}

@@ -6,10 +6,29 @@ import { cartActions } from "../../services/actions";
 import { productService } from "../../api/product.service";
 export function ShippingPage() {
   const dispatch = useDispatch();
+
+  const intinalState = {
+    firstname: "",
+    lastname: "",
+    company: "",
+    street: "",
+    country: "",
+    state: "",
+    city: "",
+    postcode: "",
+    telephone: "",
+    email: "",
+    region_code: "",
+    region_id: "",
+    country_id: "",
+  };
+
   const { productInCart } = useSelector((state) => state.cartReducer);
   const { addresses } = useSelector((state) => state.authentication.user);
-  const [formdata, setformData] = useState();
+  const [formdata, setformData] = useState(intinalState);
   const [shippingMethods, setShippingMethods] = useState([]);
+
+  const [selectedAdress, setselectedAddress] = useState();
 
   const [selectedShipping, setShipping] = useState();
 
@@ -23,11 +42,28 @@ export function ShippingPage() {
     setformData({ ...formdata, [name]: value });
   }
 
+  function selectAddress(address) {
+    if (address) {
+      setformData({
+        ...formdata,
+        firstname: address.firstname,
+        lastname: address.lastname,
+        city: address.city,
+        postcode: address.postcode,
+        telephone: address.telephone,
+        street: address.street[0],
+        state: address.region.region,
+        country_id: address.country_id,
+        region_code: address.region.region_code,
+        region_id: address.region.region_id,
+      });
+      setselectedAddress(address);
+    }
+  }
+
   async function getShippingMethods() {
     let response = await productService.getShippingMethod();
-    console.log(response);
     if (response.status === 200) {
-      console.log(response);
       setShippingMethods(response.data);
     }
   }
@@ -37,16 +73,14 @@ export function ShippingPage() {
   }
 
   function onSateChange(e) {
-    console.log(e.target.value);
     let state = states.find((state) => state.code === e.target.value);
     console.log(state);
-    setformData({ ...formdata, region_id: state.id, region_code: state.code });
+    setformData({ ...formdata, region_id: state.id, region_code: state.code,state: state.name});
   }
 
   function onSelectShpping(e) {
     let { name, value } = e.target;
     setShipping(name);
-
     setformData({
       ...formdata,
       shipping_carrier_code: value,
@@ -56,6 +90,7 @@ export function ShippingPage() {
 
   const submitFormData = (e) => {
     e.preventDefault();
+    console.log(formdata);
     dispatch(cartActions.ADDSHIPPINGSADDRESSREQUEST(formdata));
   };
 
@@ -134,8 +169,18 @@ export function ShippingPage() {
             <div className="row">
               {addresses?.map((item, index) => {
                 return (
-                  <div key={index} className="col-lg-4 mb-4">
-                    <div className={"saved-address selected card text-13 "}>
+                  <div
+                    key={index}
+                    className="col-lg-4 mb-4"
+                    onClick={() => selectAddress(item)}
+                  >
+                    <div
+                      className={
+                        selectedAdress && selectedAdress?.id === item.id
+                          ? "saved-address selected card text-13"
+                          : "saved-address card text-13"
+                      }
+                    >
                       <div className="card-body">
                         <p>
                           {item.firstname} {item.lastname}
@@ -170,6 +215,7 @@ export function ShippingPage() {
                             placeholder=""
                             name="email"
                             onChange={onChangeHandler}
+                            value={formdata.email}
                           />
                           {/* <div className="input-group-append">
                             <span
@@ -197,6 +243,7 @@ export function ShippingPage() {
                           placeholder=""
                           name="firstname"
                           onChange={onChangeHandler}
+                          value={formdata.firstname}
                         />
                       </div>
                       <div className="form-group">
@@ -209,6 +256,7 @@ export function ShippingPage() {
                           placeholder=""
                           name="lastname"
                           onChange={onChangeHandler}
+                          value={formdata.lastname}
                         />
                       </div>
                       <div className="form-group">
@@ -221,6 +269,7 @@ export function ShippingPage() {
                           placeholder=""
                           name="company"
                           onChange={onChangeHandler}
+                          value={formdata.company}
                         />
                       </div>
                       <div className="form-group">
@@ -236,6 +285,7 @@ export function ShippingPage() {
                           placeholder=""
                           name="street"
                           onChange={onChangeHandler}
+                          value={formdata.street}
                         />
                         <input
                           type="text"
@@ -246,7 +296,6 @@ export function ShippingPage() {
                           type="text"
                           className="form-control"
                           placeholder=""
-                          onChange={onChangeCountry}
                         />
                       </div>
                       <div className="form-group">
@@ -258,6 +307,7 @@ export function ShippingPage() {
                           id="Country"
                           onChange={onChangeCountry}
                           name="country"
+                          value={formdata.country_id}
                         >
                           <option value="">Please Select the state</option>
                           {countries.map((country) => (
@@ -276,6 +326,7 @@ export function ShippingPage() {
                           id="State/Province"
                           name="state"
                           onChange={onSateChange}
+                          value={formdata.region_code}
                         >
                           <option>
                             Please Select a region, state or province
@@ -295,6 +346,7 @@ export function ShippingPage() {
                           placeholder=""
                           name="city"
                           onChange={onChangeHandler}
+                          value={formdata.city}
                         />
                       </div>
                       <div className="form-group">
@@ -306,6 +358,7 @@ export function ShippingPage() {
                           className="form-control"
                           id="Zip/Postal"
                           name="postcode"
+                          value={formdata.postcode}
                           onChange={onChangeHandler}
                         />
                       </div>
@@ -319,6 +372,7 @@ export function ShippingPage() {
                             className="form-control"
                             placeholder=""
                             name="telephone"
+                            value={formdata.telephone}
                             onChange={onChangeHandler}
                           />
                           <div className="input-group-append">
