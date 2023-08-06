@@ -17,7 +17,8 @@ export const productService = {
   getBanner,
   CMSPageContent,
   productWithCategoryId,
-  cancelOrder
+  cancelOrder,
+  SearchProductAPI,
 };
 
 function getBanner() {
@@ -193,6 +194,16 @@ function productWithCategoryId(categoryId) {
   );
 }
 
-function cancelOrder(orderId){
-  return  request(`/rest/V1/orders/${orderId}/cancel`,'','post','',token)
+function cancelOrder(orderId) {
+  return request(`/rest/V1/orders/${orderId}/cancel`, "", "post", "", token);
+}
+
+function SearchProductAPI(searchText) {
+  return request(
+    `rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=website_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filter_groups][0][filters][0][condition_type]=eq&searchCriteria[filter_groups][1][filters][0][field]=name&searchCriteria[filter_groups][1][filters][0][value]=%${searchText}%&searchCriteria[filter_groups][1][filters][0][condition_type]=like&searchCriteria[currentPage]=1&searchCriteria[pageSize]=3&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC`,
+    "",
+    "GET",
+    "",
+    token
+  );
 }

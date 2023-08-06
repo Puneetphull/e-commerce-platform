@@ -9,6 +9,7 @@ import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, Inp
 import { cartActions } from "../services/actions";
 import { Link } from "react-router-dom";
 import { helperService } from "../helper";
+import { productService } from "../api";
 
 
 
@@ -18,6 +19,17 @@ export  function Navbars(props) {
   useEffect(() => {
     dispatch(cartActions.GETITEMSREQUEST());
   }, []);
+
+
+
+
+  function onChangeSearchText(e){
+    let {value} = e.target;
+    productService.SearchProductAPI(value).then((response)=>{
+      console.log(response,"response");
+    })
+
+  }
 
 
   
@@ -74,9 +86,41 @@ export  function Navbars(props) {
               <Form.Group id="topbarSearch">
                 <InputGroup className="input-group-merge search-bar">
                   <InputGroup.Text><FontAwesomeIcon icon={faSearch} /></InputGroup.Text>
-                  <Form.Control type="text" placeholder="Search" />
+                  <Form.Control type="text" placeholder="Search" onChange={onChangeSearchText} />
                 </InputGroup>
               </Form.Group>
+              {/* <div className="search-results-wrap">
+                <a href="#" className="result-ridect">
+                  <div className="result-img">
+                    <img src="images/tshirt1.jpg" className="img-fluid"/>
+                  </div>
+                  <div className="result-desc">
+                    <div className="result-desc-name">Product Name</div>
+                    <div className="result-desc-price">Price <span>$58.00</span></div>
+                    <div className="result-desc-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo...</div>
+                  </div>
+                </a>
+                <a href="#" className="result-ridect">
+                  <div className="result-img">
+                    <img src="images/tshirt1.jpg" className="img-fluid"/>
+                  </div>
+                  <div className="result-desc">
+                    <div className="result-desc-name">Product Name</div>
+                    <div className="result-desc-price">Price <span>$58.00</span></div>
+                    <div className="result-desc-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo...</div>
+                  </div>
+                </a>
+                <a href="#" className="result-ridect">
+                  <div className="result-img">
+                    <img src="images/tshirt1.jpg" className="img-fluid"/>
+                  </div>
+                  <div className="result-desc">
+                    <div className="result-desc-name">Product Name</div>
+                    <div className="result-desc-price">Price <span>$58.00</span></div>
+                    <div className="result-desc-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo...</div>
+                  </div>
+                </a>
+              </div> */}
             </Form>
           </div>
           <Nav className="align-items-center">
