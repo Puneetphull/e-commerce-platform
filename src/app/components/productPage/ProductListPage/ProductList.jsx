@@ -56,50 +56,50 @@ export function ProductList() {
   return (
     <>
   
-    <section class="plp-content">
+    <section className="plp-content">
     {isloading ? <Loader/> : ''}
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="mobile-filter-btn">
-              <i class="fas fa-filter"></i>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-3">
+            <div className="mobile-filter-btn">
+              <i className="fas fa-filter"></i>
             </div>
-            <div class="plp-filter">
-              <div class="filter-heading-mobile">
-                <div class="d-flex justify-content-between">
-                  <div class="mob-heading-text">Shopping Options</div>
-                  <div class="mob-heading-close-btn">
-                    <i class="far fa-window-close"></i>
+            <div className="plp-filter">
+              <div className="filter-heading-mobile">
+                <div className="d-flex justify-content-between">
+                  <div className="mob-heading-text">Shopping Options</div>
+                  <div className="mob-heading-close-btn">
+                    <i className="far fa-window-close"></i>
                   </div>
                 </div>
               </div>
 
               <Accordion>
-                <div class="filter-title border d-flex justify-content-between p-3 align-items-baseline">
-                  <h2 class="text-uppercase">Filters</h2>
-                  <a href="#" class="text-uppercase small">
+                <div className="filter-title border d-flex justify-content-between p-3 align-items-baseline">
+                  <h2 className="text-uppercase">Filters</h2>
+                  <a href="#" className="text-uppercase small">
                     Clear All
                   </a>
                 </div>
-                {/* <div class="selected-filter p-3 border-left border-right">
-                  <div class="selected-creteria">selected</div>
-                  <div class="selected-creteria">item</div>
-                  <div class="selected-creteria">selected item</div>
-                  <div class="selected-creteria">selected item</div>
+                {/* <div className="selected-filter p-3 border-left border-right">
+                  <div className="selected-creteria">selected</div>
+                  <div className="selected-creteria">item</div>
+                  <div className="selected-creteria">selected item</div>
+                  <div className="selected-creteria">selected item</div>
                 </div> */}
                 {filterArray &&
                   filterArray.map((data, index) => (
-                    <Accordion.Item class="card" eventKey={index}>
-                      <Accordion.Header class="card-header" eventKey={index}>
+                    <Accordion.Item className="card" eventKey={index}>
+                      <Accordion.Header className="card-header" eventKey={index}>
                         <h5
-                          class="mb-0"
+                          className="mb-0"
                           data-toggle="collapse"
                           data-target="#Brands"
                         >
                           {data.label}
                         </h5>
                       </Accordion.Header>
-                      <Accordion.Body class="card-body">
+                      <Accordion.Body className="card-body">
                         <ul>
                           {data.options.map((children, index) => (
                             <li>
@@ -116,97 +116,97 @@ export function ProductList() {
                       </Accordion.Body>
                     </Accordion.Item>
                   ))}
-                {/* <div class="card">
-                  <div class="card-header">
+                {/* <div className="card">
+                  <div className="card-header">
                     <h5
-                      class="mb-0"
+                      className="mb-0"
                       data-toggle="collapse"
                       data-target="#Color"
                     >
                       Color
                     </h5>
                   </div>
-                  <div id="Color" class="collapse">
-                    <div class="card-body">
+                  <div id="Color" className="collapse">
+                    <div className="card-body">
                       <ul>
                         <li>
                           <a href="#">
-                            White<span class="filter-qty">2</span>
+                            White<span className="filter-qty">2</span>
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            Red<span class="filter-qty">3</span>
+                            Red<span className="filter-qty">3</span>
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            Green<span class="filter-qty">5</span>
+                            Green<span className="filter-qty">5</span>
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            Blue<span class="filter-qty">4</span>
+                            Blue<span className="filter-qty">4</span>
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="card">
-                  <div class="card-header">
+                <div className="card">
+                  <div className="card-header">
                     <h5
-                      class="mb-0"
+                      className="mb-0"
                       data-toggle="collapse"
                       data-target="#Price"
                     >
                       Price
                     </h5>
                   </div>
-                  <div id="Price" class="collapse">
-                    <div class="card-body">
+                  <div id="Price" className="collapse">
+                    <div className="card-body">
                       <ul>
                         <li>
                           <a href="#">
-                            $0.00 - $99.99<span class="filter-qty">2</span>
+                            $0.00 - $99.99<span className="filter-qty">2</span>
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            $100.00 - $199.99<span class="filter-qty">3</span>
+                            $100.00 - $199.99<span className="filter-qty">3</span>
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            $200.00 and above<span class="filter-qty">5</span>
+                            $200.00 and above<span className="filter-qty">5</span>
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="card">
-                  <div class="card-header">
-                    <h5 class="mb-0" data-toggle="collapse" data-target="#Size">
+                <div className="card">
+                  <div className="card-header">
+                    <h5 className="mb-0" data-toggle="collapse" data-target="#Size">
                       Size
                     </h5>
                   </div>
-                  <div id="Size" class="collapse">
-                    <div class="card-body">
+                  <div id="Size" className="collapse">
+                    <div className="card-body">
                       <ul>
                         <li>
                           <a href="#">
-                            M<span class="filter-qty">2</span>
+                            M<span className="filter-qty">2</span>
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            L<span class="filter-qty">3</span>
+                            L<span className="filter-qty">3</span>
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            XL<span class="filter-qty">5</span>
+                            XL<span className="filter-qty">5</span>
                           </a>
                         </li>
                       </ul>
@@ -216,11 +216,11 @@ export function ProductList() {
               </Accordion>
             </div>
           </div>
-          <div class="col-md-9">
-            <div class="sorting-bar">
-              <div class="sortby-left">
+          <div className="col-md-9">
+            <div className="sorting-bar">
+              <div className="sortby-left">
                 Sort By
-                <select class="sorter-options">
+                <select className="sorter-options">
                   <option value="position" selected="selected">
                     Position
                   </option>
@@ -244,10 +244,10 @@ export function ProductList() {
                   />
                 )}
               </div>
-              <div class="sortby-out">
+              <div className="sortby-out">
                 Show
                 <select
-                  class="sorter-options"
+                  className="sorter-options"
                   value={pageSize}
                   onChange={onPageSizeChange}
                 >
@@ -258,16 +258,16 @@ export function ProductList() {
               </div>
             </div>
 
-            <div class="product-listing">
+            <div className="product-listing">
               {product && product.map((data) => <ProductCard props={data} />)}
             </div>
           </div>
         </div>
-        <div class="bottom-pagination-wrapper mb-5">
-          <div class="sortby-out mx-2">
+        <div className="bottom-pagination-wrapper mb-5">
+          <div className="sortby-out mx-2">
             Show
             <select
-              class="sorter-options"
+              className="sorter-options"
               value={pageSize}
               onChange={onPageSizeChange}
             >

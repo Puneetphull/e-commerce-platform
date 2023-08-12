@@ -1,7 +1,7 @@
 import request from "./https.api";
 import { helperService } from "../helper";
 
-const token = "5b4d2tg1fnxbg7xcrlsmmkoxkd0gthp1";
+const token = process.env.REACT_APP_ADMIN_TOKEN;
 
 export const userService = {
   getCustomerDetails,
@@ -90,7 +90,7 @@ function addShippingAddress(payload) {
   );
 }
 
-function customerOrdersList(customer_id, PageSize, currentPage, sort) {
+function customerOrdersList(customer_id, currentPage, PageSize = 5, sort = "ASC") {
   return request(
     `rest/V1/orders?searchCriteria[filterGroups][0][filters][0][field]=customer_id&searchCriteria[filterGroups][0][filters][0][value]=${customer_id}&searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[page_size]=${PageSize}&searchCriteria[sortOrders][0][field]=updated_at&searchCriteria[sortOrders][0][direction]=${sort}&searchCriteria[currentPage]=${currentPage}`,
     "",

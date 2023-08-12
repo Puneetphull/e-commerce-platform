@@ -19,93 +19,93 @@ import { productService } from "../../../api";
 
 export function TrendingPage() {
   return (
-    <section class="trending-categories">
-      <div class="container-fluid">
-        <div class="text-center py-5">
-          <h3 class="heading-text">Our Trending Categories</h3>
-          <h4 class="sub-heading-text">"The joy of dressing is an art."</h4>
+    <section className="trending-categories">
+      <div className="container-fluid">
+        <div className="text-center py-5">
+          <h3 className="heading-text">Our Trending Categories</h3>
+          <h4 className="sub-heading-text">"The joy of dressing is an art."</h4>
         </div>
-        <div class="row justify-content-between-lg justify-content-center">
-          <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-            <div class="category-block text-center">
+        <div className="row justify-content-between-lg justify-content-center">
+          <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+            <div className="category-block text-center">
               <img src={pic1} alt="" />
               <p>
-                <a href="#" class="category-link">
+                <a href="#" className="category-link">
                   Kid Clothes
                 </a>
               </p>
             </div>
           </div>
-          <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-            <div class="category-block text-center">
+          <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+            <div className="category-block text-center">
               <img src={pic2} alt="" />
               <p>
-                <a href="#" class="category-link">
+                <a href="#" className="category-link">
                   Women Clothes
                 </a>
               </p>
             </div>
           </div>
-          <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-            <div class="category-block text-center">
+          <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+            <div className="category-block text-center">
               <img src={pic3} alt="" />
               <p>
-                <a href="#" class="category-link">
+                <a href="#" className="category-link">
                   High Heels
                 </a>
               </p>
             </div>
           </div>
-          <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-            <div class="category-block text-center">
+          <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+            <div className="category-block text-center">
               <img src={pic4} alt="" />
               <p>
-                <a href="#" class="category-link">
+                <a href="#" className="category-link">
                   Men Clothes
                 </a>
               </p>
             </div>
           </div>
-          <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-            <div class="category-block text-center">
+          <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+            <div className="category-block text-center">
               <img src={pic5} alt="" />
               <p>
-                <a href="#" class="category-link">
+                <a href="#" className="category-link">
                   Jewellery
                 </a>
               </p>
             </div>
           </div>
         </div>
-        {/* <div class="row justify-content-between-lg justify-content-center mt-5">
-        <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-          <div class="category-block text-center">
+        {/* <div className="row justify-content-between-lg justify-content-center mt-5">
+        <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+          <div className="category-block text-center">
             <img src={pic6} alt="" />
-            <p><a href="#" class="category-link">Hair care</a></p>
+            <p><a href="#" className="category-link">Hair care</a></p>
           </div>            
         </div>
-        <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-          <div class="category-block text-center">
+        <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+          <div className="category-block text-center">
             <img src={pic7} alt="" />
-            <p><a href="#" class="category-link">Hand bag</a></p>
+            <p><a href="#" className="category-link">Hand bag</a></p>
           </div>            
         </div>
-        <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-          <div class="category-block text-center">
+        <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+          <div className="category-block text-center">
             <img src={pic8} alt="" />
-            <p><a href="#" class="category-link">Men footwear</a></p>
+            <p><a href="#" className="category-link">Men footwear</a></p>
           </div>            
         </div>
-        <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-          <div class="category-block text-center">
+        <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+          <div className="category-block text-center">
             <img src={pic9} alt="" />
-            <p><a href="#" class="category-link">Toys</a></p>
+            <p><a href="#" className="category-link">Toys</a></p>
           </div>            
         </div>
-        <div class="col-lg-2 col-sm-4 col-md-2 col-xs-6">
-          <div class="category-block text-center">
+        <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
+          <div className="category-block text-center">
             <img src={pic10} alt="" />
-            <p><a href="#" class="category-link">Watches</a></p>
+            <p><a href="#" className="category-link">Watches</a></p>
           </div>            
         </div>
       </div> */}
@@ -300,75 +300,75 @@ export function NewArrival() {
 
 export function BlogPage() {
   return (
-    <section class="blogs-info">
-      <div class="container">
-        <h3 class="text-center my-4 heading-text">Blogs</h3>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="blogs-card">
-              <div class="blog-image">
-                <img src={blog1} class="w-100" alt="" title="" />
+    <section className="blogs-info">
+      <div className="container">
+        <h3 className="text-center my-4 heading-text">Blogs</h3>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="blogs-card">
+              <div className="blog-image">
+                <img src={blog1} className="w-100" alt="" title="" />
               </div>
-              <h2 class="blog-heading">A dream smile is a reality</h2>
-              <p class="blog-descripton">Some Description text</p>
-              <ul class="blog-date-time my-3">
+              <h2 className="blog-heading">A dream smile is a reality</h2>
+              <p className="blog-descripton">Some Description text</p>
+              <ul className="blog-date-time my-3">
                 <li>
-                  <i class="fa fa-solid fa-calendar"></i> December 6, 2023
+                  <i className="fa fa-solid fa-calendar"></i> December 6, 2023
                 </li>
                 <li>
-                  <i class="fa fa-solid fa-user"></i> <a href="#">Admin</a>
+                  <i className="fa fa-solid fa-user"></i> <a href="#">Admin</a>
                 </li>
                 <li>
-                  <i class="fa fa-solid fa-eye"></i>3
+                  <i className="fa fa-solid fa-eye"></i>3
                 </li>
               </ul>
-              {/* <p class="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
+              {/* <p className="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="blogs-card">
-              <div class="blog-image">
-                <img src={blog2} class="w-100" alt="" title="" />
+          <div className="col-md-4">
+            <div className="blogs-card">
+              <div className="blog-image">
+                <img src={blog2} className="w-100" alt="" title="" />
               </div>
-              <h2 class="blog-heading">
+              <h2 className="blog-heading">
                 Beautiful smiles that last a lifetime
               </h2>
-              <p class="blog-descripton">Some Description text</p>
-              <ul class="blog-date-time my-3">
+              <p className="blog-descripton">Some Description text</p>
+              <ul className="blog-date-time my-3">
                 <li>
-                  <i class="fa fa-solid fa-calendar"></i> December 6, 2021
+                  <i className="fa fa-solid fa-calendar"></i> December 6, 2021
                 </li>
                 <li>
-                  <i class="fa fa-solid fa-user"></i> <a href="#">Admin</a>
+                  <i className="fa fa-solid fa-user"></i> <a href="#">Admin</a>
                 </li>
                 <li>
-                  <i class="fa fa-solid fa-eye"></i>3
+                  <i className="fa fa-solid fa-eye"></i>3
                 </li>
               </ul>
-              {/* <p class="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
+              {/* <p className="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="blogs-card">
-              <div class="blog-image">
-                <img src={blog3} class="w-100" alt="" title="" />
+          <div className="col-md-4">
+            <div className="blogs-card">
+              <div className="blog-image">
+                <img src={blog3} className="w-100" alt="" title="" />
               </div>
-              <h2 class="blog-heading">
+              <h2 className="blog-heading">
                 Because dental expertise makes a difference
               </h2>
-              <p class="blog-descripton">Some Description text</p>
-              <ul class="blog-date-time my-3">
+              <p className="blog-descripton">Some Description text</p>
+              <ul className="blog-date-time my-3">
                 <li>
-                  <i class="fa fa-solid fa-calendar"></i> December 6, 2021
+                  <i className="fa fa-solid fa-calendar"></i> December 6, 2021
                 </li>
                 <li>
-                  <i class="fa fa-solid fa-user"></i> <a href="#">Admin</a>
+                  <i className="fa fa-solid fa-user"></i> <a href="#">Admin</a>
                 </li>
                 <li>
-                  <i class="fa fa-solid fa-eye"></i>3
+                  <i className="fa fa-solid fa-eye"></i>3
                 </li>
               </ul>
-              {/* <p class="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
+              {/* <p className="blog-read-more"><a href="#" title="Read More">Read more</a></p> */}
             </div>
           </div>
         </div>
@@ -392,40 +392,40 @@ export function SaleSection() {
 export function FooterPage() {
   return (
     <footer>
-      <section class="footer-upper">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 col-sm-12">
-              <div class="footer-logo">
+      <section className="footer-upper">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 col-sm-12">
+              <div className="footer-logo">
                 <img src={Logo} alt="logo" />
               </div>
-              <ul class="footer-connect my-4">
+              <ul className="footer-connect my-4">
                 <li>
-                  <div class="footer-contact">CALL US NOW:</div>
-                  <div class="footer-contact-bold">+123 5678 890</div>
+                  <div className="footer-contact">CALL US NOW:</div>
+                  <div className="footer-contact-bold">+123 5678 890</div>
                 </li>
                 <li>
-                  <div class="footer-contact">E-MAIL ADDRESS:</div>
-                  <div class="footer-contact-bold">sales@RcubeCommerce.com</div>
+                  <div className="footer-contact">E-MAIL ADDRESS:</div>
+                  <div className="footer-contact-bold">sales@RcubeCommerce.com</div>
                 </li>
                 <li>
-                  <div class="footer-contact">follow us:</div>
-                  <div class="social-network">
+                  <div className="footer-contact">follow us:</div>
+                  <div className="social-network">
                     <a href="#">
-                      <i class="fab fa-facebook-f"></i>
+                      <i className="fab fa-facebook-f"></i>
                     </a>
                     <a href="#">
-                      <i class="fab fa-twitter"></i>
+                      <i className="fab fa-twitter"></i>
                     </a>
                     <a href="#">
-                      <i class="fab fa-instagram"></i>
+                      <i className="fab fa-instagram"></i>
                     </a>
                   </div>
                 </li>
               </ul>
             </div>
-            {/* <div class="col-md-3 col-sm-6">
-              <div class="foooter-links">
+            {/* <div className="col-md-3 col-sm-6">
+              <div className="foooter-links">
                 <h3>Collections</h3>
                 <ul>
                   <li><a href="#">Women</a></li>
@@ -436,8 +436,8 @@ export function FooterPage() {
                 </ul>
               </div>
             </div> */}
-            <div class="col-md-3 col-sm-6">
-              <div class="foooter-links">
+            <div className="col-md-3 col-sm-6">
+              <div className="foooter-links">
                 <h3>About</h3>
                 <ul>
                   <li>
@@ -461,10 +461,10 @@ export function FooterPage() {
           </div>
         </div>
       </section>
-      <section class="foooter-below">
-        <div class="container">
-          <div class="footer-block">
-            <div class="payments-options">
+      <section className="foooter-below">
+        <div className="container">
+          <div className="footer-block">
+            <div className="payments-options">
               <span>
                 <img src="images/payment-icon_1.png" />
               </span>

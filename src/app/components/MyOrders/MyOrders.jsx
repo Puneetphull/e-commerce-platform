@@ -1,50 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { RcTable } from "../../custom-components/Table";
 import { Card, Col, Row, Button } from "@themesberg/react-bootstrap";
-import { userService } from "../../api";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import {Loader} from '../../custom-components/Loader';
+import { Loader } from "../../custom-components/Loader";
 import { usersActions } from "../../services/actions";
-
 
 export const MyOrder = () => {
   const { id } = useSelector((state) => state.authentication.user);
+  const { orderList } = useSelector((state) => state.authentication);
   const dispatch = useDispatch();
-
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
-  const [sortOrder, setSortOrder] = useState("ASC");
-  const [orderList, setOrders] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
+
   const [loading, setLoading] = useState(false);
-
-
 
   useEffect(() => {
     MyOrderList();
-  }, [pageSize, currentPage, sortOrder]);
+  }, [currentPage]);
 
   async function MyOrderList() {
-    setLoading(true);
-    let response = await userService.customerOrdersList(
-      id,
-      pageSize,
-      currentPage,
-      sortOrder
-    );
-    if (response.status === 200) {
-      setOrders(response.data.items);
-      setTotalCount(response.data.total_count);
-      setLoading(false);
-    }
+    let filterData = {
+      id: id,
+      currentPage: currentPage,
+    };
+    dispatch(usersActions.GET_MY_ORDERS_REQUEST(filterData));
+    setTimeout(() => {}, 0);
   }
 
-  
+  function cancelOrder(orderId) {
+    dispatch(usersActions.CANCALORDERREQUEST(orderId));
+    setTimeout(() => {
+      MyOrderList();
+    }, 2000);
+  }
 
-  const pageChange = (page)=>{
+  const pageChange = (page) => {
     setCurrentPage(page);
-  }
+  };
   const columns = [
     { Header: "Order Number", accessor: "increment_id" },
     {
@@ -67,11 +59,17 @@ export const MyOrder = () => {
         return (
           <>
             <Button
-              variant={props.cell.row.values.status === "canceled" ? "success" : "danger"}
+              variant={
+                props.cell.row.values.status === "canceled"
+                  ? "success"
+                  : "danger"
+              }
               size="sm"
               className="m-2"
-              disabled={props.cell.row.values.status === "canceled" ? true : false}
-              onClick={()=>dispatch(usersActions.CANCALORDERREQUEST(props.cell.row.values.increment_id))}
+              disabled={
+                props.cell.row.values.status === "canceled" ? true : false
+              }
+              onClick={() => cancelOrder(props.cell.row.values.increment_id)}
             >
               {props.value === "canceled" ? "Return " : "Cancel Order"}
             </Button>
@@ -83,26 +81,26 @@ export const MyOrder = () => {
 
   return (
     <>
-    {<Loader loading={loading} />}
-    <main>
-      <div class="d-block mb-4 mb-md-0">
-        <h4>My Orders</h4>
-        <p class="mb-0">All the Order</p>
-      </div>
-      {/* <Card className="mb-2">
+      {<Loader loading={loading} />}
+      <main>
+        <div className="d-block mb-4 mb-md-0">
+          <h4>My Orders</h4>
+          <p className="mb-0">All the Order</p>
+        </div>
+        {/* <Card className="mb-2">
         <Card.Body>
-          <div class="table-settings">
-            <div class="justify-content-between align-items-center row">
-              <div class="d-md-flex col-lg-8 col-9">
-                <div class="me-2 me-lg-3 fmxw-300 input-group">
+          <div className="table-settings">
+            <div className="justify-content-between align-items-center row">
+              <div className="d-md-flex col-lg-8 col-9">
+                <div className="me-2 me-lg-3 fmxw-300 input-group">
                   <input
                     placeholder="Search users"
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value=""
                   />
                 </div>
-                <select class="fmxw-200 d-none d-md-inline form-select">
+                <select className="fmxw-200 d-none d-md-inline form-select">
                   <option value="all">All</option>
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>
@@ -110,39 +108,39 @@ export const MyOrder = () => {
                   <option value="suspended">Suspended</option>
                 </select>
               </div>
-              <div class="d-flex justify-content-end col-lg-4 col-3">
-                <div role="group" class="btn-group">
-                  <div class="me-1 dropdown">
+              <div className="d-flex justify-content-end col-lg-4 col-3">
+                <div role="group" className="btn-group">
+                  <div className="me-1 dropdown">
                     <button
                       id="react-aria2805492218-13"
                       aria-expanded="false"
                       type="button"
-                      class="text-dark m-0 p-1 dropdown-toggle dropdown-toggle-split btn btn-link"
+                      className="text-dark m-0 p-1 dropdown-toggle dropdown-toggle-split btn btn-link"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                         aria-hidden="true"
-                        class="icon icon-sm"
+                        className="icon icon-sm"
                       >
                         <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="dropdown">
+                  <div className="dropdown">
                     <button
                       id="react-aria2805492218-14"
                       aria-expanded="false"
                       type="button"
-                      class="text-dark m-0 p-1 dropdown-toggle dropdown-toggle-split btn btn-link"
+                      className="text-dark m-0 p-1 dropdown-toggle dropdown-toggle-split btn btn-link"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                         aria-hidden="true"
-                        class="icon icon-sm"
+                        className="icon icon-sm"
                       >
                         <path
                           fill-rule="evenodd"
@@ -150,7 +148,7 @@ export const MyOrder = () => {
                           clip-rule="evenodd"
                         ></path>
                       </svg>
-                      <span class="visually-hidden">Toggle Dropdown</span>
+                      <span className="visually-hidden">Toggle Dropdown</span>
                     </button>
                   </div>
                 </div>
@@ -159,24 +157,23 @@ export const MyOrder = () => {
           </div>
         </Card.Body>
       </Card> */}
-      <Row>
-        <Col xs={12}>
-          <Card className="shadow mb-4 card border-0">
-            <Card.Body>
-              <RcTable
-                columns={columns}
-                data={orderList}
-                totalCount={totalCount}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                enablePagination={true}
-                pageChange={pageChange}
-              />
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </main>
+        <Row>
+          <Col xs={12}>
+            <Card className="shadow mb-4 card border-0">
+              <Card.Body>
+                <RcTable
+                  columns={columns}
+                  data={orderList.orders}
+                  totalCount={orderList.totalCount}
+                  currentPage={currentPage}
+                  enablePagination={true}
+                  pageChange={pageChange}
+                />
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </main>
     </>
   );
 };

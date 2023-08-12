@@ -3,50 +3,50 @@ import React from "react";
 export function ProfileSettings() {
   return (
  <>
-      <div class="row mt-4">
-        <div class="col-xl-8 col-12">
-          <div class="shadow mb-4 card border-0">
-            <div class="card-body">
-              <h5 class="mb-4">General information</h5>
-              <form class="">
-                <div class="row">
-                  <div class="mb-3 col-md-6">
+      <div className="row mt-4">
+        <div className="col-xl-8 col-12">
+          <div className="shadow mb-4 card border-0">
+            <div className="card-body">
+              <h5 className="mb-4">General information</h5>
+              <form className="">
+                <div className="row">
+                  <div className="mb-3 col-md-6">
                     <div id="firstName">
-                      <label class="form-label">First Name</label>
+                      <label className="form-label">First Name</label>
                       <input
                         required=""
                         placeholder="Enter your first name"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
-                  <div class="mb-3 col-md-6">
+                  <div className="mb-3 col-md-6">
                     <div id="lastName">
-                      <label class="form-label">Last Name</label>
+                      <label className="form-label">Last Name</label>
                       <input
                         required=""
                         placeholder="Also your last name"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
                 </div>
-                <div class="align-items-center row">
-                  <div class="mb-3 col-md-6">
+                <div className="align-items-center row">
+                  <div className="mb-3 col-md-6">
                     <div id="birthday">
-                      <label class="form-label">Birthday</label>
-                      <div class="rdt">
+                      <label className="form-label">Birthday</label>
+                      <div className="rdt">
                         <div>
-                          <div class="input-group">
-                            <span class="input-group-text">
+                          <div className="input-group">
+                            <span className="input-group-text">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                                 aria-hidden="true"
-                                class="icon icon-xs"
+                                className="icon icon-xs"
                               >
                                 <path
                                   fill-rule="evenodd"
@@ -59,7 +59,7 @@ export function ProfileSettings() {
                               required=""
                               placeholder="dd/mm/yyyy"
                               type="text"
-                              class="form-control"
+                              className="form-control"
                               value=""
                             />
                           </div>
@@ -67,10 +67,10 @@ export function ProfileSettings() {
                       </div>
                     </div>
                   </div>
-                  <div class="mb-3 col-md-6">
+                  <div className="mb-3 col-md-6">
                     <div id="gender">
-                      <label class="form-label">Gender</label>
-                      <select class="mb-0 form-select">
+                      <label className="form-label">Gender</label>
+                      <select className="mb-0 form-select">
                         <option value="0" selected="">
                           Gender
                         </option>
@@ -80,82 +80,82 @@ export function ProfileSettings() {
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="mb-3 col-md-6">
+                <div className="row">
+                  <div className="mb-3 col-md-6">
                     <div id="email">
-                      <label class="form-label">Email</label>
+                      <label className="form-label">Email</label>
                       <input
                         required=""
                         placeholder="name@company.com"
                         type="email"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
-                  <div class="mb-3 col-md-6">
+                  <div className="mb-3 col-md-6">
                     <div id="phone">
-                      <label class="form-label">Phone</label>
+                      <label className="form-label">Phone</label>
                       <input
                         required=""
                         placeholder="+12-345 678 910"
                         type="number"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
                 </div>
-                <h5 class="my-4">Location</h5>
-                <div class="row">
-                  <div class="mb-3 col-sm-4">
+                <h5 className="my-4">Location</h5>
+                <div className="row">
+                  <div className="mb-3 col-sm-4">
                     <div id="address">
-                      <label class="form-label">Address 1</label>
+                      <label className="form-label">Address 1</label>
                       <input
                         required=""
                         placeholder="Enter your home address"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
-                  <div class="mb-3 col-sm-4">
+                  <div className="mb-3 col-sm-4">
                     <div id="address">
-                      <label class="form-label">Address 2</label>
+                      <label className="form-label">Address 2</label>
                       <input
                         required=""
                         placeholder="Enter your home address"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
-                  <div class="mb-3 col-sm-4">
+                  <div className="mb-3 col-sm-4">
                     <div id="addressNumber">
-                      <label class="form-label">Number</label>
+                      <label className="form-label">Number</label>
                       <input
                         required=""
                         placeholder="No."
                         type="number"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="mb-3 col-sm-4">
+                <div className="row">
+                  <div className="mb-3 col-sm-4">
                     <div id="city">
-                      <label class="form-label">City</label>
+                      <label className="form-label">City</label>
                       <input
                         required=""
                         placeholder="City"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
-                  <div class="mb-3 col-sm-4">
-                    <div class="mb-2">
-                      <label class="form-label">Select state</label>
-                      <select class="form-select" id="state">
+                  <div className="mb-3 col-sm-4">
+                    <div className="mb-2">
+                      <label className="form-label">Select state</label>
+                      <select className="form-select" id="state">
                         <option value="0" selected="">
                           State
                         </option>
@@ -213,22 +213,22 @@ export function ProfileSettings() {
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-4">
+                  <div className="col-sm-4">
                     <div id="zip">
-                      <label class="form-label">ZIP</label>
+                      <label className="form-label">ZIP</label>
                       <input
                         required=""
                         placeholder="ZIP"
                         type="tel"
-                        class="form-control"
+                        className="form-control"
                       />
                     </div>
                   </div>
                 </div>
-                <div class="mt-3">
+                <div className="mt-3">
                   <button
                     type="submit"
-                    class="mt-2 animate-up-2 btn btn-gray-800"
+                    className="mt-2 animate-up-2 btn btn-gray-800"
                   >
                     Save All
                   </button>
@@ -236,60 +236,60 @@ export function ProfileSettings() {
               </form>
             </div>
           </div>
-          <div class="shadow mb-4 mb-xl-0 card border-0">
-            <div class="card-body">
-              <h5 class="mb-4">Alerts &amp; Notifications</h5>
-              <div class="list-group-flush list-group">
-                <div class="d-flex align-items-center justify-content-between px-0 border-bottom list-group-item">
+          <div className="shadow mb-4 mb-xl-0 card border-0">
+            <div className="card-body">
+              <h5 className="mb-4">Alerts &amp; Notifications</h5>
+              <div className="list-group-flush list-group">
+                <div className="d-flex align-items-center justify-content-between px-0 border-bottom list-group-item">
                   <div>
-                    <p class="h6 mb-1 card-text">Company News</p>
-                    <p class="small pe-4">
+                    <p className="h6 mb-1 card-text">Company News</p>
+                    <p className="small pe-4">
                       Get Rocket news, announcements, and product updates
                     </p>
                   </div>
                   <div>
-                    <div class="form-switch">
+                    <div className="form-switch">
                       <input
                         type="checkbox"
                         id="user-notification-1"
-                        class="form-check-input"
+                        className="form-check-input"
                       />
                     </div>
                   </div>
                 </div>
-                <div class="d-flex align-items-center justify-content-between px-0 border-bottom list-group-item">
+                <div className="d-flex align-items-center justify-content-between px-0 border-bottom list-group-item">
                   <div>
-                    <p class="h6 mb-1 card-text">Account Activity</p>
-                    <p class="small pe-4">
+                    <p className="h6 mb-1 card-text">Account Activity</p>
+                    <p className="small pe-4">
                       Get important notifications about you or activity you've
                       missed
                     </p>
                   </div>
                   <div>
-                    <div class="form-switch">
+                    <div className="form-switch">
                       <input
                         type="checkbox"
                         id="user-notification-2"
-                        class="form-check-input"
+                        className="form-check-input"
                         checked=""
                       />
                     </div>
                   </div>
                 </div>
-                <div class="d-flex align-items-center justify-content-between px-0  list-group-item">
+                <div className="d-flex align-items-center justify-content-between px-0  list-group-item">
                   <div>
-                    <p class="h6 mb-1 card-text">Meetups Near You</p>
-                    <p class="small pe-4">
+                    <p className="h6 mb-1 card-text">Meetups Near You</p>
+                    <p className="small pe-4">
                       Get an email when a Dribbble Meetup is posted close to my
                       location
                     </p>
                   </div>
                   <div>
-                    <div class="form-switch">
+                    <div className="form-switch">
                       <input
                         type="checkbox"
                         id="user-notification-3"
-                        class="form-check-input"
+                        className="form-check-input"
                         checked=""
                       />
                     </div>
@@ -299,64 +299,64 @@ export function ProfileSettings() {
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-12">
-          <div class="row">
-            <div class="mb-4 col-12">
-              <div class="shadow text-center p-0 card border-0">
-                <div class="profile-cover rounded-top"></div>
-                <div class="pb-5 card-body">
+        <div className="col-xl-4 col-12">
+          <div className="row">
+            <div className="mb-4 col-12">
+              <div className="shadow text-center p-0 card border-0">
+                <div className="profile-cover rounded-top"></div>
+                <div className="pb-5 card-body">
                   <img
-                    class="card-img avatar-xl rounded-circle mx-auto mt-n7 mb-4"
+                    className="card-img avatar-xl rounded-circle mx-auto mt-n7 mb-4"
                     src="https://demo.themesberg.com/volt-pro-react/static/media/profile-picture-1.508e07ee.jpg"
                     alt=""
                   />
-                  <div class="card-title h5">Neil Sims</div>
-                  <div class="fw-normal card-subtitle h6">
+                  <div className="card-title h5">Neil Sims</div>
+                  <div className="fw-normal card-subtitle h6">
                     Senior Software Engineer
                   </div>
-                  <p class="text-gray mb-4 card-text">New York, USA</p>
+                  <p className="text-gray mb-4 card-text">New York, USA</p>
                   <button
                     type="button"
-                    class="d-inline-flex align-items-center me-2 btn btn-gray-800 btn-sm"
+                    className="d-inline-flex align-items-center me-2 btn btn-gray-800 btn-sm"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
-                      class="icon icon-xs me-1"
+                      className="icon icon-xs me-1"
                     >
                       <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
                     </svg>{" "}
                     Connect
                   </button>
-                  <button type="button" class="btn btn-secondary btn-sm">
+                  <button type="button" className="btn btn-secondary btn-sm">
                     Send Message
                   </button>
                 </div>
               </div>
             </div>
-            <div class="col-12">
-              <div class="shadow mb-4 card border-0">
-                <div class="card-body">
-                  <h5 class="mb-4">Select profile photo</h5>
-                  <div class="d-flex align-items-center">
-                    <div class="me-3">
+            <div className="col-12">
+              <div className="shadow mb-4 card border-0">
+                <div className="card-body">
+                  <h5 className="mb-4">Select profile photo</h5>
+                  <div className="d-flex align-items-center">
+                    <div className="me-3">
                       <img
                         src="https://demo.themesberg.com/volt-pro-react/static/media/profile-picture-3.55d8a646.jpg"
-                        class="img-fluid rounded"
+                        className="img-fluid rounded"
                         alt=""
                       />
                     </div>
-                    <div class="file-field">
-                      <div class="d-flex justify-content-xl-center ms-xl-3">
-                        <div class="d-flex">
+                    <div className="file-field">
+                      <div className="d-flex justify-content-xl-center ms-xl-3">
+                        <div className="d-flex">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                             aria-hidden="true"
-                            class="icon text-gray-500 me-2"
+                            className="icon text-gray-500 me-2"
                           >
                             <path
                               fill-rule="evenodd"
@@ -365,11 +365,11 @@ export function ProfileSettings() {
                             ></path>
                           </svg>
                           <input type="file" />
-                          <div class="d-md-block text-left" />
-                          <div class="fw-normal text-dark mb-1">
+                          <div className="d-md-block text-left" />
+                          <div className="fw-normal text-dark mb-1">
                             Choose Image
                           </div>
-                          <div class="text-gray small">
+                          <div className="text-gray small">
                             JPG, GIF or PNG. Max size of 800K
                           </div>
                         </div>
@@ -380,10 +380,10 @@ export function ProfileSettings() {
               </div>
             </div>
           </div>
-          <div class="col-xl-12 col-sm-6 col-12">
+          <div className="col-xl-12 col-sm-6 col-12">
             <form
               tabindex="0"
-              class="dropzone rounded d-flex align-items-center justify-content-center mb-4"
+              className="dropzone rounded d-flex align-items-center justify-content-center mb-4"
             >
               <input
                 accept="image/*"
@@ -391,35 +391,35 @@ export function ProfileSettings() {
                 autocomplete="off"
                 tabindex="-1"
                 type="file"
-                class="form-control"
+                className="form-control"
               />
-              <div class="dz-default dz-message text-center">
-                <p class="dz-button mb-0">Drop files here to upload</p>
+              <div className="dz-default dz-message text-center">
+                <p className="dz-button mb-0">Drop files here to upload</p>
               </div>
             </form>
-            <div class="dropzone-files row"></div>
+            <div className="dropzone-files row"></div>
           </div>
-          <div class="col-xl-12 col-sm-6 col-12">
-            <div class="shadow mb-4 card border-0">
-              <div class="card-body">
-                <h5 class="mb-4">Select cover photo</h5>
-                <div class="d-flex align-items-center">
-                  <div class="me-3">
+          <div className="col-xl-12 col-sm-6 col-12">
+            <div className="shadow mb-4 card border-0">
+              <div className="card-body">
+                <h5 className="mb-4">Select cover photo</h5>
+                <div className="d-flex align-items-center">
+                  <div className="me-3">
                     <img
                       src="https://demo.themesberg.com/volt-pro-react/static/media/profile-cover.9992e0ee.jpg"
-                      class="img-fluid rounded"
+                      className="img-fluid rounded"
                       alt=""
                     />
                   </div>
-                  <div class="file-field">
-                    <div class="d-flex justify-content-xl-center ms-xl-3">
-                      <div class="d-flex">
+                  <div className="file-field">
+                    <div className="d-flex justify-content-xl-center ms-xl-3">
+                      <div className="d-flex">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                           aria-hidden="true"
-                          class="icon text-gray-500 me-2"
+                          className="icon text-gray-500 me-2"
                         >
                           <path
                             fill-rule="evenodd"
@@ -428,9 +428,9 @@ export function ProfileSettings() {
                           ></path>
                         </svg>
                         <input type="file" />
-                        <div class="d-md-block text-left" />
-                        <div class="fw-normal text-dark mb-1">Choose Image</div>
-                        <div class="text-gray small">
+                        <div className="d-md-block text-left" />
+                        <div className="fw-normal text-dark mb-1">Choose Image</div>
+                        <div className="text-gray small">
                           JPG, GIF or PNG. Max size of 800K
                         </div>
                       </div>

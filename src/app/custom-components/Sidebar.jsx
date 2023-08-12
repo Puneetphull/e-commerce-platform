@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import  SimpleBar from 'simplebar-react';
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faSignOutAlt, faTimes,  faMoneyCheckDollar,faTooth, faDollarSign, faGear, faShoppingCart ,faBagShopping, faTruckFast, faUser, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import {faSignOutAlt, faTimes,  faMoneyCheckDollar, faShoppingCart , faTruckFast, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Navbar } from '@themesberg/react-bootstrap';
 import Company_logo from '../assets/Logo/favicon-16x16.png';
 import { Link } from 'react-router-dom';
@@ -81,7 +81,7 @@ export function Sidebar(props) {
                 <NavItem title="E-Commerce" link="" image={Company_logo} />  
                 <NavItem title="Home" link={customRoutes.adminHome.path} icon={faShoppingCart} />
                 <NavItem title="Product List" link="/productlisting" icon={faShoppingCart} />
-                <NavItem title="Product Detail" link="/productdetail" icon={faShoppingBag} />
+                {/* <NavItem title="Product Detail" link="/productdetail" icon={faShoppingBag} /> */}
                 <NavItem title="Cart" link="/cart" icon={faShoppingCart}/>
                 <NavItem title="Shipping Information" link="/shipping" icon={faTruckFast}/>
                 <NavItem title="Payment" link="/payment" icon={faMoneyCheckDollar}/>

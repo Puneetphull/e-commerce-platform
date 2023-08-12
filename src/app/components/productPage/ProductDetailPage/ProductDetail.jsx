@@ -9,7 +9,6 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "@themesberg/react-bootstrap";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { productService } from "../../../api/product.service";
-import { productlist } from "../../../data/ProductList";
 
 import { useDispatch } from "react-redux";
 import { helperService } from "../../../helper/helperFunction";
@@ -96,9 +95,9 @@ export function ProductDetail() {
                     <span className="fa fa-star checked"></span>
                     <span className="fa fa-star"></span>
                     <span className="fa fa-star"></span>
-                    <a href="#" className="review-txt">
+                    {/* <a href="#" className="review-txt">
                       Be the first to review this product
-                    </a>
+                    </a> */}
                   </div>
                 </div>
 
@@ -217,9 +216,9 @@ export function ProductDetail() {
                     </div>
                     <div className="pdp-wishlist-compare-outer d-inline">
                       {/* //<FontAwesomeIcon icon={faHeart} className="icon wishlist-btn" /> */}
-                      <a href="#" className="icon wishlist-btn">
+                      <Link className="icon wishlist-btn">
                         <i className="fa fa-solid fa-heart"></i>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

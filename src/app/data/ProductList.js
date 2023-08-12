@@ -7,9 +7,7 @@ import dentalorthodontic from "../assets/productListImages/Orthodontic Wax.jpeg"
 import dentaltongue from "../assets/productListImages/Tongue Scraper.jpeg";
 import dentaltootpase from "../assets/productListImages/Toothpaste.jpeg";
 import dentalimg1 from "../assets/productListImages/Teeth Whitening Kit.jpeg";
-import dentalimg2 from "../assets/productListImages/goby-jEwi-9on5IE-unsplash (1).jpg";
 import dentalimg3 from "../assets/productListImages/goby-jEwi-9on5IE-unsplash.jpg";
-import dentalimg4 from "../assets/productListImages/th.jpeg";
 import dentalimg5 from "../assets/productListImages/th (1).jpeg";
 
 export const productlist = [
@@ -257,7 +255,7 @@ export const productlist = [
     name: "Dental Mirror",
     sku: "Dental Mirror",
     short_description: {
-      html: '<div class="admin_field-complex-elements" data-bind="foreach: {data: elems, as: \'element\'}"> </div>\r\n<div class="admin_field-complex-content" data-bind="html: $data.content">A handheld dental mirror with an ergonomic grip for examining the mouth and teeth. It helps visualize hard-to-see areas during oral hygiene routines.</div>',
+      html: '<div className="admin_field-complex-elements" data-bind="foreach: {data: elems, as: \'element\'}"> </div>\r\n<div className="admin_field-complex-content" data-bind="html: $data.content">A handheld dental mirror with an ergonomic grip for examining the mouth and teeth. It helps visualize hard-to-see areas during oral hygiene routines.</div>',
     },
     image: {
       url: dentalmirror,

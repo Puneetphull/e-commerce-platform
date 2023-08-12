@@ -6,7 +6,10 @@ const user = localStorage.getItem("jwtToken");
 const customer = helperService.getCustomerDetails();
 
 const initialState = user
-  ? { isLoggedIn: true, user: customer }
+  ? { isLoggedIn: true, user: customer,orderList:{
+    totalCount:0,
+    orders:[],
+  } }
   : { isLoggedIn: false, isLoading: false };
 
 export function authentication(state = initialState, action) {
@@ -29,6 +32,20 @@ export function authentication(state = initialState, action) {
         ...state,
         isLoading: false,
       };
+    case userConstants.GETMYORDERSREQUEST:
+      return {
+        ...state
+      }
+
+    case userConstants.GETMYORDERSSUCCESS:
+      
+      return {
+        ...state,
+        orderList:{
+          orders:action.payload.items,
+          totalCount:action.payload.total_count
+        } 
+      }  
     case userConstants.LOGOUT:
       return { ...state };
     default:

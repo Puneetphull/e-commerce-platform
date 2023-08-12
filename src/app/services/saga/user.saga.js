@@ -158,6 +158,16 @@ function* cancelOrder(payload) {
   }
 }
 
+function* MYORDERS(customerDetails){
+  let response = yield call(()=>userService.customerOrdersList(customerDetails.payload.id,customerDetails.payload.currentPage));
+  if (response.status === 200) {
+    yield put(usersActions.GET_MY_ORDERS_SUCCESS(response.data));
+    
+  } else {
+    yield put(usersActions.GET_MY_ORDERS_FAILURE(response.data));
+  }
+}
+
 export function* fetchUser() {
   yield takeEvery(userConstants.LOGIN_REQUEST, login);
   yield takeEvery(userConstants.REGISTER_REQUEST, register);
@@ -171,4 +181,5 @@ export function* fetchUser() {
   yield takeEvery(userConstants.USERS_PLACEORDER_REQUEST, placeOrder);
   yield takeEvery(CartConstant.UPDATE_PRODUCT_CART_REQUEST, UpdateProductCart);
   yield takeEvery(userConstants.CANCELORDERREQUEST, cancelOrder);
+  yield takeEvery(userConstants.GETMYORDERSREQUEST,MYORDERS);
 }

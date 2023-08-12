@@ -1,6 +1,6 @@
 import request from "./https.api";
 
-const token = "5b4d2tg1fnxbg7xcrlsmmkoxkd0gthp1";
+const token = process.env.REACT_APP_ADMIN_TOKEN;
 
 export const homeService = {
   getBanners,

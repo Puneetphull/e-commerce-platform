@@ -1,10 +1,9 @@
 import React, { useState,useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
-import { faBell, faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield,faBarsStaggered,faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield,faBarsStaggered,faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, InputGroup,Button } from '@themesberg/react-bootstrap';
-// import NOTIFICATIONS_DATA from "../data/notifications";
  import Profile3 from "../assets/doctor/profile-picture-3.jpg";
 import { cartActions } from "../services/actions";
 import { Link } from "react-router-dom";
@@ -18,7 +17,7 @@ export  function Navbars(props) {
   const { productInCart} = useSelector((state) => state.cartReducer);
   useEffect(() => {
     dispatch(cartActions.GETITEMSREQUEST());
-  }, []);
+  }, [ ]);
 
 
 

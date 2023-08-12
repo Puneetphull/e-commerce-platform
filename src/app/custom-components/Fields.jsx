@@ -2,7 +2,7 @@ import React from "react";
 import { Form, InputGroup, FormCheck } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import Datetime from 'react-datetime';
-import  moment from 'moment-timezone';
+// import  moment from 'moment-timezone';
 // import "react-datetime/css/react-datetime.css";
 
 
