@@ -17,6 +17,7 @@
 	display   : inline-flex;
 	@include align-items(center);
 	@include justify-content(center);
+	position: relative;
 
 	span,
 	svg {

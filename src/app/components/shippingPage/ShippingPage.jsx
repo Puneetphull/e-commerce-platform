@@ -63,7 +63,7 @@ export function ShippingPage() {
 
   async function getShippingMethods() {
     let response = await productService.getShippingMethod();
-    if (response.status === 200) {
+    if (response && response.status === 200) {
       setShippingMethods(response.data);
     }
   }
@@ -204,7 +204,7 @@ export function ShippingPage() {
                 <div className="shipping-address-block">
                   <div className="review-form-wrap shipping-address-form">
                     <form>
-                      <div className="form-group">
+                      {/* <div className="form-group">
                         <label className="label-txt" htmlFor="Email Address">
                           Email Address<sup>*</sup>
                         </label>
@@ -217,7 +217,7 @@ export function ShippingPage() {
                             onChange={onChangeHandler}
                             value={formdata.email}
                           />
-                          {/* <div className="input-group-append">
+                         <div className="input-group-append">
                             <span
                               className="input-group-text"
                               data-toggle="tooltip"
@@ -226,13 +226,13 @@ export function ShippingPage() {
                             >
                               <i className="far fa-question-circle"></i>
                             </span>
-                          </div> */}
-                        </div>
-                        {/* <div className="txt-13">
+                          </div> 
+                         </div> 
+                         <div className="txt-13">
                           You can create an account after checkout.
-                        </div> */}
+                        </div> 
                       </div>
-                      <hr className="my-4"></hr>
+                      <hr className="my-4"></hr> */}
                       <div className="form-group">
                         <label className="label-txt" htmlFor="First Name">
                           First Name<sup>*</sup>
@@ -259,7 +259,7 @@ export function ShippingPage() {
                           value={formdata.lastname}
                         />
                       </div>
-                      <div className="form-group">
+                      {/* <div className="form-group">
                         <label className="label-txt" htmlFor="Company">
                           Company<sup>*</sup>
                         </label>
@@ -271,7 +271,7 @@ export function ShippingPage() {
                           onChange={onChangeHandler}
                           value={formdata.company}
                         />
-                      </div>
+                      </div> */}
                       <div className="form-group">
                         <label className="label-txt" htmlFor="Street Address">
                           Street Address<sup>*</sup>

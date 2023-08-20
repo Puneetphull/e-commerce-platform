@@ -1917,7 +1917,7 @@ table {
   display: flex;
   -webkit-box-align: end;
       -ms-flex-align: end;
-          align-items: end;
+          align-items: flex-end;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -2457,8 +2457,18 @@ table {
 }
 
 span.cart-number {
-  padding-bottom: 26px;
-  font-weight: 600;
+  /* padding-bottom: 26px;
+  font-weight: 600; */
   color: red;
+  position: absolute;
+  /* left: 0; */
+  /* right: 0; */
+  bottom: 10px;
+  /* border-radius: 50%; */
+  /* border-bottom: 1px solid red; */
+  /* background: red; */
+  /* top: -15px; */
+  /* padding: 1px; */
+  /* color: white;*/
 }
 /*# sourceMappingURL=style.css.map */

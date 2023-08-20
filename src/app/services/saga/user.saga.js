@@ -126,6 +126,7 @@ function* placeOrder(paymentMethod) {
     }
     yield put(usersActions.PLACEORDERSUCCESS(response.data));
   } else {
+    Notification("warning", response.data.message );
     yield put(usersActions.PLACEORDERFAILURE(response.data));
   }
 }
