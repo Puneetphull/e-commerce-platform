@@ -40,49 +40,35 @@ function getProductDetail(sku_name) {
 }
 
 function getProductList(
-  category_id,
+  category_id = 9,
   pageSize,
   currentPage,
-  SortBY,
-  sidebar,
+  filterOptions,
   price,
+  SortBY,
   SortAD
 ) {
   let data;
-  if (
-    sidebar.brand !== "" ||
-    sidebar.colors !== "" ||
-    SortBY.sort !== "" ||
-    price.to !== "" ||
-    price.from !== "" ||
-    sidebar.size !== ""
-  ) {
     data =
       '{products(filter:{category_id:{ eq:"' +
       category_id +
-      '" },brand : { eq:"' +
-      sidebar.brand +
-      '" }, colors: { eq:"' +
-      sidebar.colors +
-      '" } , size : { eq:"' +
-      sidebar.size +
-      '" }, price:{from: "' +
+      '" },price:{from: "' +
       price.from +
       '", to: "' +
       price.to +
-      '" }}, pageSize:' +
+      '" }}pageSize:' +
       pageSize +
       "  ,currentPage: " +
       currentPage +
       ", sort: {" +
-      SortBY.sort +
+      SortBY + ":" +
       SortAD +
       "}) {aggregations{attribute_code count label options{ count label value }}total_count page_info {page_size current_page} items { id brand name sku short_description { html } image { url } price_range { minimum_price { regular_price { value currency } final_price { value currency } fixed_product_taxes { label amount {value currency }}}maximum_price { discount { amount_off percent_off } fixed_product_taxes { label amount { value currency } } } } }}}";
-  }
+  
 
   let query = {
     query: data,
-    //   storeCode: `${store_view}`,
+    storeCode: `default`,
     catId: category_id,
   };
   return request(

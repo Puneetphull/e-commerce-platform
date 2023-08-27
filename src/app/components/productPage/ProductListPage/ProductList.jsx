@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import "../../../css e-commerce/css/style.css";
-import ProductCard from "../../../custom-components/ProductCard";
-import { filterArray } from "../../../data/ProductList";
+ import "../../../css e-commerce/css/style.css";
+// import ProductCard from "../../../custom-components/ProductCard";
+// import { filterArray } from "../../../data/ProductList";
 import { Accordion, Form } from "@themesberg/react-bootstrap";
 import { productService } from "../../../api/product.service";
 import CustomPagination from "../../../custom-components/pagination/pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { Loader } from "../../../custom-components/Loader";
+import ProductCardPLP from "../../../custom-components/ProductCardPLP";
+
 
 
 export function ProductList() {
@@ -17,11 +19,21 @@ export function ProductList() {
   const [pageSize, setpageSize] = useState(3);
   const [pageNumber, setPageNumber] = useState(1);
 
+  const [filterOptins,setFilterOptions] = useState([]);
+
+  const [selectedSortBy,setselectedSortBy] = useState("position");
+
+  const [selectedFilter,setselectedFilter] = useState(null);
+
   const [isloading,setloading] = useState(false);
+
+  const [categoryId,setCtegoryId] = useState(9);
+
+  const [price,setPrice] = useState({from:'',to:''});
 
   useEffect(() => {
     getProducts();
-  }, [pageSize, pageNumber, sortOrder]);
+  }, [pageSize, pageNumber, sortOrder,selectedSortBy,price,categoryId]);
 
   const onPageNumberChange = (page) => {
     setPageNumber(page);
@@ -41,14 +53,29 @@ export function ProductList() {
     }
   }
 
+  const changeFilterOptins = (selectedParentOption,selectedChildOption)=>{
+   if(selectedParentOption.attribute_code === "price"){
+    let priceRange = selectedChildOption.value.split('_')
+    setPrice(JSON.parse(JSON.stringify({...price,from:priceRange[0],to:priceRange[1]})))
+  }
+  else if(selectedParentOption.attribute_code === "category_uid"){
+      setCtegoryId(selectedChildOption.value);
+  }
+  // setselectedFilter(selectedChildOption.value)
+   console.log(selectedFilter)
+  }
+
+  const onChangeSortBy = (e)=>{
+   setselectedSortBy(e.target.value)
+  }
+
   function getProducts() {
-    // console.log(pagination)
    setloading(true);
-    productService
-      .getAllProductList(pageSize, pageNumber, sortOrder)
+    productService.getProductList(categoryId,pageSize,pageNumber,selectedFilter,price,selectedSortBy,sortOrder)
       .then((response) => {
-        setpouduct(response.data.items);
-        setTotalCount(response.data.total_count);
+        setpouduct(response.data[0].data.products.items);
+        setTotalCount(response.data[0].data.products.total_count);
+        setFilterOptions(response.data[0].data.products.aggregations)
         setloading(false);
       });
   }
@@ -57,7 +84,7 @@ export function ProductList() {
     <>
   
     <section className="plp-content">
-    {isloading ? <Loader/> : ''}
+    {isloading ? <Loader loading={isloading} /> : ''}
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-3">
@@ -87,17 +114,11 @@ export function ProductList() {
                   <div className="selected-creteria">selected item</div>
                   <div className="selected-creteria">selected item</div>
                 </div> */}
-                {filterArray &&
-                  filterArray.map((data, index) => (
+                {filterOptins &&
+                  filterOptins.map((data, index) => (
                     <Accordion.Item className="card" eventKey={index}>
                       <Accordion.Header className="card-header" eventKey={index}>
-                        <h5
-                          className="mb-0"
-                          data-toggle="collapse"
-                          data-target="#Brands"
-                        >
                           {data.label}
-                        </h5>
                       </Accordion.Header>
                       <Accordion.Body className="card-body">
                         <ul>
@@ -108,6 +129,7 @@ export function ProductList() {
                                   children.label + " " + `(${children.count})`
                                 }
                                 id={`${children.label + index}`}
+                                onChange={()=>changeFilterOptins(data,children)}
                                 htmlFor="checkbox1"
                               />
                             </li>
@@ -116,103 +138,6 @@ export function ProductList() {
                       </Accordion.Body>
                     </Accordion.Item>
                   ))}
-                {/* <div className="card">
-                  <div className="card-header">
-                    <h5
-                      className="mb-0"
-                      data-toggle="collapse"
-                      data-target="#Color"
-                    >
-                      Color
-                    </h5>
-                  </div>
-                  <div id="Color" className="collapse">
-                    <div className="card-body">
-                      <ul>
-                        <li>
-                          <a href="#">
-                            White<span className="filter-qty">2</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            Red<span className="filter-qty">3</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            Green<span className="filter-qty">5</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            Blue<span className="filter-qty">4</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header">
-                    <h5
-                      className="mb-0"
-                      data-toggle="collapse"
-                      data-target="#Price"
-                    >
-                      Price
-                    </h5>
-                  </div>
-                  <div id="Price" className="collapse">
-                    <div className="card-body">
-                      <ul>
-                        <li>
-                          <a href="#">
-                            $0.00 - $99.99<span className="filter-qty">2</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            $100.00 - $199.99<span className="filter-qty">3</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            $200.00 and above<span className="filter-qty">5</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header">
-                    <h5 className="mb-0" data-toggle="collapse" data-target="#Size">
-                      Size
-                    </h5>
-                  </div>
-                  <div id="Size" className="collapse">
-                    <div className="card-body">
-                      <ul>
-                        <li>
-                          <a href="#">
-                            M<span className="filter-qty">2</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            L<span className="filter-qty">3</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            XL<span className="filter-qty">5</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div> */}
               </Accordion>
             </div>
           </div>
@@ -220,7 +145,7 @@ export function ProductList() {
             <div className="sorting-bar">
               <div className="sortby-left">
                 Sort By
-                <select className="sorter-options">
+                <select className="sorter-options" onChange={onChangeSortBy}>
                   <option value="position" selected="selected">
                     Position
                   </option>
@@ -259,7 +184,7 @@ export function ProductList() {
             </div>
 
             <div className="product-listing">
-              {product && product.map((data) => <ProductCard props={data} />)}
+              {product && product.map((data) => <ProductCardPLP props={data} />)}
             </div>
           </div>
         </div>

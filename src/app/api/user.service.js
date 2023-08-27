@@ -14,6 +14,7 @@ export const userService = {
   getCartList,
   addShippingAddress,
   customerOrdersList,
+  viewOrderDetails
 };
 
 function regitserCustomer(users) {
@@ -102,4 +103,14 @@ function customerOrdersList(customer_id, currentPage, PageSize = 5, sort = "ASC"
 
 function getCustomerDetails(){
   return request(`rest/V1/customers/me`,'','GET','',helperService.getCustomerJwt());
+}
+
+function viewOrderDetails(order_id) {
+  return request(
+    `rest/V1/orders/${order_id}`,
+    "",
+    "get",
+    "",
+    token
+  );
 }

@@ -5,12 +5,23 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader } from "../../custom-components/Loader";
 import { usersActions } from "../../services/actions";
+import { Modals } from "../../custom-components/Modal";
+import { ViewOrder } from "./ViewOrder";
 
 export const MyOrder = () => {
   const { id } = useSelector((state) => state.authentication.user);
   const { orderList } = useSelector((state) => state.authentication);
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [showOrderDetails,setShowOrderDetail] = useState(false)
+
+  const [incrementId,setIncrementId] = useState();
+
+  const onChangeShowDetail = (increment_id)=>{
+    setIncrementId(increment_id);
+    setShowOrderDetail(!showOrderDetails);
+  }
 
   const [loading, setLoading] = useState(false);
 
@@ -60,18 +71,25 @@ export const MyOrder = () => {
           <>
             <Button
               variant={
-                props.cell.row.values.status === "canceled"
+                props.cell.row.values.status === "complete" || props.cell.row.values.status !== 'canceled' 
                   ? "success"
                   : "danger"
               }
               size="sm"
               className="m-2"
               disabled={
-                props.cell.row.values.status === "canceled" ? true : false
+                props.cell.row.values.status === "complete" || props.cell.row.values.status==="canceled"  ? true : false
               }
               onClick={() => cancelOrder(props.cell.row.values.increment_id)}
             >
-              {props.value === "canceled" ? "Return " : "Cancel Order"}
+              {props.value === "complete"  ? "Return " :  props.value !== "canceled" ? "Return " : "Canceled" }
+            </Button>
+
+            <Button
+              variant="success"
+              size="sm"
+              className="m-2" onClick={()=>onChangeShowDetail(props.cell.row.values.increment_id)} >
+            View Order
             </Button>
           </>
         );
@@ -174,6 +192,9 @@ export const MyOrder = () => {
           </Col>
         </Row>
       </main>
-    </>
+
+
+      <Modals show={showOrderDetails} title={"Order Details"} onClose={onChangeShowDetail} button2={true} children={<ViewOrder increment_id={incrementId}  />} />
+    </> 
   );
 };

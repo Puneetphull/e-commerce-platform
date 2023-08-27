@@ -66,8 +66,6 @@ export function Login() {
   const submit = () => {
     if (validate()) {
       dispatch(usersActions.LOGIN_REQUEST(user));
-      console.log(selector);
-      console.log(process.env);
     }
   };
 

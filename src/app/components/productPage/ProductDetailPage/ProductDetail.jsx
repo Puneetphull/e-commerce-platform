@@ -41,7 +41,6 @@ export function ProductDetail() {
 
   function getProductDetails(skuName) {
     productService.getProductDetail(skuName).then((response) => {
-      console.log(response.data);
       setproductdetail(response.data);
     });
   }

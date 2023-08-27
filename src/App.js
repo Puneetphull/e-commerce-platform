@@ -1,4 +1,5 @@
 import "./App.css";
+import {React} from 'react';
 import { ForgetPassword } from "./app/components/ForgetPassword";
 import { Login } from "./app/components/Login";
 import { NotFound } from "./app/components/NotFound";

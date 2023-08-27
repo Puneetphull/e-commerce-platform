@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import ReactStars from 'react-stars';
 
 export default function ProductCard({props}) {
-  console.log(props)
   return (
     <div className="product-info">
       <div className="product-image">
@@ -73,3 +72,7 @@ export default function ProductCard({props}) {
     </div>
   );
 }
+
+
+
+

@@ -1,7 +1,7 @@
 import { Button, Modal } from "@themesberg/react-bootstrap";
 import React from "react";
 
-export function Modals(props) {
+export function Modals({show,onClose,title,children,button1,button2}) {
   return (
     <React.Fragment>
       <Modal
@@ -9,19 +9,19 @@ export function Modals(props) {
         dialogClassName="90w"
         size="lg"
         fullscreen="lg-down"
-        show={props.show}
-        onHide={props.onClose}
+        show={show}
+        onHide={onClose}
       >
         <Modal.Header>
-          <Modal.Title className="h6">{props.title}</Modal.Title>
-          <Button variant="close" aria-label="Close" onClick={props.onClose} />
+          <Modal.Title className="h6">{title}</Modal.Title>
+          <Button variant="close" aria-label="Close" onClick={onClose} />
         </Modal.Header>
-        <Modal.Body>{props.children}</Modal.Body>
+        <Modal.Body>{children}</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={ props.steps === 1 ?  props.onClose :()=>{props.previousStep(1)}}> {props.steps === 1 ? "Close" : "Back"} </Button>
-          <Button variant="link" className="text-gray ms-auto" onClick={()=>{props.nextStep(1)}} >
-            Next
-          </Button>
+       {button1?   <Button variant="secondary"> </Button> : <></>}
+        {button2?  <Button variant="link" onClick={onClose} className="text-gray ms-auto"> 
+            Okay
+          </Button>:<></>}
         </Modal.Footer>
       </Modal>
     </React.Fragment>

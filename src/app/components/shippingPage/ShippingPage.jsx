@@ -38,7 +38,6 @@ export function ShippingPage() {
 
   function onChangeHandler(event) {
     let { name, value } = event.target;
-    console.log(name, event);
     setformData({ ...formdata, [name]: value });
   }
 
@@ -74,7 +73,6 @@ export function ShippingPage() {
 
   function onSateChange(e) {
     let state = states.find((state) => state.code === e.target.value);
-    console.log(state);
     setformData({ ...formdata, region_id: state.id, region_code: state.code,state: state.name});
   }
 
@@ -89,8 +87,7 @@ export function ShippingPage() {
   }
 
   const submitFormData = (e) => {
-    e.preventDefault();
-    console.log(formdata);
+    e.preventDefault();  
     dispatch(cartActions.ADDSHIPPINGSADDRESSREQUEST(formdata));
   };
 

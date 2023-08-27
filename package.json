@@ -18,13 +18,12 @@
     "history": "^4.0.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
-    "node-sass": "^8.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
     "react-stars": "^2.2.5",
     "react-table": "^7.8.0",
@@ -32,11 +31,12 @@
     "react-transition-group": "^4.4.5",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.2.3",
+    "sass-loader": "^13.3.2",
     "simplebar-react": "^2.3.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -58,5 +58,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "sass": "^1.66.1"
   }
 }
