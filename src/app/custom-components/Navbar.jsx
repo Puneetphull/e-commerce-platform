@@ -14,6 +14,7 @@ import { productService } from "../api";
 
 export  function Navbars(props) {
   const dispatch = useDispatch();
+  const [searchResult,setSearchResult] = useState([]);
   const { productInCart} = useSelector((state) => state.cartReducer);
   useEffect(() => {
     dispatch(cartActions.GETITEMSREQUEST());
@@ -25,7 +26,7 @@ export  function Navbars(props) {
   function onChangeSearchText(e){
     let {value} = e.target;
     productService.SearchProductAPI(value).then((response)=>{
-      console.log(response,"response");
+      setSearchResult(response.data.items)
     })
 
   }
@@ -88,38 +89,20 @@ export  function Navbars(props) {
                   <Form.Control type="text" placeholder="Search" onChange={onChangeSearchText} />
                 </InputGroup>
               </Form.Group>
-              {/* <div className="search-results-wrap">
-                <a href="#" className="result-ridect">
+
+              <div className="search-results-wrap">
+              {searchResult && searchResult.map((data)=>(  <Link to={`/productdetail/${data.sku}`} className="result-ridect">
                   <div className="result-img">
-                    <img src="images/tshirt1.jpg" className="img-fluid"/>
+                    <img src={data.custom_attributes.find(data=> data.attribute_code === "image").value} className="img-fluid"/>
                   </div>
                   <div className="result-desc">
-                    <div className="result-desc-name">Product Name</div>
-                    <div className="result-desc-price">Price <span>$58.00</span></div>
-                    <div className="result-desc-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo...</div>
+                    <div className="result-desc-name">{data.name}</div>
+                    <div className="result-desc-price">Price <span>${data.price}</span></div>
+                  {/* <div className="result-desc-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo...</div> */}
                   </div>
-                </a>
-                <a href="#" className="result-ridect">
-                  <div className="result-img">
-                    <img src="images/tshirt1.jpg" className="img-fluid"/>
-                  </div>
-                  <div className="result-desc">
-                    <div className="result-desc-name">Product Name</div>
-                    <div className="result-desc-price">Price <span>$58.00</span></div>
-                    <div className="result-desc-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo...</div>
-                  </div>
-                </a>
-                <a href="#" className="result-ridect">
-                  <div className="result-img">
-                    <img src="images/tshirt1.jpg" className="img-fluid"/>
-                  </div>
-                  <div className="result-desc">
-                    <div className="result-desc-name">Product Name</div>
-                    <div className="result-desc-price">Price <span>$58.00</span></div>
-                    <div className="result-desc-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo...</div>
-                  </div>
-                </a>
-              </div> */}
+                </Link>
+              ))}
+              </div>
             </Form>
           </div>
           <Nav className="align-items-center">
