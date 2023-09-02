@@ -9,7 +9,7 @@
     position: absolute;
     top: 0;
     background-color: #ffffff;
-    opacity: .6;
+    opacity: 0.9;
     .loader-img{
         margin: auto;
         position: absolute;
@@ -160,4 +160,10 @@
     font-size: 0.8rem;
     line-height: 1rem;
     }
+   }
+
+
+   .link-click {
+    color:#007bff;
+    cursor: pointer;
    }

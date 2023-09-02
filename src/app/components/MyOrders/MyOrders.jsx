@@ -186,6 +186,7 @@ export const MyOrder = () => {
                   currentPage={currentPage}
                   enablePagination={true}
                   pageChange={pageChange}
+                  pageSize={orderList && orderList.orders &&  orderList.orders.length ?  orderList.orders.length : 0}
                 />
               </Card.Body>
             </Card>

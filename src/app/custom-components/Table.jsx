@@ -20,7 +20,7 @@ export function RcTable({
       pagination={Pagination}
       totalCount={totalCount}
       currentPage={currentPage}
-      pageSize={pageSize}
+      pageSize={pageSize ? pageSize : 5}
       onPageChange={pageChangeHandler}
     />
   );

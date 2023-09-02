@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield,faBarsStaggered,faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import { Nav, Form, Image, Navbar, Dropdown, Container, InputGroup,Button } from '@themesberg/react-bootstrap';
- import Profile3 from "../assets/doctor/profile-picture-3.jpg";
+import Profile3 from "../assets/doctor/profile-picture-3.jpg";
 import { cartActions } from "../services/actions";
 import { Link } from "react-router-dom";
 import { helperService } from "../helper";
@@ -16,6 +16,8 @@ export  function Navbars(props) {
   const dispatch = useDispatch();
   const [searchResult,setSearchResult] = useState([]);
   const { productInCart} = useSelector((state) => state.cartReducer);
+  const {user} = useSelector((state) => state.authentication);
+  const [searchTxt,setSearchTxt] = useState('');
   useEffect(() => {
     dispatch(cartActions.GETITEMSREQUEST());
   }, []);
@@ -25,6 +27,7 @@ export  function Navbars(props) {
 
   function onChangeSearchText(e){
     let {value} = e.target;
+    setSearchTxt(value);
     productService.SearchProductAPI(value).then((response)=>{
       setSearchResult(response.data.items)
     })
@@ -91,7 +94,7 @@ export  function Navbars(props) {
               </Form.Group>
 
               <div className="search-results-wrap">
-              {searchResult && searchResult.map((data)=>(  <Link to={`/productdetail/${data.sku}`} className="result-ridect">
+              {searchResult && searchTxt.length > 0 && searchResult.length > 0 && searchResult.map((data)=>(<a href={`/productdetail/${data.sku}`} className="result-ridect">
                   <div className="result-img">
                     <img src={data.custom_attributes.find(data=> data.attribute_code === "image").value} className="img-fluid"/>
                   </div>
@@ -100,7 +103,7 @@ export  function Navbars(props) {
                     <div className="result-desc-price">Price <span>${data.price}</span></div>
                   {/* <div className="result-desc-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo...</div> */}
                   </div>
-                </Link>
+                </a>
               ))}
               </div>
             </Form>
@@ -108,10 +111,10 @@ export  function Navbars(props) {
           <Nav className="align-items-center">
             <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
               {/* <Dropdown.Toggle as={Nav.Link} className="text-dark icon-notifications me-lg-3"> */}
-                <span className="icon icon-sm">
+              <Link to="/cart"  className="icon icon-sm">
                  <FontAwesomeIcon  icon={faShoppingCart} role="button" className="bell-shake" /><span className="cart-number">{productInCart.length}</span>
                   {/* {areNotificationsRead ? null : <span className="icon-badge rounded-circle unread-notifications" />} */}
-                </span>
+                </Link> 
               {/* </Dropdown.Toggle> */}
               {/* <Dropdown.Menu className="dashboard-dropdown notifications-dropdown dropdown-menu-lg dropdown-menu-center mt-2 py-0">
                 <ListGroup className="list-group-flush">
@@ -133,7 +136,7 @@ export  function Navbars(props) {
                 <div className="media d-flex align-items-center">
                   <Image src={Profile3} className="user-avatar md-avatar rounded-circle" />
                   <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                    <span className="mb-0 font-small fw-bold">Admin</span>
+                    <span className="mb-0 font-small fw-bold">{user.firstname}</span>
                   </div>
                 </div>
               </Dropdown.Toggle>

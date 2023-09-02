@@ -4,6 +4,7 @@ import { Button } from "@themesberg/react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../services/actions";
 import { productService } from "../../api/product.service";
+import { Loader } from "../../custom-components/Loader";
 export function ShippingPage() {
   const dispatch = useDispatch();
 
@@ -25,6 +26,7 @@ export function ShippingPage() {
 
   const { productInCart } = useSelector((state) => state.cartReducer);
   const { addresses } = useSelector((state) => state.authentication.user);
+  const {loading} = useSelector((state) => state.loaderReducer);
   const [formdata, setformData] = useState(intinalState);
   const [shippingMethods, setShippingMethods] = useState([]);
 
@@ -92,6 +94,8 @@ export function ShippingPage() {
   };
 
   return (
+    <>
+    <Loader loading={loading}/>
     <section className="cart-page">
       <div className="container">
         <div className="progress-bar-sign-in">
@@ -417,7 +421,7 @@ export function ShippingPage() {
               ))}
             </div>
             <div className="action-btns-wrap text-right">
-              <Button onClick={submitFormData} className="btn btn-black">
+              <Button type="button" disabled={productInCart.length == 0 ? true : false} onClick={submitFormData} className="btn btn-black">
                 Next
               </Button>
             </div>
@@ -477,5 +481,6 @@ export function ShippingPage() {
         </div>
       </div>
     </section>
+    </>
   );
 }

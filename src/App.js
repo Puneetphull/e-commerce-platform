@@ -41,7 +41,7 @@ function App() {
             />
 
             <Route
-              path="productListing"
+              path="/productListing"
               element={<PrivateRouteSideBar component={<ProductList />} />}
             />
             <Route

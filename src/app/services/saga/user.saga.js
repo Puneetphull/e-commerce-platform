@@ -104,6 +104,8 @@ function* Addshippingaddress(payload) {
   });
   if (result.status === 200) {
     Notification("success", "Address is Added Successflully");
+    const userdetails = yield call(() => userService.getCustomerDetails());
+    helperService.setlocaleStorage("id", userdetails.data);
     yield put(loaderAction.isLoadingFalse());
     history.push("/payment");
   } else {
@@ -114,18 +116,22 @@ function* Addshippingaddress(payload) {
 }
 
 function* placeOrder(paymentMethod) {
+  yield put(loaderAction.isLoadingTrue());
   let response = yield call(() =>
     productService.placeorder(paymentMethod.payload)
   );
   if (response.status === 200) {
     const res = yield call(() => userService.getCustomerQuoteId());
     if (res.status === 200) {
+      yield put(usersActions.PLACEORDERSUCCESS(response.data));
+      yield put(loaderAction.isLoadingFalse());
       localStorage.setItem("quote_Id", JSON.stringify(res.data));
       Notification("success", "Order is Placed");
       history.push("/success");
     }
-    yield put(usersActions.PLACEORDERSUCCESS(response.data));
+    
   } else {
+    yield put(loaderAction.isLoadingTrue());
     Notification("warning", response.data.message );
     yield put(usersActions.PLACEORDERFAILURE(response.data));
   }
