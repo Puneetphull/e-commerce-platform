@@ -40,6 +40,7 @@ export function ProductDetail() {
   }
 
   function getProductDetails(skuName) {
+    window.scrollTo(0,0)
     productService.getProductDetail(skuName).then((response) => {
       setproductdetail(response.data);
     });
@@ -56,16 +57,16 @@ export function ProductDetail() {
                   alt=""
                   className="img-fluid"
                 />
-                <div className="magnifying-glass">
+                {/* <div className="magnifying-glass">
                   <i className="fas fa-times"></i>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="col-md-6">
               <div className="pdp-product-description">
                 <div className="page-title-wrapper">
                   <h1 className="page-title">{productdetail?.name}</h1>
-                  <div className="title-right-icon">
+                  {/* <div className="title-right-icon">
                     <div className="hover-product-wrap">
                       <Link to="#" className="icon-link">
                         <i className="fa fa-chevron-left"></i>
@@ -84,7 +85,7 @@ export function ProductDetail() {
                         <p>Right Image</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="pdp-star-review mb-4">

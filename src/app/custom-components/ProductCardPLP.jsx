@@ -17,8 +17,8 @@ export default function ProductCardPLP({props}) {
             {props.name}
         </Link>
     </div>
-    <div className="product-title">
-       <div dangerouslySetInnerHTML={{__html:props.short_description?.html}} />
+    <div className="product-title ">
+       <div className='multiline-wrap' dangerouslySetInnerHTML={{__html:props.short_description?.html}} />
       </div>
     <div className="product-price">${props.price_range.minimum_price.regular_price.value}</div>  
 </div>

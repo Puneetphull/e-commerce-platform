@@ -71,18 +71,18 @@ export const MyOrder = () => {
           <>
             <Button
               variant={
-                props.cell.row.values.status === "complete" || props.cell.row.values.status !== 'canceled' 
+                props.cell.row.values.status === "complete"
                   ? "success"
                   : "danger"
               }
               size="sm"
               className="m-2"
               disabled={
-                props.cell.row.values.status === "complete" || props.cell.row.values.status==="canceled"  ? true : false
+                props.cell.row.values.status !== "complete" || props.cell.row.values.status==="canceled"  ? true : false
               }
               onClick={() => cancelOrder(props.cell.row.values.increment_id)}
             >
-              {props.value === "complete"  ? "Return " :  props.value !== "canceled" ? "Return " : "Canceled" }
+              {props.value === "complete"  ? "Return " : "Canceled" }
             </Button>
 
             <Button
@@ -186,6 +186,7 @@ export const MyOrder = () => {
                   currentPage={currentPage}
                   enablePagination={true}
                   pageChange={pageChange}
+                  pageSize={orderList && orderList.orders &&  orderList.orders.length ?  orderList.orders.length : 0}
                 />
               </Card.Body>
             </Card>

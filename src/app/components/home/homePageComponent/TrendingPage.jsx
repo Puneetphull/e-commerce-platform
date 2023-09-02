@@ -16,6 +16,7 @@ import blog1 from "../../../assets/Banner/caroline-lm-QA9fRIi6sFw-unsplash.jpg";
 import blog2 from "../../../assets/Banner/s-b-vonlanthen-FaiZNiofP-U-unsplash.jpg";
 import blog3 from "../../../assets/Banner/olga-guryanova-s10jzFKGOLs-unsplash.jpg";
 import { productService } from "../../../api";
+import { Link } from "react-router-dom";
 
 export function TrendingPage() {
   return (
@@ -23,7 +24,7 @@ export function TrendingPage() {
       <div className="container-fluid">
         <div className="text-center py-5">
           <h3 className="heading-text">Our Trending Categories</h3>
-          <h4 className="sub-heading-text">"The joy of dressing is an art."</h4>
+          <h4 className="sub-heading-text">"Your smile, our priority."</h4>
         </div>
         <div className="row justify-content-between-lg justify-content-center">
           <div className="col-lg-2 col-sm-4 col-md-2 col-xs-6">
@@ -31,7 +32,7 @@ export function TrendingPage() {
               <img src={pic1} alt="" />
               <p>
                 <a href="#" className="category-link">
-                  Kid Clothes
+                Anesthetics
                 </a>
               </p>
             </div>
@@ -41,7 +42,7 @@ export function TrendingPage() {
               <img src={pic2} alt="" />
               <p>
                 <a href="#" className="category-link">
-                  Women Clothes
+                Endodontics
                 </a>
               </p>
             </div>
@@ -51,7 +52,7 @@ export function TrendingPage() {
               <img src={pic3} alt="" />
               <p>
                 <a href="#" className="category-link">
-                  High Heels
+                Preventive Dental 
                 </a>
               </p>
             </div>
@@ -61,7 +62,7 @@ export function TrendingPage() {
               <img src={pic4} alt="" />
               <p>
                 <a href="#" className="category-link">
-                  Men Clothes
+                Auxiliary Dental
                 </a>
               </p>
             </div>
@@ -71,7 +72,7 @@ export function TrendingPage() {
               <img src={pic5} alt="" />
               <p>
                 <a href="#" className="category-link">
-                  Jewellery
+                  Interdental Brushes
                 </a>
               </p>
             </div>
@@ -259,7 +260,7 @@ export function NewArrival() {
           </div>
           <div className="col-lg-3 col-md-3">
             <div className="long-img">
-              <a href="/products/New arrival" alt="img">
+              <Link to={"/productListing"}>
                 {" "}
                 <img
                   src={sideBanner}
@@ -267,16 +268,16 @@ export function NewArrival() {
                   loading="lazy"
                   className="img-fluid"
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="row align-items-lg-center">
           <div className="col-lg-3 col-md-3">
             <div className="long-img">
-              <a href="products/WOMENS/CLOTHES/Winter Wear" alt="img">
+            <Link to={"/productListing"}>
                 <img src={sideBanner2} alt="" className="img-fluid" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="col-lg-9 col-md-9">

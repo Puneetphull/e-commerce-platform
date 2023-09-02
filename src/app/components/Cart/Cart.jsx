@@ -58,6 +58,8 @@ export function Cart() {
                             <th className="col">Price</th>
                             <th className="col">Qty</th>
                             <th className="col">Subtotal</th>
+                            <th className="col">Delete</th>
+
                           </tr>
                         </thead>
                         {productInCart &&
@@ -122,8 +124,6 @@ export function Cart() {
                                     ${item.price * item.qty}
                                   </div>
                                 </td>
-                              </tr>
-                              <tr>
                                 <td className="col" colSpan="5">
                                   <div className="cart-edit-delete">
                                     {/* <a onClick={() => { UPDATESINGLEPRODUCT(item.item_id, item.sku, item.qty) }}><i className="fa fa-pencil-alt"></i></a> */}
@@ -143,15 +143,18 @@ export function Cart() {
                                   </div>
                                 </td>
                               </tr>
+                            
                             </tbody>
                           ))}
                       </table>
                     </div>
+                    {!updatedisable &&
                     <div className="update-cart-btn-wrap mb-5">
                       <Button disabled={updatedisable} onClick={upDateCart} className="btn btn-white">
                         Update Cart
                       </Button>
                     </div>
+                    }
                     <div className="cart-gift-block">
                       <div
                         className="gift-card-title"

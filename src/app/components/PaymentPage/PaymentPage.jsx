@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { productService } from "../../api";
 import { useDispatch,useSelector } from "react-redux";
 import { cartActions, usersActions } from "../../services/actions";
+import { Loader } from "../../custom-components/Loader";
 export function PaymentPage() {
   const dispatch = useDispatch();
-  const {subTotal } = useSelector((state) => state.cartReducer);
+  const {subTotal,productInCart } = useSelector((state) => state.cartReducer);
+  const {loading} = useSelector((state) => state.loaderReducer);
   const [paymentMethods, setPaymentMethod] = useState([]);
 
   const [selectedPayment, setSelectedPaymentMethod] = useState();
@@ -50,6 +52,8 @@ export function PaymentPage() {
   }
 
   return (
+    <>
+    <Loader loading={loading} />
     <section className="payment-page">
       <div className="container">
         <div className="progress-bar-sign-in">
@@ -256,7 +260,7 @@ export function PaymentPage() {
                     </div>
                   </div> */}
                       <div className="cancel-update-wrap text-right mt-4">
-                        <Button  className="btn btn-black" onClick={placeOrder} >
+                        <Button disabled={productInCart.length === 0 ? true : false}  className="btn btn-black" onClick={placeOrder} >
                           Place Order
                         </Button>
                       </div>
@@ -477,7 +481,7 @@ export function PaymentPage() {
                     </div>
                   </div> */}
                       <div className="cancel-update-wrap text-right mt-2">
-                        <Button href="#" className="btn btn-black" onClick={placeOrder} >
+                        <Button disabled={productInCart.length === 0 ? true : false} className="btn btn-black" onClick={placeOrder} >
                           Place Order
                         </Button>
                       </div>
@@ -627,5 +631,6 @@ export function PaymentPage() {
         </div>
       </div>
     </section>
+    </>
   );
 }

@@ -65,6 +65,14 @@ export function ProductList() {
    console.log(selectedFilter)
   }
 
+
+  const onClearFilter = ()=>{
+    setCtegoryId(9);
+    setPrice({...price,from:'',to:''});
+  }
+
+
+
   const onChangeSortBy = (e)=>{
    setselectedSortBy(e.target.value)
   }
@@ -82,9 +90,8 @@ export function ProductList() {
 
   return (
     <>
-  
+      {isloading && <Loader loading={isloading} />}
     <section className="plp-content">
-    {isloading ? <Loader loading={isloading} /> : ''}
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-3">
@@ -104,9 +111,9 @@ export function ProductList() {
               <Accordion>
                 <div className="filter-title border d-flex justify-content-between p-3 align-items-baseline">
                   <h2 className="text-uppercase">Filters</h2>
-                  <a href="#" className="text-uppercase small">
+                  <div onClick={onClearFilter} className="text-uppercase small link-click">
                     Clear All
-                  </a>
+                  </div>
                 </div>
                 {/* <div className="selected-filter p-3 border-left border-right">
                   <div className="selected-creteria">selected</div>
