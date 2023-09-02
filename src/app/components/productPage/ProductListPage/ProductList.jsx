@@ -135,9 +135,10 @@ export function ProductList() {
                                 label={
                                   children.label + " " + `(${children.count})`
                                 }
-                                id={`${children.label + index}`}
+                                id={`${children.label}`}
                                 onChange={()=>changeFilterOptins(data,children)}
-                                htmlFor="checkbox1"
+                                htmlFor={children.label}
+                                type="radio"
                               />
                             </li>
                           ))}
