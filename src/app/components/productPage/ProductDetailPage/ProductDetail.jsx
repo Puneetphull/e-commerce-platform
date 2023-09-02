@@ -47,6 +47,7 @@ export function ProductDetail() {
   }
   return (
     <div>
+    
       <section className="pdp-content">
         <div className="container-fluid">
           <div className="row">
